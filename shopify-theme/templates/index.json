@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner"
+    },
+    "category_circles": {
+      "type": "category-circles"
+    },
+    "featured_collection": {
+      "type": "featured-collection"
+    },
+    "festive_banners": {
+      "type": "festive-banners"
+    }
+  },
+  "order": [
+    "hero",
+    "category_circles",
+    "featured_collection",
+    "festive_banners"
+  ]
+}

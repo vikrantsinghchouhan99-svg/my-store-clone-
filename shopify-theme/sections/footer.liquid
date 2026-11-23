@@ -1,0 +1,112 @@
+<footer class="site-footer bg-white border-t border-[#E6E6E6] pt-14 pb-8">
+  <div class="container">
+    
+    <!-- Newsletter Bar -->
+    <div class="bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-10 mb-14">
+      <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-1 text-center md:text-left">
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+            LIBAS PRIVILEGE CLUB
+          </span>
+          <h3 class="text-xl sm:text-2xl font-serif font-bold text-[#252525]">
+            Receive ₹500 Off Your First Festive Order
+          </h3>
+          <p class="text-xs text-[#737373]">
+            Be the first to access limited festive couture releases, VIP flash sales, and private styling previews.
+          </p>
+        </div>
+
+        <form action="/contact#newsletter" method="post" class="flex w-full md:w-auto max-w-md gap-2">
+          <input
+            type="email"
+            name="contact[email]"
+            required
+            placeholder="Enter your email address"
+            class="flex-1 px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs text-[#252525] outline-none"
+          >
+          <button
+            type="submit"
+            class="px-6 py-2.5 rounded-lg bg-[#252525] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Navigation Columns -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+      
+      <!-- Brand Details -->
+      <div class="col-span-2 space-y-3">
+        <span class="brand-font text-3xl font-extrabold tracking-widest text-[#71006A] uppercase block">
+          LIBAS
+        </span>
+        <p class="text-xs text-[#737373] max-w-sm leading-relaxed">
+          Libas is India&apos;s leading ethnic fashion destination creating contemporary ethnic wear, suits, sarees, and festive silhouettes with comfortable fabrics, inclusive sizing (XS to 6XL), and honest craft.
+        </p>
+        <div class="pt-2 space-y-1 text-xs text-[#4D4D4D]">
+          <p class="flex items-center gap-2">📞 +91 98999 90772 (Mon-Sat, 9am - 7pm)</p>
+          <p class="flex items-center gap-2">✉️ care@libas.in</p>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="space-y-2.5">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">Categories</h4>
+        <ul class="space-y-1.5 text-xs text-[#737373]">
+          <li><a href="/collections/suits" class="hover:text-[#71006A]">Suits & Sets</a></li>
+          <li><a href="/collections/kurtas" class="hover:text-[#71006A]">Kurtas & Kurtis</a></li>
+          <li><a href="/collections/sarees" class="hover:text-[#71006A]">Sarees</a></li>
+          <li><a href="/collections/dresses" class="hover:text-[#71006A]">Ethnic Dresses</a></li>
+          <li><a href="/collections/loungewear" class="hover:text-[#71006A]">Co-ords & Loungewear</a></li>
+          <li><a href="/collections/plus-size" class="hover:text-[#71006A]">ExtraLove (3XL-6XL)</a></li>
+          <li><a href="/collections/sale" class="hover:text-[#71006A] text-[#D92D20] font-semibold">Festive Sale</a></li>
+        </ul>
+      </div>
+
+      <!-- Customer Help -->
+      <div class="space-y-2.5">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">Customer Help</h4>
+        <ul class="space-y-1.5 text-xs text-[#737373]">
+          <li><a href="/pages/track-order" class="hover:text-[#71006A]">Track Order</a></li>
+          <li><a href="/pages/returns" class="hover:text-[#71006A]">Return / Exchange Request</a></li>
+          <li><a href="/pages/shipping-policy" class="hover:text-[#71006A]">Shipping & Delivery Policy</a></li>
+          <li><a href="/pages/contact" class="hover:text-[#71006A]">Contact Customer Care</a></li>
+          <li><a href="/pages/faqs" class="hover:text-[#71006A]">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- About Libas -->
+      <div class="space-y-2.5">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">About Libas</h4>
+        <ul class="space-y-1.5 text-xs text-[#737373]">
+          <li><a href="/pages/about" class="hover:text-[#71006A]">Our Story & Craft</a></li>
+          <li><a href="/pages/stores" class="hover:text-[#71006A]">Store Locator</a></li>
+          <li><a href="/pages/sustainability" class="hover:text-[#71006A]">Sustainability</a></li>
+          <li><a href="/pages/terms" class="hover:text-[#71006A]">Terms & Conditions</a></li>
+          <li><a href="/pages/privacy" class="hover:text-[#71006A]">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright & SSL Certification -->
+    <div class="mt-12 pt-6 border-t border-[#E6E6E6] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#999999]">
+      <p>© {{ 'now' | date: '%Y' }} Libas Consumer Products Ltd. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-[11px] text-[#737373]">
+        <span>100% Encrypted & Safe Checkout</span>
+        <span>•</span>
+        <span>PCI-DSS Certified</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

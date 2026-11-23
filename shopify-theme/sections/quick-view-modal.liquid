@@ -1,0 +1,69 @@
+<!-- Quick View Modal -->
+<div id="QuickViewModal" class="modal-overlay">
+  <div class="modal-container p-6">
+    <button type="button" data-quickview-close class="absolute top-4 right-4 text-[#737373] hover:text-black">
+      {% render 'icon-close' %}
+    </button>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+      <!-- Image Box -->
+      <div class="aspect-[3/4] bg-[#F5F5F5] rounded-xl overflow-hidden">
+        <img
+          id="qv-image"
+          src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=800&auto=format&fit=crop"
+          alt="Quick View Product"
+          class="w-full h-full object-cover object-top"
+          onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=800&auto=format&fit=crop';"
+        >
+      </div>
+
+      <!-- Details -->
+      <div class="space-y-4 text-left">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+          LIBAS EXCLUSIVE
+        </span>
+        <h3 id="qv-title" class="text-lg font-serif font-bold text-[#252525]">
+          Purple Zari Embroidered Silk Anarkali Suit Set
+        </h3>
+
+        <div class="flex items-baseline gap-2">
+          <span id="qv-price" class="text-base font-bold text-[#71006A]">₹3,499</span>
+          <span id="qv-original-price" class="text-xs text-[#999999] line-through">₹6,999</span>
+          <span class="text-xs text-emerald-700 font-bold">50% off</span>
+        </div>
+
+        <p class="text-xs text-[#737373] leading-relaxed">
+          Flared Chanderi silk silhouette adorned with intricate zari yoke embroidery, matching bottom trousers, and coordinating dupatta.
+        </p>
+
+        <!-- Size Options -->
+        <div class="space-y-1.5">
+          <label class="text-xs font-bold text-[#252525]">Select Size</label>
+          <div class="flex gap-2">
+            <button type="button" class="px-3 py-1.5 rounded border border-[#71006A] bg-[#FAF7F9] text-xs font-bold text-[#71006A]">S</button>
+            <button type="button" class="px-3 py-1.5 rounded border border-[#E6E6E6] hover:border-[#71006A] text-xs font-semibold">M</button>
+            <button type="button" class="px-3 py-1.5 rounded border border-[#E6E6E6] hover:border-[#71006A] text-xs font-semibold">L</button>
+            <button type="button" class="px-3 py-1.5 rounded border border-[#E6E6E6] hover:border-[#71006A] text-xs font-semibold">XL</button>
+            <button type="button" class="px-3 py-1.5 rounded border border-[#E6E6E6] hover:border-[#71006A] text-xs font-semibold">XXL</button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          data-cart-drawer-trigger
+          data-quickview-close
+          class="w-full py-3 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md"
+        >
+          Add to Bag • Instant Delivery
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Quick View Modal",
+  "settings": []
+}
+{% endschema %}

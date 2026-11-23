@@ -1,0 +1,38 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search Suits, Kurtas, Sarees, Dresses...",
+      "submit": "Search"
+    },
+    "continue_shopping": "Continue Shopping",
+    "currency": "INR",
+    "share": "Share"
+  },
+  "sections": {
+    "header": {
+      "announcement": "THE FESTIVE EDIT 2026 • USE CODE PREPAID10 FOR EXTRA 10% OFF",
+      "account": "Account",
+      "cart": "Bag",
+      "wishlist": "Wishlist"
+    },
+    "cart": {
+      "title": "Shopping Bag",
+      "empty": "Your shopping bag is currently empty.",
+      "subtotal": "Estimated Total",
+      "checkout": "Proceed to Pay",
+      "note": "Special instructions for seller"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Bag",
+      "sold_out": "Sold Out",
+      "on_sale": "Sale",
+      "quick_view": "Quick View",
+      "size": "Select Size",
+      "color": "Color",
+      "quantity": "Quantity",
+      "pincode_check": "Check Delivery"
+    }
+  }
+}

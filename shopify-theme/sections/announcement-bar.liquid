@@ -1,0 +1,20 @@
+<div class="announcement-bar py-2 px-4 bg-[#71006A] text-white text-center text-xs font-semibold tracking-wider uppercase">
+  <div class="container flex items-center justify-center gap-2">
+    <span>✨</span>
+    <span>{{ section.settings.announcement_text | default: 'THE FESTIVE EDIT 2026 • USE CODE PREPAID10 FOR EXTRA 10% OFF' }}</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "THE FESTIVE EDIT 2026 • USE CODE PREPAID10 FOR EXTRA 10% OFF"
+    }
+  ]
+}
+{% endschema %}

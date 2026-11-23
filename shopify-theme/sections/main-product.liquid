@@ -1,0 +1,90 @@
+<div class="py-12 bg-white">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+      
+      <!-- Gallery -->
+      <div class="space-y-4">
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F5F5] border border-[#E6E6E6]">
+          <img
+            src="{{ product.featured_image | default: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop' }}"
+            alt="{{ product.title | escape }}"
+            class="w-full h-full object-cover object-top"
+            onerror="this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop';"
+          >
+        </div>
+      </div>
+
+      <!-- Product Buy Box -->
+      <div class="space-y-6">
+        <div class="space-y-2 border-b border-[#E6E6E6] pb-4">
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+            LIBAS FESTIVE EDIT
+          </span>
+          <h1 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525]">
+            {{ product.title | default: 'Purple Zari Embroidered Silk Anarkali Suit Set' }}
+          </h1>
+          <div class="flex items-baseline gap-3 pt-1">
+            <span class="text-xl font-bold text-[#71006A]">{{ product.price | money | default: '₹3,499' }}</span>
+            <span class="text-sm text-[#999999] line-through">{{ product.compare_at_price | money | default: '₹6,999' }}</span>
+            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">50% OFF</span>
+          </div>
+        </div>
+
+        <!-- Size Selection -->
+        <div class="space-y-2">
+          <label class="text-xs font-bold text-[#252525] uppercase tracking-wider block">Select Size</label>
+          <div class="flex gap-2">
+            {% for s in (1..5) %}
+              {% assign size_label = 'S,M,L,XL,XXL' | split: ',' %}
+              <button type="button" class="px-4 py-2 rounded-lg border border-[#E6E6E6] hover:border-[#71006A] text-xs font-bold transition-colors">
+                {{ size_label[forloop.index0] }}
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Add to Cart Form -->
+        {% form 'product', product %}
+          <div class="space-y-3">
+            <button
+              type="button"
+              data-cart-drawer-trigger
+              class="w-full py-3.5 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2"
+            >
+              <span>Add to Bag</span>
+              <span>•</span>
+              <span>Free Delivery</span>
+            </button>
+          </div>
+        {% endform %}
+
+        <!-- Pincode Estimator -->
+        <div class="p-4 rounded-xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
+          <h4 class="text-xs font-bold text-[#252525]">Check Delivery & Cash on Delivery (COD)</h4>
+          <form id="PincodeForm" class="flex gap-2">
+            <input
+              id="PincodeInput"
+              type="text"
+              maxlength="6"
+              placeholder="Enter 6-digit Pincode"
+              class="flex-1 px-3 py-2 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono outline-none"
+            >
+            <button type="submit" class="px-4 py-2 rounded-lg bg-[#252525] text-white text-xs font-bold">
+              Check
+            </button>
+          </form>
+          <div id="PincodeResult"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": []
+}
+{% endschema %}

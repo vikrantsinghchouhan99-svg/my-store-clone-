@@ -1,0 +1,52 @@
+<div class="py-14 bg-white">
+  <div class="container max-w-4xl space-y-6">
+    <div class="flex items-center justify-between border-b border-[#E6E6E6] pb-4">
+      <div>
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">CLIENT DASHBOARD</span>
+        <h1 class="text-2xl font-serif font-bold text-[#252525]">My Account</h1>
+      </div>
+      <a href="/account/logout" class="text-xs font-bold text-[#71006A] hover:underline">Sign Out</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 space-y-4">
+        <h3 class="text-base font-serif font-bold text-[#252525]">Order History</h3>
+        {% paginate customer.orders by 10 %}
+          {% if customer.orders.size != 0 %}
+            <div class="space-y-3">
+              {% for order in customer.orders %}
+                <div class="p-4 rounded-xl bg-[#FAF7F9] border border-[#E6E6E6] flex items-center justify-between text-xs">
+                  <div>
+                    <p class="font-bold text-[#252525]">{{ order.name }}</p>
+                    <p class="text-[10px] text-[#737373]">{{ order.created_at | date: "%b %d, %Y" }}</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="font-bold text-[#71006A]">{{ order.total_price | money }}</p>
+                    <span class="text-[10px] text-emerald-700 font-bold">{{ order.fulfillment_status_label }}</span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="p-8 text-center bg-[#FAF7F9] rounded-2xl border border-[#E6E6E6] text-xs text-[#737373]">
+              You haven&apos;t placed any orders yet. <br>
+              <a href="/collections/all" class="text-[#71006A] font-bold hover:underline mt-2 inline-block">Explore Festive Collections →</a>
+            </div>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-base font-serif font-bold text-[#252525]">Primary Address</h3>
+        <div class="p-5 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] text-xs space-y-1">
+          <p class="font-bold text-[#252525]">{{ customer.name }}</p>
+          <p class="text-[#737373]">{{ customer.email }}</p>
+          {% if customer.default_address %}
+            <p class="text-[#737373]">{{ customer.default_address.address1 }}</p>
+            <p class="text-[#737373]">{{ customer.default_address.city }}, {{ customer.default_address.zip }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="py-12 bg-white">
+  <div class="container max-w-5xl">
+    <div class="text-center space-y-2 mb-10">
+      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">CLIENT CARE</span>
+      <h1 class="text-3xl font-serif font-bold text-[#252525]">Contact Customer Care</h1>
+      <p class="text-xs text-[#737373]">We are available Mon-Sat, 9am - 7pm IST to assist you with inquiries.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
+      <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-4">
+        <h3 class="text-base font-serif font-bold text-[#252525]">Direct Assistance Channels</h3>
+        <p class="text-xs text-[#4D4D4D]">📞 +91 98999 90772</p>
+        <p class="text-xs text-[#4D4D4D]">✉️ care@libas.in</p>
+        <p class="text-xs text-[#4D4D4D]">📍 Libas Consumer Products Ltd., Okhla Industrial Area, New Delhi</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white border border-[#E6E6E6] space-y-3">
+        <h3 class="text-base font-serif font-bold text-[#252525]">Send An Inquiry</h3>
+        {% form 'contact' %}
+          <div class="space-y-3">
+            <input type="text" name="contact[name]" placeholder="Your Name" required class="w-full px-3 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none">
+            <input type="email" name="contact[email]" placeholder="Your Email" required class="w-full px-3 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none">
+            <textarea name="contact[body]" rows="3" placeholder="How can we help?" required class="w-full px-3 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none"></textarea>
+            <button type="submit" class="w-full py-2.5 rounded-lg bg-[#71006A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#560050]">Submit Message</button>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+
+    <!-- Featured Products -->
+    <div class="pt-8 border-t border-[#E6E6E6]">
+      <h3 class="text-xl font-serif font-bold text-[#252525] mb-6">Client Favorites</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {% render 'product-card',
+          title: 'Purple Zari Silk Anarkali Suit Set',
+          price: '₹3,499',
+          original_price: '₹6,999',
+          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Mustard Georgette Sharara Suit Set',
+          price: '₹2,799',
+          original_price: '₹5,599',
+          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Wine Chanderi Silk Foil Print Kurta',
+          price: '₹1,299',
+          original_price: '₹2,599',
+          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Lavender Pure Organza Floral Saree',
+          price: '₹2,899',
+          original_price: '₹5,799',
+          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact Page",
+  "settings": []
+}
+{% endschema %}

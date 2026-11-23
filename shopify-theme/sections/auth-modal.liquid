@@ -1,0 +1,77 @@
+<!-- Account Auth Modal With Brute-Force Safeguard -->
+<div id="AuthModal" class="modal-overlay">
+  <div class="modal-container p-6 sm:p-8 max-w-md">
+    <button type="button" data-auth-close class="absolute top-4 right-4 text-[#737373] hover:text-black">
+      {% render 'icon-close' %}
+    </button>
+
+    <div class="space-y-4 text-center">
+      <div class="space-y-1">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+          CLIENT PRIVILEGE ACCESS
+        </span>
+        <h3 class="text-xl font-serif font-bold text-[#252525]">
+          Sign In to Your Account
+        </h3>
+        <p class="text-xs text-[#737373]">
+          Track orders, access saved measurements, and manage returns.
+        </p>
+      </div>
+
+      <!-- Lockout Alert Box -->
+      <div id="LockoutMsg" style="display: none;" class="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-800 text-left">
+        <strong>⚠️ Account Locked (Brute-Force Safeguard)</strong>
+        <p class="mt-1">Too many failed password attempts. Access temporarily suspended. Please wait <span id="LockoutSeconds" class="font-bold">30</span>s before trying again.</p>
+      </div>
+
+      <div id="AuthError" style="display: none;" class="p-2.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 text-left font-medium"></div>
+
+      <!-- Login Form -->
+      <form id="LoginForm" class="space-y-3 text-left">
+        <div>
+          <label class="text-xs font-bold text-[#252525] block mb-1">Email or Mobile Number *</label>
+          <input
+            id="LoginEmail"
+            type="text"
+            required
+            placeholder="user@example.com"
+            class="w-full px-3.5 py-2.5 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none"
+          >
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="text-xs font-bold text-[#252525]">Password *</label>
+            <a href="/pages/contact" class="text-[11px] text-[#71006A] hover:underline">Forgot?</a>
+          </div>
+          <input
+            id="LoginPassword"
+            type="password"
+            required
+            placeholder="••••••••"
+            class="w-full px-3.5 py-2.5 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none"
+          >
+        </div>
+
+        <button
+          id="LoginBtn"
+          type="submit"
+          class="w-full py-3 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md mt-2"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <div class="pt-3 border-t border-[#E6E6E6] text-xs text-[#737373]">
+        Don&apos;t have an account yet? <a href="/account/register" class="text-[#71006A] font-bold hover:underline">Create Account</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Auth Modal",
+  "settings": []
+}
+{% endschema %}

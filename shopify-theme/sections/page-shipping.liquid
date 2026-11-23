@@ -1,0 +1,98 @@
+<div class="py-12 bg-white">
+  <div class="container max-w-5xl">
+    
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+        EXPRESS DOMESTIC & GLOBAL TRANSIT
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
+        Shipping & Delivery Policy
+      </h1>
+      <p class="text-xs sm:text-sm text-[#737373]">
+        Enjoy 100% Free Shipping on orders above ₹999 across India. Express metro dispatch within 24 to 48 hours.
+      </p>
+    </div>
+
+    <!-- Pincode Estimator -->
+    <div class="bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 max-w-xl mx-auto mb-14 shadow-xs">
+      <h3 class="text-sm font-serif font-bold text-[#252525] mb-2">Check Delivery Time For Your Pincode</h3>
+      <form id="PincodeForm" class="flex gap-2">
+        <input
+          id="PincodeInput"
+          type="text"
+          maxlength="6"
+          required
+          placeholder="Enter 6-digit Pincode (e.g. 110001)"
+          class="flex-1 px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono outline-none"
+        >
+        <button type="submit" class="px-6 py-2.5 rounded-lg bg-[#71006A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#560050] transition-colors">
+          Check
+        </button>
+      </form>
+      <div id="PincodeResult"></div>
+    </div>
+
+    <!-- Policy Table -->
+    <div class="bg-white border border-[#E6E6E6] rounded-2xl overflow-hidden mb-14 shadow-xs text-xs">
+      <div class="bg-[#FAF7F9] px-6 py-3 font-mono font-bold text-[#71006A] uppercase tracking-wider">
+        Domestic Transit Milestones
+      </div>
+      <div class="divide-y divide-[#E6E6E6]">
+        <div class="grid grid-cols-3 p-4 text-[#4D4D4D]">
+          <span class="font-bold text-[#252525]">Orders Above ₹999</span>
+          <span>2-4 Business Days</span>
+          <span class="text-emerald-700 font-bold">100% FREE</span>
+        </div>
+        <div class="grid grid-cols-3 p-4 text-[#4D4D4D]">
+          <span class="font-bold text-[#252525]">Orders Below ₹999</span>
+          <span>3-5 Business Days</span>
+          <span>₹99 flat delivery fee</span>
+        </div>
+        <div class="grid grid-cols-3 p-4 text-[#4D4D4D]">
+          <span class="font-bold text-[#252525]">Cash on Delivery (COD)</span>
+          <span>Available up to ₹10,000</span>
+          <span>Zero surcharge</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Showcase -->
+    <div class="pt-8 border-t border-[#E6E6E6]">
+      <h3 class="text-xl font-serif font-bold text-[#252525] mb-6">Fast-Dispatch Ready To Ship Items</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card',
+          title: 'Purple Zari Silk Anarkali Suit Set',
+          price: '₹3,499',
+          original_price: '₹6,999',
+          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Mustard Georgette Sharara Suit Set',
+          price: '₹2,799',
+          original_price: '₹5,599',
+          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Wine Chanderi Silk Foil Print Kurta',
+          price: '₹1,299',
+          original_price: '₹2,599',
+          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Lavender Pure Organza Floral Saree',
+          price: '₹2,899',
+          original_price: '₹5,799',
+          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Policy Page",
+  "settings": []
+}
+{% endschema %}

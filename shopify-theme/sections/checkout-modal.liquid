@@ -1,0 +1,108 @@
+<!-- Multi-Option Checkout Modal -->
+<div id="CheckoutModal" class="modal-overlay">
+  <div class="modal-container p-6 sm:p-8 max-w-2xl">
+    <button type="button" data-checkout-close class="absolute top-4 right-4 text-[#737373] hover:text-black">
+      {% render 'icon-close' %}
+    </button>
+
+    <div class="space-y-6">
+      <div class="border-b border-[#E6E6E6] pb-4">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+          SECURE 256-BIT ENCRYPTED GATEWAY
+        </span>
+        <h3 class="text-xl font-serif font-bold text-[#252525] mt-1">
+          Complete Your Order
+        </h3>
+      </div>
+
+      <!-- Shipping Address -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">1. Delivery Address</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <input type="text" placeholder="Full Name *" required class="px-3.5 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none">
+          <input type="tel" placeholder="10-Digit Mobile Number *" required class="px-3.5 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none">
+          <input type="text" placeholder="Street Address / House No. *" required class="sm:col-span-2 px-3.5 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none">
+          <input type="text" placeholder="City *" required class="px-3.5 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs outline-none">
+          <input type="text" placeholder="6-digit Pincode *" required class="px-3.5 py-2 rounded-lg bg-[#FAF7F9] border border-[#E6E6E6] text-xs font-mono outline-none">
+        </div>
+      </div>
+
+      <!-- Payment Method Selection -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">2. Select Payment Method</h4>
+        
+        <div class="space-y-2">
+          <!-- COD -->
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-[#71006A] bg-[#FAF7F9] cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="payment_method" value="cod" checked class="text-[#71006A]">
+              <div>
+                <p class="text-xs font-bold text-[#252525]">Cash on Delivery (COD)</p>
+                <p class="text-[10px] text-[#737373]">Pay at doorstep when your package arrives</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Zero Extra Fee</span>
+          </label>
+
+          <!-- UPI -->
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-[#E6E6E6] hover:border-[#71006A] bg-white cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="payment_method" value="upi" class="text-[#71006A]">
+              <div>
+                <p class="text-xs font-bold text-[#252525]">Instant UPI (Google Pay, PhonePe, Paytm, QR)</p>
+                <p class="text-[10px] text-[#737373]">Scan QR code or approve request on UPI app</p>
+              </div>
+            </div>
+            <span class="text-[10px] font-bold text-[#71006A] bg-[#FAF7F9] px-2 py-0.5 rounded border border-[#E6E6E6]">Fastest</span>
+          </label>
+
+          <!-- Cards -->
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-[#E6E6E6] hover:border-[#71006A] bg-white cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="payment_method" value="card" class="text-[#71006A]">
+              <div>
+                <p class="text-xs font-bold text-[#252525]">Credit / Debit Card</p>
+                <p class="text-[10px] text-[#737373]">Visa, MasterCard, RuPay, Maestro accepted</p>
+              </div>
+            </div>
+            <span class="text-[10px] text-[#737373]">Bank SSL</span>
+          </label>
+
+          <!-- Net Banking -->
+          <label class="flex items-center justify-between p-3.5 rounded-xl border border-[#E6E6E6] hover:border-[#71006A] bg-white cursor-pointer">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="payment_method" value="netbanking" class="text-[#71006A]">
+              <div>
+                <p class="text-xs font-bold text-[#252525]">Net Banking</p>
+                <p class="text-[10px] text-[#737373]">All Indian major nationalized & private banks</p>
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Action -->
+      <div class="pt-4 border-t border-[#E6E6E6] flex items-center justify-between">
+        <div>
+          <span class="text-[11px] text-[#737373] block">Amount Payable:</span>
+          <span class="text-lg font-serif font-bold text-[#71006A]">{{ cart.total_price | money | default: '₹3,499' }}</span>
+        </div>
+
+        <button
+          type="button"
+          onclick="alert('Order Placed Successfully! Your Libas tracking consignment number is LIB-884920.'); window.location.href='/pages/track-order';"
+          class="px-8 py-3 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md"
+        >
+          Confirm & Place Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Checkout Modal",
+  "settings": []
+}
+{% endschema %}
