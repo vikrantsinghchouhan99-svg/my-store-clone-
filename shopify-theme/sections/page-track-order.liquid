@@ -1,0 +1,112 @@
+<div class="bg-white min-h-[70vh] py-12">
+  <div class="container max-w-4xl">
+    
+    <!-- Header -->
+    <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+        LIVE DISPATCH & LOGISTICS
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
+        Track Your Libas Consignment
+      </h1>
+      <p class="text-xs sm:text-sm text-[#737373]">
+        Enter your Order ID (e.g. <strong>LIB-884920</strong>) and registered mobile number to check real-time transit status.
+      </p>
+    </div>
+
+    <!-- Input Card -->
+    <div class="bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs max-w-xl mx-auto mb-10">
+      <form id="trackOrderForm" onsubmit="event.preventDefault(); document.getElementById('trackingResult').classList.remove('hidden');" class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-[#252525] block mb-1">
+            Order ID / AWB Number *
+          </label>
+          <input
+            type="text"
+            required
+            placeholder="e.g. LIB-884920"
+            id="trackOrderId"
+            value="LIB-884920"
+            class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs text-[#252525] outline-none font-mono uppercase"
+          >
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-[#252525] block mb-1">
+            Registered Mobile Number / Email *
+          </label>
+          <input
+            type="text"
+            required
+            placeholder="e.g. +91 9876543210"
+            value="+91 98999 90772"
+            class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs text-[#252525] outline-none"
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all flex items-center justify-center gap-2 border-none cursor-pointer"
+        >
+          <span>Track Consignment</span>
+          <span>→</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Live Timeline Result -->
+    <div id="trackingResult" class="bg-white border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-sm space-y-6">
+      <div class="flex flex-wrap items-center justify-between pb-4 border-b border-[#E6E6E6] gap-2">
+        <div>
+          <span class="text-[10px] font-mono text-[#71006A] font-bold">CONSIGNMENT FOUND</span>
+          <h3 class="text-lg font-bold text-[#252525]">Order #LIB-884920</h3>
+        </div>
+        <div class="text-right">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+            ✓ Out for Delivery
+          </span>
+          <p class="text-[11px] text-[#737373] mt-0.5 font-mono">Carrier: BlueDart Express (AWB: BD99482103)</p>
+        </div>
+      </div>
+
+      <!-- Timeline Steps -->
+      <div class="space-y-6 pl-4 border-l-2 border-[#71006A]/30 relative ml-2">
+        <div class="relative pl-6">
+          <span class="absolute -left-[23px] top-0 w-3.5 h-3.5 rounded-full bg-[#71006A] ring-4 ring-[#FAF7F9]"></span>
+          <h4 class="text-xs font-bold text-[#252525]">Out for Delivery</h4>
+          <p class="text-[11px] text-[#737373]">Consignment dispatched with courier agent. Expected delivery today by 6:00 PM.</p>
+          <span class="text-[10px] font-mono text-[#71006A]">Today, 09:30 AM</span>
+        </div>
+
+        <div class="relative pl-6">
+          <span class="absolute -left-[23px] top-0 w-3.5 h-3.5 rounded-full bg-[#71006A]"></span>
+          <h4 class="text-xs font-bold text-[#252525]">Arrived at Destination Hub</h4>
+          <p class="text-[11px] text-[#737373]">Sorted and scanned at Metro Hub (Bandra West Facility).</p>
+          <span class="text-[10px] font-mono text-[#71006A]">Yesterday, 11:45 PM</span>
+        </div>
+
+        <div class="relative pl-6">
+          <span class="absolute -left-[23px] top-0 w-3.5 h-3.5 rounded-full bg-emerald-600"></span>
+          <h4 class="text-xs font-bold text-[#252525]">Dispatched from Atelier</h4>
+          <p class="text-[11px] text-[#737373]">Packed in tamper-proof luxury packaging and handed to BlueDart.</p>
+          <span class="text-[10px] font-mono text-[#71006A]">24 Nov 2026, 04:15 PM</span>
+        </div>
+
+        <div class="relative pl-6">
+          <span class="absolute -left-[23px] top-0 w-3.5 h-3.5 rounded-full bg-gray-400"></span>
+          <h4 class="text-xs font-bold text-[#252525]">Order Placed & Verified</h4>
+          <p class="text-[11px] text-[#737373]">Payment confirmed via UPI/Credit Card.</p>
+          <span class="text-[10px] font-mono text-[#71006A]">23 Nov 2026, 02:20 PM</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Track Order Page",
+  "settings": []
+}
+{% endschema %}

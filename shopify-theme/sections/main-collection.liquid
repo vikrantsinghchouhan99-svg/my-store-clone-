@@ -1,79 +1,308 @@
-<div class="py-12 bg-white">
+<div class="py-10 bg-white min-h-[70vh]">
   <div class="container">
     
-    <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-2 mb-10">
-      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+    <!-- Collection Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-2 mb-8">
+      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold" id="coll-eyebrow">
         COLLECTION
       </span>
-      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]" id="coll-heading">
         {{ collection.title | default: 'All Festive Collections' }}
       </h1>
-      <p class="text-xs sm:text-sm text-[#737373]">
+      <p class="text-xs sm:text-sm text-[#737373]" id="coll-tagline">
         {{ collection.description | default: 'Explore our hallmark Indian ethnic silhouettes crafted in comfortable fabrics and festive hand-embroidered finishes.' }}
       </p>
     </div>
 
+    <!-- Subcategory Chips -->
+    <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar" id="collection-chips">
+      <button type="button" data-filter-subcat="all" class="subcat-chip active px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#71006A] text-white cursor-pointer border-none shadow-xs whitespace-nowrap">
+        All Styles
+      </button>
+      <button type="button" data-filter-subcat="anarkali" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        Anarkali
+      </button>
+      <button type="button" data-filter-subcat="sharara" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        Sharara Sets
+      </button>
+      <button type="button" data-filter-subcat="palazzo" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        Palazzo Sets
+      </button>
+      <button type="button" data-filter-subcat="straight" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        Straight Cut
+      </button>
+      <button type="button" data-filter-subcat="sarees" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        Sarees
+      </button>
+      <button type="button" data-filter-subcat="dresses" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        Ethnic Dresses
+      </button>
+      <button type="button" data-filter-subcat="plus" class="subcat-chip px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        ExtraLove (3XL-6XL)
+      </button>
+    </div>
+
+    <!-- Toolbar: Active Count & Sort -->
+    <div class="flex items-center justify-between pb-4 border-b border-[#E6E6E6] mb-8 text-xs text-[#737373]">
+      <div>
+        Showing <span id="product-count" class="font-bold text-[#252525]">17</span> festive silhouettes
+      </div>
+      <div class="flex items-center gap-2">
+        <label for="coll-sort" class="font-bold text-[#252525]">Sort By:</label>
+        <select id="coll-sort" class="px-3 py-1.5 rounded-lg border border-[#E6E6E6] bg-white text-xs text-[#252525] outline-none">
+          <option value="featured">Featured / Trending</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="discount">Biggest Discount</option>
+        </select>
+      </div>
+    </div>
+
     <!-- Product Grid -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      {% if collection.products_count > 0 %}
-        {% for product in collection.products %}
-          {% render 'product-card', product: product %}
-        {% endfor %}
-      {% else %}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6" id="collection-grid">
+      
+      <!-- 1. Suit Anarkali -->
+      <div class="product-item" data-category="suits" data-subcategory="anarkali" data-price="3499">
         {% render 'product-card',
           title: 'Purple Zari Embroidered Silk Anarkali Suit Set',
           price: '₹3,499',
           original_price: '₹6,999',
           image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 2. Suit Sharara -->
+      <div class="product-item" data-category="suits" data-subcategory="sharara" data-price="2799">
         {% render 'product-card',
           title: 'Mustard Gotta Patti Georgette Sharara Suit Set',
           price: '₹2,799',
           original_price: '₹5,599',
           image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 3. Suit Palazzo -->
+      <div class="product-item" data-category="suits" data-subcategory="palazzo" data-price="1899">
         {% render 'product-card',
-          title: 'Blush Pink Pure Cotton Straight Kurta Palazzo Set',
-          price: '₹1,499',
-          original_price: '₹2,999',
+          title: 'Blush Floral Pure Cotton Straight Kurta & Palazzo Set',
+          price: '₹1,899',
+          original_price: '₹3,799',
           image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 4. Suit Velvet -->
+      <div class="product-item" data-category="suits" data-subcategory="straight" data-price="4499">
         {% render 'product-card',
           title: 'Emerald Green Embroidered Velvet Suit Set',
           price: '₹4,499',
           original_price: '₹8,999',
           image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 5. Kurta Straight -->
+      <div class="product-item" data-category="kurtas" data-subcategory="straight" data-price="1299">
         {% render 'product-card',
           title: 'Wine Chanderi Silk Foil Print Straight Kurta',
           price: '₹1,299',
           original_price: '₹2,599',
           image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 6. Kurta Ajrakh Flared -->
+      <div class="product-item" data-category="kurtas" data-subcategory="flared" data-price="999">
         {% render 'product-card',
-          title: 'Lavender Pure Organza Floral Zari Saree',
-          price: '₹2,899',
-          original_price: '₹5,799',
-          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
+          title: 'Indigo Blue Ajrakh Block Printed A-Line Kurta',
+          price: '₹999',
+          original_price: '₹1,999',
+          image: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 7. Kurta Short Tunic -->
+      <div class="product-item" data-category="kurtas" data-subcategory="straight" data-price="899">
         {% render 'product-card',
-          title: 'Rust Red Tiered Georgette Maxi Ethnic Dress',
-          price: '₹2,199',
-          original_price: '₹4,399',
+          title: 'Peach Thread Embroidered Tunic Short Kurti',
+          price: '₹899',
+          original_price: '₹1,799',
           image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+
+      <!-- 8. Saree Organza -->
+      <div class="product-item" data-category="sarees" data-subcategory="sarees" data-price="2699">
         {% render 'product-card',
-          title: 'Maroon Festive Silk Blend Anarkali Set',
-          price: '₹3,799',
-          original_price: '₹7,599',
+          title: 'Burgundy Zari Woven Sheer Organza Saree',
+          price: '₹2,699',
+          original_price: '₹5,399',
+          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 9. Saree Ready-to-wear -->
+      <div class="product-item" data-category="sarees" data-subcategory="sarees" data-price="2199">
+        {% render 'product-card',
+          title: 'Mauve Pink Pre-Draped 1-Minute Georgette Saree',
+          price: '₹2,199',
+          original_price: '₹4,399',
           image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop'
         %}
-      {% endif %}
+      </div>
+
+      <!-- 10. Dress Tiered -->
+      <div class="product-item" data-category="dresses" data-subcategory="dresses" data-price="1799">
+        {% render 'product-card',
+          title: 'Maroon Floral Printed Tiered Ethnic Maxi Dress',
+          price: '₹1,799',
+          original_price: '₹3,599',
+          image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 11. Dress Angrakha -->
+      <div class="product-item" data-category="dresses" data-subcategory="dresses" data-price="1699">
+        {% render 'product-card',
+          title: 'Blush Pink Angrakha Anarkali Flared Dress',
+          price: '₹1,699',
+          original_price: '₹3,399',
+          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 12. Loungewear Co-ord -->
+      <div class="product-item" data-category="loungewear" data-subcategory="loungewear" data-price="1699">
+        {% render 'product-card',
+          title: 'Berry Plum Geometric Printed Pure Cotton Co-ord Set',
+          price: '₹1,699',
+          original_price: '₹3,399',
+          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 13. Loungewear Kaftan -->
+      <div class="product-item" data-category="loungewear" data-subcategory="loungewear" data-price="1899">
+        {% render 'product-card',
+          title: 'Lilac Floral Silk Blend Kaftan Lounge Set',
+          price: '₹1,899',
+          original_price: '₹3,799',
+          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 14. Plus Size Anarkali -->
+      <div class="product-item" data-category="plus-size" data-subcategory="plus" data-price="3199">
+        {% render 'product-card',
+          title: 'ExtraLove Plum Embroidered Festive Anarkali Set (3XL-6XL)',
+          price: '₹3,199',
+          original_price: '₹6,399',
+          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 15. Plus Size Cotton -->
+      <div class="product-item" data-category="plus-size" data-subcategory="plus" data-price="1999">
+        {% render 'product-card',
+          title: 'ExtraLove Dusty Rose Printed Cotton Kurta Set (3XL-6XL)',
+          price: '₹1,999',
+          original_price: '₹3,999',
+          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 16. Sale Deal 1 -->
+      <div class="product-item" data-category="sale" data-subcategory="sale" data-price="2399">
+        {% render 'product-card',
+          title: 'Festive Flash Deal: Magenta Silk Sharara Suit Set',
+          price: '₹2,399',
+          original_price: '₹5,999',
+          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
+      <!-- 17. Sale Deal 2 -->
+      <div class="product-item" data-category="sale" data-subcategory="sale" data-price="1599">
+        {% render 'product-card',
+          title: 'Steal Deal: Peacock Teal Embroidered Georgette Gown',
+          price: '₹1,599',
+          original_price: '₹3,999',
+          image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+
     </div>
 
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const chips = document.querySelectorAll('.subcat-chip');
+    const items = document.querySelectorAll('#collection-grid .product-item');
+    const countEl = document.getElementById('product-count');
+    const sortSelect = document.getElementById('coll-sort');
+
+    // Parse URL query parameter for category or filter
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter') || urlParams.get('category');
+
+    function applyFilter(target) {
+      let visible = 0;
+      chips.forEach(c => {
+        if (c.getAttribute('data-filter-subcat') === target) {
+          c.classList.add('active', 'bg-[#71006A]', 'text-white');
+          c.classList.remove('bg-[#FAF7F9]', 'text-[#252525]', 'border');
+        } else {
+          c.classList.remove('active', 'bg-[#71006A]', 'text-white');
+          c.classList.add('bg-[#FAF7F9]', 'text-[#252525]', 'border');
+        }
+      });
+
+      items.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        const subcat = item.getAttribute('data-subcategory');
+        if (target === 'all' || subcat === target || cat === target) {
+          item.classList.remove('hidden');
+          visible++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (countEl) countEl.textContent = visible;
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', function () {
+        const target = this.getAttribute('data-filter-subcat');
+        applyFilter(target);
+      });
+    });
+
+    if (filterParam) {
+      applyFilter(filterParam.toLowerCase());
+    }
+
+    if (sortSelect) {
+      sortSelect.addEventListener('change', function () {
+        const grid = document.getElementById('collection-grid');
+        const sortVal = this.value;
+        const currentItems = Array.from(items);
+
+        currentItems.sort((a, b) => {
+          const priceA = parseInt(a.getAttribute('data-price') || '0');
+          const priceB = parseInt(b.getAttribute('data-price') || '0');
+          if (sortVal === 'price-low') return priceA - priceB;
+          if (sortVal === 'price-high') return priceB - priceA;
+          return 0;
+        });
+
+        currentItems.forEach(el => grid.appendChild(el));
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
