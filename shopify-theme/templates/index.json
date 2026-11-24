@@ -1,16 +1,20 @@
 {
   "sections": {
     "hero": {
-      "type": "hero-banner"
+      "type": "hero-banner",
+      "settings": {}
     },
     "category_circles": {
-      "type": "category-circles"
+      "type": "category-circles",
+      "settings": {}
     },
     "featured_collection": {
-      "type": "featured-collection"
+      "type": "featured-collection",
+      "settings": {}
     },
     "festive_banners": {
-      "type": "festive-banners"
+      "type": "festive-banners",
+      "settings": {}
     }
   },
   "order": [

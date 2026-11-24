@@ -1,10 +1,13 @@
-{
-  "sections": {
-    "main": {
-      "type": "page-privacy"
-    }
-  },
-  "order": [
-    "main"
-  ]
+﻿{
+    "sections":  {
+                     "main":  {
+                                  "type":  "page-privacy",
+                                  "settings":  {
+
+                                               }
+                              }
+                 },
+    "order":  [
+                  "main"
+              ]
 }

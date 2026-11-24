@@ -4,21 +4,21 @@
       
       <!-- Brand Logo -->
       <div class="flex items-center gap-6">
-        <a href="/" class="brand-font text-3xl font-extrabold tracking-widest text-[#71006A]">
+        <a href="{{ routes.root_url }}" class="brand-font text-3xl font-extrabold tracking-widest text-[#71006A]">
           LIBAS
         </a>
       </div>
 
       <!-- Search Bar -->
-      <div class="hidden md:flex flex-1 max-w-md mx-6">
-        <form action="/search" method="get" class="w-full relative">
+      <div class="header-search-bar hidden md:flex flex-1 max-w-md mx-6">
+        <form action="{{ routes.search_url }}" method="get" class="w-full relative">
           <input
             type="search"
             name="q"
             placeholder="Search Suits, Kurtas, Sarees, Dresses..."
-            class="w-full pl-10 pr-4 py-2 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A] transition-colors"
+            class="header-search-input w-full pl-10 pr-4 py-2 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A] transition-colors"
           >
-          <button type="submit" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#737373]">
+          <button type="submit" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#737373] bg-transparent border-none cursor-pointer">
             {% render 'icon-search' %}
           </button>
         </form>
@@ -27,7 +27,7 @@
       <!-- Actions: Account, Wishlist, Bag -->
       <div class="flex items-center gap-4 sm:gap-6 text-[#252525]">
         <!-- Currency -->
-        <span class="hidden sm:inline-block text-xs font-mono font-bold text-[#71006A] px-2 py-0.5 rounded bg-[#FAF7F9] border border-[#E6E6E6]">
+        <span class="currency-badge hidden sm:inline-block text-xs font-mono font-bold text-[#71006A] px-2 py-0.5 rounded bg-[#FAF7F9] border border-[#E6E6E6]">
           ₹ INR
         </span>
 
@@ -35,7 +35,7 @@
         <button
           type="button"
           data-auth-trigger
-          class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:text-[#71006A] transition-colors"
+          class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider hover:text-[#71006A] transition-colors bg-transparent border-none cursor-pointer"
         >
           {% render 'icon-user' %}
           <span class="hidden lg:inline">Sign In</span>
@@ -43,7 +43,7 @@
 
         <!-- Wishlist -->
         <a
-          href="/pages/wishlist"
+          href="{{ routes.root_url }}#wishlist"
           class="hover:text-[#71006A] transition-colors flex items-center gap-1"
           title="Wishlist"
         >
@@ -54,7 +54,7 @@
         <button
           type="button"
           data-cart-drawer-trigger
-          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#71006A] text-white hover:bg-[#560050] transition-colors text-xs font-bold"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#71006A] text-white hover:bg-[#560050] transition-colors text-xs font-bold border-none cursor-pointer"
         >
           {% render 'icon-cart' %}
           <span class="hidden sm:inline">Bag</span>
@@ -66,27 +66,27 @@
     </div>
 
     <!-- Mega Menu Navigation Links -->
-    <nav class="hidden lg:flex items-center justify-center gap-1 pt-2 border-t border-[#F5F5F5] mt-2 text-xs font-bold tracking-wider uppercase">
+    <nav class="site-nav hidden lg:flex items-center justify-center gap-1 pt-2 border-t border-[#F5F5F5] mt-2 text-xs font-bold tracking-wider uppercase">
       
       <!-- Suits Dropdown -->
       <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="/collections/suits">Suits & Sets ▾</a>
+        <a href="{{ routes.all_products_collection_url }}?filter=suits">Suits & Sets ▾</a>
         <div class="dropdown-menu">
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="/collections/suits?filter=anarkali" class="hover:text-[#71006A]">Anarkali Suits</a></li>
-              <li><a href="/collections/suits?filter=sharara" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
-              <li><a href="/collections/suits?filter=palazzo" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
-              <li><a href="/collections/suits?filter=straight" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=anarkali" class="hover:text-[#71006A]">Anarkali Suits</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=sharara" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=palazzo" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=straight" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
             </ul>
           </div>
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Occasion</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="/collections/suits?filter=wedding" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
-              <li><a href="/collections/suits?filter=festive" class="hover:text-[#71006A]">Festive Parties</a></li>
-              <li><a href="/collections/suits?filter=daily" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=wedding" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=festive" class="hover:text-[#71006A]">Festive Parties</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=daily" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
             </ul>
           </div>
         </div>
@@ -94,38 +94,38 @@
 
       <!-- Kurtas Dropdown -->
       <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="/collections/kurtas">Kurtas & Kurtis ▾</a>
+        <a href="{{ routes.all_products_collection_url }}?filter=kurtas">Kurtas & Kurtis ▾</a>
         <div class="dropdown-menu">
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="/collections/kurtas?filter=straight" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
-              <li><a href="/collections/kurtas?filter=flared" class="hover:text-[#71006A]">A-Line & Flared</a></li>
-              <li><a href="/collections/kurtas?filter=short" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=straight" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=flared" class="hover:text-[#71006A]">A-Line & Flared</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=short" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
             </ul>
           </div>
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">Craft & Print</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="/collections/kurtas?filter=zari" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
-              <li><a href="/collections/kurtas?filter=blockprint" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
-              <li><a href="/collections/kurtas?filter=chikankari" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=zari" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=blockprint" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
+              <li><a href="{{ routes.all_products_collection_url }}?filter=chikankari" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <a href="/collections/sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
-      <a href="/collections/dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
-      <a href="/collections/loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
+      <a href="{{ routes.all_products_collection_url }}?filter=sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
+      <a href="{{ routes.all_products_collection_url }}?filter=dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
+      <a href="{{ routes.all_products_collection_url }}?filter=loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
       
       <!-- Plus Size -->
-      <a href="/collections/plus-size" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
+      <a href="{{ routes.all_products_collection_url }}?filter=plus-size" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
         ExtraLove (3XL-6XL)
       </a>
 
       <!-- Sale -->
-      <a href="/collections/sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
+      <a href="{{ routes.all_products_collection_url }}?filter=sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
         Festive Sale
       </a>
     </nav>

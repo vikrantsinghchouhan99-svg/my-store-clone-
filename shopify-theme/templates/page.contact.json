@@ -1,10 +1,13 @@
-{
-  "sections": {
-    "main": {
-      "type": "page-contact"
-    }
-  },
-  "order": [
-    "main"
-  ]
+﻿{
+    "sections":  {
+                     "main":  {
+                                  "type":  "page-contact",
+                                  "settings":  {
+
+                                               }
+                              }
+                 },
+    "order":  [
+                  "main"
+              ]
 }

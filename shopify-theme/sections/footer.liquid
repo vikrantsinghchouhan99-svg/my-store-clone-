@@ -26,7 +26,7 @@
           >
           <button
             type="submit"
-            class="px-6 py-2.5 rounded-lg bg-[#252525] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0"
+            class="px-6 py-2.5 rounded-lg bg-[#252525] hover:bg-black text-white text-xs font-bold uppercase tracking-wider transition-colors shrink-0 border-none cursor-pointer"
           >
             Subscribe
           </button>
@@ -54,33 +54,33 @@
       <!-- Categories -->
       <div class="space-y-2.5">
         <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">Categories</h4>
-        <ul class="space-y-1.5 text-xs text-[#737373]">
-          <li><a href="/collections/suits" class="hover:text-[#71006A]">Suits & Sets</a></li>
-          <li><a href="/collections/kurtas" class="hover:text-[#71006A]">Kurtas & Kurtis</a></li>
-          <li><a href="/collections/sarees" class="hover:text-[#71006A]">Sarees</a></li>
-          <li><a href="/collections/dresses" class="hover:text-[#71006A]">Ethnic Dresses</a></li>
-          <li><a href="/collections/loungewear" class="hover:text-[#71006A]">Co-ords & Loungewear</a></li>
-          <li><a href="/collections/plus-size" class="hover:text-[#71006A]">ExtraLove (3XL-6XL)</a></li>
-          <li><a href="/collections/sale" class="hover:text-[#71006A] text-[#D92D20] font-semibold">Festive Sale</a></li>
+        <ul class="space-y-1.5 text-xs text-[#737373]" style="list-style: none;">
+          <li><a href="{{ routes.all_products_collection_url }}?filter=suits" class="hover:text-[#71006A]">Suits & Sets</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}?filter=kurtas" class="hover:text-[#71006A]">Kurtas & Kurtis</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}?filter=sarees" class="hover:text-[#71006A]">Sarees</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}?filter=dresses" class="hover:text-[#71006A]">Ethnic Dresses</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}?filter=loungewear" class="hover:text-[#71006A]">Co-ords & Loungewear</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}?filter=plus-size" class="hover:text-[#71006A]">ExtraLove (3XL-6XL)</a></li>
+          <li><a href="{{ routes.all_products_collection_url }}?filter=sale" class="hover:text-[#71006A] text-[#D92D20] font-semibold">Festive Sale</a></li>
         </ul>
       </div>
 
       <!-- Customer Help -->
       <div class="space-y-2.5">
         <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">Customer Help</h4>
-        <ul class="space-y-1.5 text-xs text-[#737373]">
-          <li><a href="/pages/track-order" class="hover:text-[#71006A]">Track Order</a></li>
+        <ul class="space-y-1.5 text-xs text-[#737373]" style="list-style: none;">
           <li><a href="/pages/returns" class="hover:text-[#71006A]">Return / Exchange Request</a></li>
           <li><a href="/pages/shipping-policy" class="hover:text-[#71006A]">Shipping & Delivery Policy</a></li>
           <li><a href="/pages/contact" class="hover:text-[#71006A]">Contact Customer Care</a></li>
           <li><a href="/pages/faqs" class="hover:text-[#71006A]">FAQs</a></li>
+          <li><a href="/pages/returns" class="hover:text-[#71006A]">Track Order</a></li>
         </ul>
       </div>
 
       <!-- About Libas -->
       <div class="space-y-2.5">
         <h4 class="text-xs font-bold uppercase tracking-wider text-[#71006A] font-mono">About Libas</h4>
-        <ul class="space-y-1.5 text-xs text-[#737373]">
+        <ul class="space-y-1.5 text-xs text-[#737373]" style="list-style: none;">
           <li><a href="/pages/about" class="hover:text-[#71006A]">Our Story & Craft</a></li>
           <li><a href="/pages/stores" class="hover:text-[#71006A]">Store Locator</a></li>
           <li><a href="/pages/sustainability" class="hover:text-[#71006A]">Sustainability</a></li>
@@ -100,7 +100,6 @@
         <span>PCI-DSS Certified</span>
       </div>
     </div>
-
   </div>
 </footer>
 

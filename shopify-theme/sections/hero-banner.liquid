@@ -19,14 +19,14 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
-          <a href="{{ section.settings.primary_btn_link | default: '/collections/suits' }}" class="btn-primary w-full sm:w-auto">
+          <a href="{{ section.settings.primary_btn_link | default: '/collections/all?filter=suits' }}" class="btn-primary w-full sm:w-auto">
             <span>Shop Festive Suits</span>
             <span>→</span>
           </a>
-          <a href="/collections/sarees" class="btn-outline w-full sm:w-auto">
+          <a href="{{ routes.all_products_collection_url }}?filter=sarees" class="btn-outline w-full sm:w-auto">
             Explore Sarees
           </a>
-          <a href="/collections/sale" class="btn-primary w-full sm:w-auto bg-[#FF8C91] text-[#71006A] hover:bg-[#ff7a80]">
+          <a href="{{ routes.all_products_collection_url }}?filter=sale" class="btn-primary w-full sm:w-auto bg-[#FF8C91] text-[#71006A] hover:bg-[#ff7a80]">
             Flat 50% Off
           </a>
         </div>

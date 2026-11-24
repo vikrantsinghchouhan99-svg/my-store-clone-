@@ -1,10 +1,13 @@
-{
-  "sections": {
-    "main": {
-      "type": "page-returns"
-    }
-  },
-  "order": [
-    "main"
-  ]
+﻿{
+    "sections":  {
+                     "main":  {
+                                  "type":  "page-returns",
+                                  "settings":  {
+
+                                               }
+                              }
+                 },
+    "order":  [
+                  "main"
+              ]
 }
