@@ -187,8 +187,14 @@ textarea:focus {
 
 .w-full { width: 100%; }
 .w-auto { width: auto; }
+.w-3 { width: 0.75rem; }
+.h-3 { height: 0.75rem; }
+.w-3\.5 { width: 0.875rem; }
+.h-3\.5 { height: 0.875rem; }
 .w-4 { width: 1rem; }
 .h-4 { height: 1rem; }
+.w-8 { width: 2rem; }
+.h-8 { height: 2rem; }
 .w-16 { width: 4rem; }
 .h-16 { height: 4rem; }
 .w-20 { width: 5rem; }
@@ -204,6 +210,7 @@ textarea:focus {
 .max-w-3xl { max-width: 48rem; }
 .max-w-4xl { max-width: 56rem; }
 .max-w-5xl { max-width: 64rem; }
+.max-w-7xl { max-width: 80rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
 .min-h-\[50vh\] { min-height: 50vh; }
@@ -322,6 +329,7 @@ textarea:focus {
 .text-white { color: #FFFFFF; }
 .text-white\/80 { color: rgba(255, 255, 255, 0.8); }
 .text-emerald-700 { color: #047857; }
+.text-amber-500 { color: #f59e0b; }
 
 .bg-\[\#71006A\] { background-color: #71006A; }
 .bg-\[\#560050\] { background-color: #560050; }

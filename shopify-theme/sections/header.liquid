@@ -43,7 +43,7 @@
 
         <!-- Wishlist -->
         <a
-          href="#wishlist"
+          href="/pages/wishlist"
           class="hover:text-[#71006A] transition-colors flex items-center gap-1"
           title="Wishlist"
         >
@@ -58,7 +58,7 @@
         >
           {% render 'icon-cart' %}
           <span class="hidden sm:inline">Bag</span>
-          <span class="cart-count-badge">
+          <span class="bg-white text-[#71006A] w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center ml-1">
             {{ cart.item_count | default: 0 }}
           </span>
         </button>
@@ -70,23 +70,23 @@
       
       <!-- Suits Dropdown -->
       <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="#suits">Suits & Sets ▾</a>
+        <a href="/collections/suits">Suits & Sets ▾</a>
         <div class="dropdown-menu">
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="#suits" class="hover:text-[#71006A]">Anarkali Suits</a></li>
-              <li><a href="#suits" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
-              <li><a href="#suits" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
-              <li><a href="#suits" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
+              <li><a href="/collections/suits?style=Anarkali" class="hover:text-[#71006A]">Anarkali Suits</a></li>
+              <li><a href="/collections/suits?style=Sharara" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
+              <li><a href="/collections/suits?style=Palazzo" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
+              <li><a href="/collections/suits?style=Straight" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
             </ul>
           </div>
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Occasion</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="#suits" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
-              <li><a href="#suits" class="hover:text-[#71006A]">Festive Parties</a></li>
-              <li><a href="#suits" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
+              <li><a href="/collections/suits?occasion=Wedding" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
+              <li><a href="/collections/suits?occasion=Festive" class="hover:text-[#71006A]">Festive Parties</a></li>
+              <li><a href="/collections/suits?occasion=Daily" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
             </ul>
           </div>
         </div>
@@ -94,38 +94,38 @@
 
       <!-- Kurtas Dropdown -->
       <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="#kurtas">Kurtas & Kurtis ▾</a>
+        <a href="/collections/kurtas">Kurtas & Kurtis ▾</a>
         <div class="dropdown-menu">
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="#kurtas" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
-              <li><a href="#kurtas" class="hover:text-[#71006A]">A-Line & Flared</a></li>
-              <li><a href="#kurtas" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
+              <li><a href="/collections/kurtas?style=Straight" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
+              <li><a href="/collections/kurtas?style=A-Line" class="hover:text-[#71006A]">A-Line & Flared</a></li>
+              <li><a href="/collections/kurtas?style=Short" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
             </ul>
           </div>
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">Craft & Print</h5>
             <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="#kurtas" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
-              <li><a href="#kurtas" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
-              <li><a href="#kurtas" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
+              <li><a href="/collections/kurtas?fabric=Silk" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
+              <li><a href="/collections/kurtas?fabric=Cotton" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
+              <li><a href="/collections/kurtas?occasion=Daily" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <a href="#sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
-      <a href="#dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
-      <a href="#loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
+      <a href="/collections/sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
+      <a href="/collections/dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
+      <a href="/collections/loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
       
       <!-- Plus Size -->
-      <a href="#extralove" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
+      <a href="/collections/plus-size" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
         ExtraLove (3XL-6XL)
       </a>
 
       <!-- Sale -->
-      <a href="#sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
+      <a href="/collections/sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
         Festive Sale
       </a>
     </nav>

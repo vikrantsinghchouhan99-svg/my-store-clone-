@@ -1,9 +1,5 @@
 {
   "sections": {
-    "page_switcher": {
-      "type": "page-switcher-bar",
-      "settings": {}
-    },
     "hero": {
       "type": "hero-banner",
       "settings": {}
@@ -12,85 +8,29 @@
       "type": "category-circles",
       "settings": {}
     },
-    "suits_section": {
-      "type": "category-suits",
-      "settings": {}
-    },
-    "kurtas_section": {
-      "type": "category-kurtas",
-      "settings": {}
-    },
-    "sarees_section": {
-      "type": "category-sarees",
-      "settings": {}
-    },
-    "dresses_section": {
-      "type": "category-dresses",
-      "settings": {}
-    },
-    "loungewear_section": {
-      "type": "category-loungewear",
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {}
     },
     "festive_banners": {
       "type": "festive-banners",
       "settings": {}
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "atelier_craft": {
+      "type": "atelier-craft",
       "settings": {}
     },
-    "wishlist_section": {
-      "type": "page-wishlist",
-      "settings": {}
-    },
-    "track_order_section": {
-      "type": "page-track-order",
-      "settings": {}
-    },
-    "returns_section": {
-      "type": "page-returns",
-      "settings": {}
-    },
-    "about_section": {
-      "type": "page-about",
-      "settings": {}
-    },
-    "shipping_section": {
-      "type": "page-shipping",
-      "settings": {}
-    },
-    "stores_section": {
-      "type": "page-stores",
-      "settings": {}
-    },
-    "contact_section": {
-      "type": "page-contact",
-      "settings": {}
-    },
-    "faqs_section": {
-      "type": "page-faqs",
+    "testimonials": {
+      "type": "testimonials",
       "settings": {}
     }
   },
   "order": [
-    "page_switcher",
     "hero",
     "category_circles",
-    "suits_section",
-    "kurtas_section",
-    "sarees_section",
-    "dresses_section",
-    "loungewear_section",
-    "festive_banners",
     "featured_collection",
-    "wishlist_section",
-    "track_order_section",
-    "returns_section",
-    "about_section",
-    "shipping_section",
-    "stores_section",
-    "contact_section",
-    "faqs_section"
+    "festive_banners",
+    "atelier_craft",
+    "testimonials"
   ]
 }

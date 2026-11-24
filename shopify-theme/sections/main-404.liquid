@@ -1,445 +1,542 @@
-<div class="py-10 bg-white">
-  <div class="container max-w-5xl">
-    
-    <!-- Top Notice & Header -->
-    <div class="text-center max-w-2xl mx-auto space-y-3 mb-8">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#71006A]/10 text-[#71006A] text-[10px] font-bold tracking-widest uppercase font-mono">
-        LIBAS EDITORIAL STORE DIRECTORY
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
-        All Collections & Store Pages
-      </h1>
-      <p class="text-xs sm:text-sm text-[#737373]">
-        Looking for a specific festive silhouette, return portal, or brand story? Select any category or customer service tab below:
-      </p>
-      <div class="pt-2">
-        <a href="{{ routes.root_url }}" class="btn-primary">
-          <span>Go to Storefront Home</span>
-          <span>→</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Interactive Navigation Tabs -->
-    <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" style="scrollbar-width: none;">
-      <button type="button" data-dir-tab="featured" class="dir-tab-btn active px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#71006A] text-white cursor-pointer border-none shadow-xs whitespace-nowrap">
-        ✨ Featured
-      </button>
-      <button type="button" data-dir-tab="suits" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        👗 Suits & Sets
-      </button>
-      <button type="button" data-dir-tab="kurtas" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        👚 Kurtas
-      </button>
-      <button type="button" data-dir-tab="sarees" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        🥻 Sarees
-      </button>
-      <button type="button" data-dir-tab="dresses" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        💃 Dresses
-      </button>
-      <button type="button" data-dir-tab="track" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        📦 Track Order
-      </button>
-      <button type="button" data-dir-tab="returns" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        🔄 15-Day Returns
-      </button>
-      <button type="button" data-dir-tab="shipping" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        🚚 Shipping SLA
-      </button>
-      <button type="button" data-dir-tab="about" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        📖 About Us
-      </button>
-      <button type="button" data-dir-tab="stores" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        📍 Stores & Contact
-      </button>
-      <button type="button" data-dir-tab="faqs" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        ❓ FAQs
-      </button>
-      <button type="button" data-dir-tab="legal" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        📜 Legal
-      </button>
-    </div>
-
-    <!-- Tab 1: Featured Highlights -->
-    <div id="dir-panel-featured" class="dir-panel">
-      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+<div class="route-container min-h-[60vh] bg-white">
+  
+  <!-- ========================================== -->
+  <!-- 1. VIEW: SUITS & SETS -->
+  <!-- ========================================== -->
+  <div id="view-suits" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
         <div>
-          <h2 class="text-xl font-serif font-bold text-[#252525]">Curated Festive Silhouette Grid</h2>
-          <p class="text-xs text-[#737373]">Exquisite Anarkalis, Sharara sets, and hand-woven silk ensembles</p>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">COLLECTION • SUITS & SETS</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">Anarkali, Sharara & Palazzo Suits</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">From magnificent wedding Anarkalis to breathable everyday cotton palazzos, explore our hallmark festive suit sets.</p>
         </div>
-        <a href="{{ routes.all_products_collection_url }}" class="text-xs font-bold text-[#71006A] hover:underline">
-          View All Products →
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {% render 'product-card',
-          title: 'Purple Zari Silk Anarkali Suit Set',
-          price: '₹3,499',
-          original_price: '₹6,999',
-          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Mustard Georgette Sharara Suit Set',
-          price: '₹2,799',
-          original_price: '₹5,599',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Blush Pink Pure Cotton Straight Kurta',
-          price: '₹1,499',
-          original_price: '₹2,999',
-          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Emerald Green Velvet Embroidered Suit',
-          price: '₹4,499',
-          original_price: '₹8,999',
-          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
-        %}
-      </div>
-    </div>
-
-    <!-- Tab 2: Suits & Sets -->
-    <div id="dir-panel-suits" class="dir-panel hidden">
-      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
-        <div>
-          <h2 class="text-xl font-serif font-bold text-[#252525]">Anarkali, Sharara & Palazzo Suits</h2>
-          <p class="text-xs text-[#737373]">Signature 3-piece coordinated suit sets with matching dupattas</p>
-        </div>
+        <div class="text-xs font-mono text-[#71006A] font-bold">Showing 8 of 50+ Silhouettes</div>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {% render 'product-card',
-          title: 'Purple Zari Embroidered Silk Anarkali Suit Set',
-          price: '₹3,499',
-          original_price: '₹6,999',
-          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Mustard Gotta Patti Georgette Sharara Suit Set',
-          price: '₹2,799',
-          original_price: '₹5,599',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Blush Floral Cotton Straight Kurta & Palazzo',
-          price: '₹1,899',
-          original_price: '₹3,799',
-          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Emerald Green Embroidered Velvet Suit Set',
-          price: '₹4,499',
-          original_price: '₹8,999',
-          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
-        %}
+        {% render 'product-card', title: 'Purple Zari Embroidered Silk Anarkali Suit Set', price: '₹3,499', original_price: '₹6,999', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Gotta Patti Georgette Sharara Suit Set', price: '₹2,799', original_price: '₹5,599', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Blush Floral Pure Cotton Straight Kurta & Palazzo Set', price: '₹1,899', original_price: '₹3,799', image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Emerald Green Embroidered Velvet Suit Set', price: '₹4,499', original_price: '₹8,999', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Wine Chanderi Silk Foil Print Anarkali Set', price: '₹3,199', original_price: '₹6,399', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Navy Blue Embroidered Straight Kurta Suit', price: '₹2,499', original_price: '₹4,999', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Rust Georgette Flared Sharara Set with Dupatta', price: '₹2,699', original_price: '₹5,399', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Maroon Festive Silk Blend Anarkali Set', price: '₹3,799', original_price: '₹7,599', image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop' %}
       </div>
     </div>
+  </div>
 
-    <!-- Tab 3: Kurtas & Kurtis -->
-    <div id="dir-panel-kurtas" class="dir-panel hidden">
-      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+  <!-- ========================================== -->
+  <!-- 2. VIEW: KURTAS & KURTIS -->
+  <!-- ========================================== -->
+  <div id="view-kurtas" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
         <div>
-          <h2 class="text-xl font-serif font-bold text-[#252525]">Artisan Kurtas & Short Kurtis</h2>
-          <p class="text-xs text-[#737373]">Handblock prints, woven Chanderi, and breathable daytime cottons</p>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">COLLECTION • KURTAS & KURTIS</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">Artisan Kurtas & Daily Tunics</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Hand block prints, woven Chanderi silks, and breathable everyday cotton kurtis.</p>
         </div>
+        <div class="text-xs font-mono text-[#71006A] font-bold">Showing 8 of 40+ Kurtas</div>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {% render 'product-card',
-          title: 'Wine Chanderi Silk Foil Print Straight Kurta',
-          price: '₹1,299',
-          original_price: '₹2,599',
-          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Indigo Blue Ajrakh Handblock Pure Cotton Kurta',
-          price: '₹1,099',
-          original_price: '₹2,199',
-          image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Peach Embroidered Cotton Peplum Tunic Kurti',
-          price: '₹899',
-          original_price: '₹1,799',
-          image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Teal Green Woven Yoke Cotton Straight Kurta',
-          price: '₹1,199',
-          original_price: '₹2,399',
-          image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop'
-        %}
+        {% render 'product-card', title: 'Wine Chanderi Silk Foil Print Straight Kurta', price: '₹1,299', original_price: '₹2,599', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Indigo Blue Ajrakh Handblock Pure Cotton Kurta', price: '₹1,099', original_price: '₹2,199', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Peach Embroidered Cotton Peplum Tunic Kurti', price: '₹899', original_price: '₹1,799', image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Teal Green Woven Yoke Cotton Straight Kurta', price: '₹1,199', original_price: '₹2,399', image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Yellow Floral Printed Straight Cotton Kurti', price: '₹799', original_price: '₹1,599', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Lavender Woven Chanderi Festive Kurti', price: '₹1,399', original_price: '₹2,799', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Ruby Red Chikankari Embroidered Long Kurta', price: '₹1,499', original_price: '₹2,999', image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Olive Green Cotton Slub Daily Tunic', price: '₹849', original_price: '₹1,699', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop' %}
       </div>
     </div>
+  </div>
 
-    <!-- Tab 4: Sarees -->
-    <div id="dir-panel-sarees" class="dir-panel hidden">
-      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+  <!-- ========================================== -->
+  <!-- 3. VIEW: SAREES -->
+  <!-- ========================================== -->
+  <div id="view-sarees" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
         <div>
-          <h2 class="text-xl font-serif font-bold text-[#252525]">Handloom & Festive Sarees</h2>
-          <p class="text-xs text-[#737373]">Sheer organza florals, ready-to-wear pre-draped, and woven Banarasi drapes</p>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">COLLECTION • SAREES</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">Organza, Ready-to-Wear & Banarasi Sarees</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Sheer floral organzas, 1-minute pre-draped sarees, and royal woven brocades for festive elegance.</p>
         </div>
+        <div class="text-xs font-mono text-[#71006A] font-bold">Showing 8 of 30+ Sarees</div>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {% render 'product-card',
-          title: 'Burgundy Zari Woven Sheer Organza Saree',
-          price: '₹2,699',
-          original_price: '₹5,399',
-          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Lavender Foil Print Ready-to-Wear Georgette Saree',
-          price: '₹2,199',
-          original_price: '₹4,399',
-          image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Royal Bottle Green Brocade Festive Silk Saree',
-          price: '₹3,299',
-          original_price: '₹6,599',
-          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Rose Gold Metallic Tissue Festive Saree',
-          price: '₹2,499',
-          original_price: '₹4,999',
-          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
-        %}
+        {% render 'product-card', title: 'Burgundy Zari Woven Sheer Organza Saree', price: '₹2,699', original_price: '₹5,399', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Lavender Foil Print Ready-to-Wear Georgette Saree', price: '₹2,199', original_price: '₹4,399', image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Royal Bottle Green Brocade Festive Silk Saree', price: '₹3,299', original_price: '₹6,599', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Rose Gold Metallic Tissue Festive Saree', price: '₹2,499', original_price: '₹4,999', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Peach Embroidered Scallop Border Organza Saree', price: '₹2,899', original_price: '₹5,799', image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Georgette Pre-Draped Tiered Saree', price: '₹2,399', original_price: '₹4,799', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Teal Woven Kanjeevaram Style Art Silk Saree', price: '₹3,499', original_price: '₹6,999', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Maroon Zari Border Traditional Saree', price: '₹2,799', original_price: '₹5,599', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop' %}
       </div>
     </div>
+  </div>
 
-    <!-- Tab 5: Dresses -->
-    <div id="dir-panel-dresses" class="dir-panel hidden">
-      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+  <!-- ========================================== -->
+  <!-- 4. VIEW: DRESSES -->
+  <!-- ========================================== -->
+  <div id="view-dresses" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
         <div>
-          <h2 class="text-xl font-serif font-bold text-[#252525]">Ethnic Dresses & Festive Maxi Gowns</h2>
-          <p class="text-xs text-[#737373]">Flowing tier silhouettes combining contemporary poise with Indian grace</p>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">COLLECTION • DRESSES</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">Ethnic Dresses & Festive Maxi Gowns</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Tiered silhouettes and Angrakha gowns blending Indian grace with modern ease.</p>
         </div>
+        <div class="text-xs font-mono text-[#71006A] font-bold">Showing 8 of 25+ Dresses</div>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {% render 'product-card',
-          title: 'Rust Red Tiered Georgette Maxi Dress',
-          price: '₹2,199',
-          original_price: '₹4,399',
-          image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Navy Blue Embroidered Angrakha Anarkali Dress',
-          price: '₹2,499',
-          original_price: '₹4,999',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Sage Green Floral Flared Georgette Midi Dress',
-          price: '₹1,799',
-          original_price: '₹3,599',
-          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Maroon Festive Silk Blend Anarkali Gown',
-          price: '₹3,799',
-          original_price: '₹7,599',
-          image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop'
-        %}
+        {% render 'product-card', title: 'Rust Red Tiered Georgette Maxi Dress', price: '₹2,199', original_price: '₹4,399', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Navy Blue Embroidered Angrakha Anarkali Dress', price: '₹2,499', original_price: '₹4,999', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Sage Green Floral Flared Georgette Midi Dress', price: '₹1,799', original_price: '₹3,599', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Maroon Festive Silk Blend Anarkali Gown', price: '₹3,799', original_price: '₹7,599', image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Blush Pink Gotta Work Tiered Maxi', price: '₹1,999', original_price: '₹3,999', image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Emerald Silk Blend High-Slit Gown', price: '₹2,899', original_price: '₹5,799', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Floral Printed Tiered Dress', price: '₹1,699', original_price: '₹3,399', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Wine Silk Jacquard Anarkali Dress', price: '₹2,999', original_price: '₹5,999', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop' %}
       </div>
     </div>
+  </div>
 
-    <!-- Tab 6: Track Order -->
-    <div id="dir-panel-track" class="dir-panel hidden">
-      <div class="max-w-xl mx-auto bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs mb-8">
-        <h3 class="text-xl font-serif font-bold text-[#252525] mb-2 text-center">Track Your Consignment</h3>
-        <p class="text-xs text-[#737373] text-center mb-6">Enter your Order ID (e.g. LIB-884920) to check real-time courier status.</p>
-        <form onsubmit="event.preventDefault(); document.getElementById('dirTrackResult').classList.remove('hidden');" class="space-y-4">
+  <!-- ========================================== -->
+  <!-- 5. VIEW: LOUNGEWEAR / CO-ORDS -->
+  <!-- ========================================== -->
+  <div id="view-loungewear" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
+        <div>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">COLLECTION • CO-ORDS & LOUNGE</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">Co-ord Sets, Kaftans & Relaxed Loungewear</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Breathable pure cotton, modal silk blends, and contemporary matching sets.</p>
+        </div>
+        <div class="text-xs font-mono text-[#71006A] font-bold">Showing 8 of 20+ Sets</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card', title: 'Sage Floral Pure Cotton Co-ord Set', price: '₹1,599', original_price: '₹3,199', image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Silk Blend Kaftan Lounge Set', price: '₹1,899', original_price: '₹3,799', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Indigo Ajrakh Printed Cotton Coord', price: '₹1,499', original_price: '₹2,999', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Blush Pink Modal Satin Lounge Robe Set', price: '₹2,099', original_price: '₹4,199', image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop' %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 6. VIEW: PLUS SIZE / EXTRALOVE -->
+  <!-- ========================================== -->
+  <div id="view-plus-size" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
+        <div>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">COLLECTION • EXTRALOVE</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">ExtraLove (3XL to 6XL) Festive Edit</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Thoughtfully tailored plus-size ethnic wear featuring comfort-stretch linings and flattering drape.</p>
+        </div>
+        <div class="text-xs font-mono text-[#71006A] font-bold">Sizes 3XL • 4XL • 5XL • 6XL</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card', title: 'Teal Flared Anarkali ExtraLove Plus Size Set', price: '₹2,999', original_price: '₹5,999', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Purple Zari ExtraLove Festive Suit Set', price: '₹3,499', original_price: '₹6,999', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Gotta Patti ExtraLove Sharara Set', price: '₹2,799', original_price: '₹5,599', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Emerald Green Velvet Plus Size Suit', price: '₹4,499', original_price: '₹8,999', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop' %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 7. VIEW: FESTIVE SALE -->
+  <!-- ========================================== -->
+  <div id="view-sale" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
+        <div>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#D92D20] font-extrabold block">FESTIVE SALE • FLAT 50% - 60% OFF</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">The Grand Festive Sale</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Extraordinary seasonal markdowns on our hallmark ethnic suits, sarees, and kurtas.</p>
+        </div>
+        <div class="text-xs font-mono text-[#D92D20] font-bold">Limited Time Festive Offers</div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card', title: 'Purple Zari Embroidered Silk Anarkali Suit Set', price: '₹3,499', original_price: '₹6,999', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Gotta Patti Georgette Sharara Suit Set', price: '₹2,799', original_price: '₹5,599', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Wine Chanderi Silk Foil Print Straight Kurta', price: '₹1,299', original_price: '₹2,599', image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Lavender Pure Organza Floral Zari Saree', price: '₹2,899', original_price: '₹5,799', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop' %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 8. VIEW: TRACK ORDER -->
+  <!-- ========================================== -->
+  <div id="view-track-order" class="route-view hidden py-12">
+    <div class="container max-w-4xl">
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">LIVE DISPATCH & LOGISTICS</span>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">Track Your Libas Consignment</h1>
+        <p class="text-xs sm:text-sm text-[#737373]">Enter your Order ID (e.g. <strong>LIB-884920</strong>) and registered mobile number to check real-time transit status.</p>
+      </div>
+      <div class="bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs max-w-xl mx-auto mb-10">
+        <form onsubmit="event.preventDefault(); document.getElementById('routeTrackResult').classList.remove('hidden');" class="space-y-4">
           <div>
-            <label class="text-xs font-bold text-[#252525] block mb-1">Order ID *</label>
-            <input type="text" required value="LIB-884920" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono uppercase outline-none">
+            <label class="text-xs font-bold text-[#252525] block mb-1">Order ID / AWB Number *</label>
+            <input type="text" required value="LIB-884920" class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono uppercase outline-none">
           </div>
-          <button type="submit" class="w-full py-3 rounded-lg bg-[#71006A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#560050] transition-colors shadow-md mt-2 border-none cursor-pointer">
-            Track Now
+          <div>
+            <label class="text-xs font-bold text-[#252525] block mb-1">Registered Mobile Number / Email *</label>
+            <input type="text" required value="+91 98999 90772" class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
+          </div>
+          <button type="submit" class="w-full py-3 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all border-none cursor-pointer">
+            Track Consignment →
           </button>
         </form>
-        <div id="dirTrackResult" class="hidden mt-6 pt-4 border-t border-[#E6E6E6] space-y-2 text-xs">
-          <p class="font-bold text-[#71006A]">Status: Out for Delivery 🚚</p>
-          <p class="text-[#737373]">Estimated delivery today by 6:00 PM via BlueDart Express.</p>
+      </div>
+      <div id="routeTrackResult" class="bg-white border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-sm space-y-4">
+        <div class="flex justify-between items-center border-b border-[#E6E6E6] pb-3">
+          <span class="font-bold text-[#71006A] text-sm">Order #LIB-884920 • BlueDart AWB 499102847</span>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold font-mono">OUT FOR DELIVERY</span>
         </div>
+        <p class="text-xs text-[#737373]">Estimated delivery today by 6:00 PM to recipient address in Mumbai.</p>
       </div>
     </div>
+  </div>
 
-    <!-- Tab 7: 15-Day Returns -->
-    <div id="dir-panel-returns" class="dir-panel hidden">
-      <div class="max-w-xl mx-auto bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs mb-8">
-        <h3 class="text-xl font-serif font-bold text-[#252525] mb-2 text-center">15-Day Return & Exchange Portal</h3>
-        <p class="text-xs text-[#737373] text-center mb-6">Enjoy free doorstep pickups and instant size exchanges or full refunds.</p>
-        <form onsubmit="event.preventDefault(); alert('Return Request Registered! Our courier partner will arrive for pickup within 24-48 hours.');" class="space-y-4">
+  <!-- ========================================== -->
+  <!-- 9. VIEW: 15-DAY RETURNS -->
+  <!-- ========================================== -->
+  <div id="view-returns" class="route-view hidden py-12">
+    <div class="container max-w-4xl">
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">HASSLE-FREE DOORSTEP POLICY</span>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">15-Day Return & Size Exchange</h1>
+        <p class="text-xs sm:text-sm text-[#737373]">Need another size or prefer a different shade? We arrange 100% free doorstep pickups across 19,000+ pin codes in India.</p>
+      </div>
+      <div class="bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs max-w-xl mx-auto">
+        <form onsubmit="event.preventDefault(); alert('Pickup request registered! Our courier partner will arrive within 24-48 hours.');" class="space-y-4">
           <div>
             <label class="text-xs font-bold text-[#252525] block mb-1">Order ID *</label>
-            <input type="text" required placeholder="e.g. LIB-884920" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono uppercase outline-none">
+            <input type="text" required placeholder="e.g. LIB-884920" class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono uppercase outline-none">
           </div>
           <div>
             <label class="text-xs font-bold text-[#252525] block mb-1">Registered Phone or Email *</label>
-            <input type="text" required placeholder="user@example.com or 10-digit phone" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
+            <input type="text" required placeholder="user@example.com or 10-digit mobile" class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
           </div>
           <div>
             <label class="text-xs font-bold text-[#252525] block mb-1">Reason for Request</label>
-            <select class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
-              <option>Exchange for another size</option>
+            <select class="w-full px-4 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
+              <option>Exchange for another size (Instant dispatch)</option>
               <option>Size issue (too loose / too tight)</option>
               <option>Color/fabric didn't match expectation</option>
-              <option>Defective garment</option>
+              <option>Defective / damaged garment</option>
             </select>
           </div>
-          <button type="submit" class="w-full py-3 rounded-lg bg-[#71006A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#560050] transition-colors shadow-md mt-2 border-none cursor-pointer">
-            Schedule Doorstep Pickup
+          <button type="submit" class="w-full py-3 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider shadow-md transition-all border-none cursor-pointer">
+            Schedule Doorstep Pickup →
           </button>
         </form>
       </div>
     </div>
+  </div>
 
-    <!-- Tab 8: Shipping Policy -->
-    <div id="dir-panel-shipping" class="dir-panel hidden">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+  <!-- ========================================== -->
+  <!-- 10. VIEW: SHIPPING POLICY -->
+  <!-- ========================================== -->
+  <div id="view-shipping" class="route-view hidden py-12">
+    <div class="container max-w-4xl">
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">FULFILLMENT & DELIVERY SLA</span>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">Shipping & Delivery Policy</h1>
+        <p class="text-xs sm:text-sm text-[#737373]">Reliable, expedited, and insured deliveries directly to your doorstep.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] text-center space-y-2">
-          <span class="text-2xl block">⚡</span>
-          <h4 class="text-sm font-bold text-[#252525]">Express Delivery</h4>
-          <p class="text-xs text-[#737373]">Dispatched within 24 hours. Metro delivery within 2-4 business days.</p>
+          <span class="text-3xl block">⚡</span>
+          <h4 class="text-base font-bold text-[#252525]">Express Metro Delivery</h4>
+          <p class="text-xs text-[#737373]">Dispatched within 24 hours. Delivered in 2-4 business days.</p>
         </div>
         <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] text-center space-y-2">
-          <span class="text-2xl block">🎁</span>
-          <h4 class="text-sm font-bold text-[#252525]">Free Shipping</h4>
-          <p class="text-xs text-[#737373]">100% free doorstep delivery on all prepaid orders across India.</p>
+          <span class="text-3xl block">🎁</span>
+          <h4 class="text-base font-bold text-[#252525]">100% Free Shipping</h4>
+          <p class="text-xs text-[#737373]">Zero shipping charges on all prepaid orders pan-India.</p>
         </div>
         <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] text-center space-y-2">
-          <span class="text-2xl block">📦</span>
-          <h4 class="text-sm font-bold text-[#252525]">Tamper-Proof Packing</h4>
-          <p class="text-xs text-[#737373]">Luxury branded packaging ensures your garment arrives impeccably fresh.</p>
+          <span class="text-3xl block">📦</span>
+          <h4 class="text-base font-bold text-[#252525]">Tamper-Proof Box</h4>
+          <p class="text-xs text-[#737373]">Delivered in luxury branded packaging, ensuring garment freshness.</p>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Tab 9: About Libas -->
-    <div id="dir-panel-about" class="dir-panel hidden">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10 items-center">
-        <div class="md:col-span-7 rounded-2xl overflow-hidden aspect-[16/10] bg-[#F5F5F5] shadow-md">
-          <img
-            src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop"
-            alt="Artisan Craftsmanship"
-            class="w-full h-full object-cover object-top"
-          >
+  <!-- ========================================== -->
+  <!-- 11. VIEW: ABOUT US STORY -->
+  <!-- ========================================== -->
+  <div id="view-about" class="route-view hidden py-12">
+    <div class="container max-w-5xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-14">
+        <div class="lg:col-span-7 rounded-2xl overflow-hidden aspect-[16/10] bg-[#F5F5F5] shadow-lg">
+          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1200&auto=format&fit=crop" alt="Libas Heritage Story" class="w-full h-full object-cover object-top">
         </div>
-        <div class="md:col-span-5 space-y-4">
-          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-bold">HERITAGE SINCE 1993</span>
-          <h2 class="text-2xl font-serif font-bold text-[#252525]">Every Stitch Tells An Unhurried Story</h2>
-          <p class="text-xs text-[#4D4D4D] leading-relaxed">
-            We collaborate with over 2,500 master artisans across Jaipur, Chanderi, Lucknow, and Varanasi. Every motif, gota patti accent, and wooden block print is rendered with meticulous precision, honouring slow fashion and ethical artisan communities.
-          </p>
-          <div class="pt-2 flex gap-4 text-xs font-mono font-bold text-[#71006A]">
-            <div><span class="text-xl font-serif block">2,500+</span> Artisans Supported</div>
-            <div><span class="text-xl font-serif block">100%</span> Authentic Craft</div>
+        <div class="lg:col-span-5 space-y-4">
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">HERITAGE SINCE 1993</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">Every Thread Tells An Unhurried Story</h1>
+          <p class="text-xs text-[#4D4D4D] leading-relaxed">Libas was born out of a desire to create celebratory ethnic wear that feels as comforting as it looks resplendent. We collaborate with over 2,500 master artisans across Jaipur, Chanderi, Lucknow, and Varanasi.</p>
+          <div class="pt-2 flex gap-6 text-xs font-mono font-bold text-[#71006A]">
+            <div><span class="text-2xl font-serif block">10M+</span> Women Dressed</div>
+            <div><span class="text-2xl font-serif block">2,500+</span> Artisan Partners</div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Tab 10: Stores & Contact -->
-    <div id="dir-panel-stores" class="dir-panel hidden">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
-          <span class="text-[10px] font-mono uppercase text-[#71006A] font-bold">FLAGSHIP ATELIER</span>
-          <h4 class="text-base font-serif font-bold text-[#252525]">Mumbai Boutique</h4>
-          <p class="text-xs text-[#737373]">Linking Road, Bandra West, Mumbai, Maharashtra 400050</p>
-          <p class="text-xs font-mono text-[#71006A] pt-1">📞 +91 22 2640 1892</p>
-        </div>
-        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
-          <span class="text-[10px] font-mono uppercase text-[#71006A] font-bold">FLAGSHIP ATELIER</span>
-          <h4 class="text-base font-serif font-bold text-[#252525]">New Delhi Heritage Store</h4>
-          <p class="text-xs text-[#737373]">South Extension Part 1, Main Market, New Delhi 110049</p>
-          <p class="text-xs font-mono text-[#71006A] pt-1">📞 +91 11 4164 7720</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab 11: FAQs -->
-    <div id="dir-panel-faqs" class="dir-panel hidden">
-      <div class="max-w-3xl mx-auto space-y-3">
-        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
-          <h4 class="text-xs font-bold text-[#252525] mb-1">What sizes do Libas garments come in?</h4>
-          <p class="text-xs text-[#737373]">We offer an inclusive size range from XS (34) to ExtraLove 6XL (52). Check our interactive Size Guide for bust, waist, and hip measurements.</p>
-        </div>
-        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
-          <h4 class="text-xs font-bold text-[#252525] mb-1">How do I exchange my size if it doesn't fit?</h4>
-          <p class="text-xs text-[#737373]">Simply visit our 15-Day Return Portal with your Order ID. Our logistics courier will pick up the parcel from your doorstep for free.</p>
-        </div>
-        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
-          <h4 class="text-xs font-bold text-[#252525] mb-1">How can I contact Libas customer support?</h4>
-          <p class="text-xs text-[#737373]">Our helpline is active Monday through Saturday, 9am - 7pm at +91 98999 90772, or email us anytime at care@libas.in.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab 12: Legal -->
-    <div id="dir-panel-legal" class="dir-panel hidden">
-      <div class="max-w-3xl mx-auto space-y-4 text-xs text-[#737373] leading-relaxed">
-        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6]">
-          <h4 class="text-sm font-bold text-[#252525] mb-2 font-serif">Terms of Service & Privacy Standards</h4>
-          <p>Libas Consumer Products Ltd. adheres to international PCI-DSS level 1 security protocols for all transactions. All customer data, email subscriptions, and payment credentials are encrypted using 256-bit TLS bank-grade encryption.</p>
-        </div>
-      </div>
-    </div>
-
   </div>
+
+  <!-- ========================================== -->
+  <!-- 12. VIEW: STORE LOCATOR -->
+  <!-- ========================================== -->
+  <div id="view-stores" class="route-view hidden py-12">
+    <div class="container max-w-5xl">
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">EXPERIENCE ATELIERS</span>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">Visit Our Flagship Boutiques</h1>
+        <p class="text-xs sm:text-sm text-[#737373]">Step into our luxury experience centres for personal styling consultations and custom measurements.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
+          <span class="text-[10px] font-mono uppercase text-[#71006A] font-bold">MUMBAI FLAGSHIP</span>
+          <h4 class="text-lg font-serif font-bold text-[#252525]">Linking Road Boutique</h4>
+          <p class="text-xs text-[#737373]">Linking Road, Bandra West, Mumbai, Maharashtra 400050</p>
+          <p class="text-xs font-mono text-[#71006A] pt-1">📞 +91 22 2640 1892 (Open 10:30am - 9:00pm)</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
+          <span class="text-[10px] font-mono uppercase text-[#71006A] font-bold">NEW DELHI ATELIER</span>
+          <h4 class="text-lg font-serif font-bold text-[#252525]">South Extension Heritage Store</h4>
+          <p class="text-xs text-[#737373]">South Extension Part 1, Main Market, New Delhi 110049</p>
+          <p class="text-xs font-mono text-[#71006A] pt-1">📞 +91 11 4164 7720 (Open 11:00am - 8:30pm)</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
+          <span class="text-[10px] font-mono uppercase text-[#71006A] font-bold">BENGALURU BOUTIQUE</span>
+          <h4 class="text-lg font-serif font-bold text-[#252525]">Indiranagar Experience Centre</h4>
+          <p class="text-xs text-[#737373]">100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038</p>
+          <p class="text-xs font-mono text-[#71006A] pt-1">📞 +91 80 4125 8890 (Open 10:30am - 9:00pm)</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
+          <span class="text-[10px] font-mono uppercase text-[#71006A] font-bold">HYDERABAD FLAGSHIP</span>
+          <h4 class="text-lg font-serif font-bold text-[#252525]">Jubilee Hills Atelier</h4>
+          <p class="text-xs text-[#737373]">Road No. 36, Jubilee Hills, Hyderabad, Telangana 500033</p>
+          <p class="text-xs font-mono text-[#71006A] pt-1">📞 +91 40 2355 6710 (Open 11:00am - 9:00pm)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 13. VIEW: CONTACT CONCIERGE -->
+  <!-- ========================================== -->
+  <div id="view-contact" class="route-view hidden py-12">
+    <div class="container max-w-4xl">
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">DEDICATED CONCIERGE HELPLINE</span>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">We Are Here For You</h1>
+        <p class="text-xs sm:text-sm text-[#737373]">Have questions regarding sizing, custom bridal orders, or delivery timing? Our care specialists are eager to assist.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6]">
+            <h4 class="text-sm font-bold text-[#252525] mb-2 font-serif">Customer Care Line</h4>
+            <p class="text-xs text-[#737373]">Phone: +91 98999 90772</p>
+            <p class="text-xs text-[#737373]">Active Mon - Sat, 9:00 AM to 7:00 PM IST</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6]">
+            <h4 class="text-sm font-bold text-[#252525] mb-2 font-serif">Email & WhatsApp</h4>
+            <p class="text-xs text-[#737373]">Email: care@libas.in</p>
+            <p class="text-xs text-[#737373]">WhatsApp: +91 98999 90772</p>
+          </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6]">
+          <form onsubmit="event.preventDefault(); alert('Thank you! Our concierge team will reach out within 2-4 hours.');" class="space-y-3">
+            <div>
+              <label class="text-xs font-bold text-[#252525] block mb-1">Your Name *</label>
+              <input type="text" required placeholder="Full Name" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-[#252525] block mb-1">Email / Phone *</label>
+              <input type="text" required placeholder="contact@example.com" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-[#252525] block mb-1">Message</label>
+              <textarea rows="3" placeholder="How may we assist you?" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs outline-none"></textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-lg bg-[#71006A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#560050] border-none cursor-pointer">
+              Send Message →
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 14. VIEW: FAQS -->
+  <!-- ========================================== -->
+  <div id="view-faqs" class="route-view hidden py-12">
+    <div class="container max-w-3xl">
+      <div class="text-center max-w-xl mx-auto space-y-2 mb-10">
+        <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">COMMONLY ASKED QUESTIONS</span>
+        <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">Frequently Asked Questions</h1>
+      </div>
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-[#E6E6E6] bg-white shadow-xs">
+          <h4 class="text-sm font-bold text-[#252525] mb-1 font-serif">What sizes do Libas ethnic garments come in?</h4>
+          <p class="text-xs text-[#737373] leading-relaxed">We offer an inclusive size range from XS (34 inches chest) up to ExtraLove 6XL (52 inches chest). Every product page contains our detailed Size Chart.</p>
+        </div>
+        <div class="p-5 rounded-xl border border-[#E6E6E6] bg-white shadow-xs">
+          <h4 class="text-sm font-bold text-[#252525] mb-1 font-serif">How do 15-day doorstep returns & size exchanges work?</h4>
+          <p class="text-xs text-[#737373] leading-relaxed">Simply submit your Order ID in our Return Portal. Our logistics partner will pick up the parcel from your doorstep for free, and size exchanges are dispatched immediately.</p>
+        </div>
+        <div class="p-5 rounded-xl border border-[#E6E6E6] bg-white shadow-xs">
+          <h4 class="text-sm font-bold text-[#252525] mb-1 font-serif">Are payment transactions safe & encrypted?</h4>
+          <p class="text-xs text-[#737373] leading-relaxed">Yes. We use 256-bit SSL bank-grade encryption certified with PCI-DSS Level 1 compliance. All UPI, Card, Net Banking, and COD transactions are 100% secure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 15. VIEW: WISHLIST -->
+  <!-- ========================================== -->
+  <div id="view-wishlist" class="route-view hidden py-10">
+    <div class="container">
+      <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
+        <div>
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">YOUR SAVED STYLES</span>
+          <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525] mt-1">My Saved Wishlist</h1>
+          <p class="text-xs sm:text-sm text-[#737373] mt-1">Items saved here remain ready so you can move them to your bag anytime.</p>
+        </div>
+        <a href="/collections/suits" class="btn-primary"><span>Explore All Suits →</span></a>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card', title: 'Purple Zari Embroidered Silk Anarkali Suit Set', price: '₹3,499', original_price: '₹6,999', image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Burgundy Zari Woven Sheer Organza Saree', price: '₹2,699', original_price: '₹5,399', image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Mustard Gotta Patti Georgette Sharara Suit Set', price: '₹2,799', original_price: '₹5,599', image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop' %}
+        {% render 'product-card', title: 'Emerald Green Embroidered Velvet Suit Set', price: '₹4,499', original_price: '₹8,999', image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop' %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 16. VIEW: LEGAL (TERMS & PRIVACY) -->
+  <!-- ========================================== -->
+  <div id="view-terms" class="route-view hidden py-12">
+    <div class="container max-w-3xl space-y-4 text-xs text-[#737373] leading-relaxed">
+      <h1 class="text-2xl font-serif font-bold text-[#252525] mb-4">Terms & Conditions</h1>
+      <p>By accessing or purchasing from Libas Consumer Products Ltd., you agree to be bound by these Terms of Service. All orders are subject to acceptance and availability.</p>
+    </div>
+  </div>
+  <div id="view-privacy" class="route-view hidden py-12">
+    <div class="container max-w-3xl space-y-4 text-xs text-[#737373] leading-relaxed">
+      <h1 class="text-2xl font-serif font-bold text-[#252525] mb-4">Privacy Policy</h1>
+      <p>Libas respects your privacy. We use bank-grade 256-bit TLS encryption to protect your transaction and personal data.</p>
+    </div>
+  </div>
+  <div id="view-sustainability" class="route-view hidden py-12">
+    <div class="container max-w-3xl space-y-4 text-xs text-[#737373] leading-relaxed">
+      <h1 class="text-2xl font-serif font-bold text-[#252525] mb-4">Craft Ethics & Sustainability</h1>
+      <p>We are dedicated to sustainable artisan communities, zero-plastic biodegradable courier parcels, and fair wages for master weavers across India.</p>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 17. VIEW: DEFAULT DIRECTORY (FALLBACK) -->
+  <!-- ========================================== -->
+  <div id="view-default-directory" class="route-view hidden py-12">
+    <div class="container max-w-4xl text-center space-y-4">
+      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">LIBAS STORE DIRECTORY</span>
+      <h1 class="text-3xl font-serif font-bold text-[#252525]">Explore Our Complete Store</h1>
+      <p class="text-xs sm:text-sm text-[#737373] max-w-lg mx-auto">Select any category or customer service portal below to browse our festive collections:</p>
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
+        <a href="/collections/suits" class="switcher-pill">👗 Suits & Sets</a>
+        <a href="/collections/kurtas" class="switcher-pill">👚 Kurtas</a>
+        <a href="/collections/sarees" class="switcher-pill">🥻 Sarees</a>
+        <a href="/collections/dresses" class="switcher-pill">💃 Dresses</a>
+        <a href="/collections/loungewear" class="switcher-pill">👘 Co-ords</a>
+        <a href="/collections/plus-size" class="switcher-pill pill-highlight">✨ ExtraLove (3XL-6XL)</a>
+        <a href="/collections/sale" class="switcher-pill pill-sale">🔥 Festive Sale</a>
+        <a href="/pages/track-order" class="switcher-pill">📦 Track Order</a>
+        <a href="/pages/returns" class="switcher-pill">🔄 15-Day Returns</a>
+        <a href="/pages/shipping-policy" class="switcher-pill">🚚 Shipping SLA</a>
+        <a href="/pages/about" class="switcher-pill">📖 About Us</a>
+        <a href="/pages/stores" class="switcher-pill">📍 Stores</a>
+        <a href="/pages/contact" class="switcher-pill">📞 Contact</a>
+        <a href="/pages/faqs" class="switcher-pill">❓ FAQs</a>
+      </div>
+      <div class="pt-6">
+        <a href="/" class="btn-primary">Return to Storefront Home →</a>
+      </div>
+    </div>
+  </div>
+
 </div>
 
+<!-- Route Dispatcher Script -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const tabs = document.querySelectorAll('[data-dir-tab]');
-    const panels = document.querySelectorAll('.dir-panel');
+  (function () {
+    function resolveRoute() {
+      var path = (window.location.pathname + window.location.hash + window.location.search).toLowerCase();
+      var target = null;
 
-    function switchTab(target) {
-      tabs.forEach(t => {
-        if (t.getAttribute('data-dir-tab') === target) {
-          t.classList.add('active', 'bg-[#71006A]', 'text-white');
-          t.classList.remove('bg-[#FAF7F9]', 'text-[#252525]', 'border');
-        } else {
-          t.classList.remove('active', 'bg-[#71006A]', 'text-white');
-          t.classList.add('bg-[#FAF7F9]', 'text-[#252525]', 'border');
-        }
+      if (path.includes('suit')) target = 'suits';
+      else if (path.includes('kurta')) target = 'kurtas';
+      else if (path.includes('saree')) target = 'sarees';
+      else if (path.includes('dress')) target = 'dresses';
+      else if (path.includes('lounge') || path.includes('coord')) target = 'loungewear';
+      else if (path.includes('plus') || path.includes('extra')) target = 'plus-size';
+      else if (path.includes('sale')) target = 'sale';
+      else if (path.includes('track')) target = 'track-order';
+      else if (path.includes('return')) target = 'returns';
+      else if (path.includes('ship')) target = 'shipping';
+      else if (path.includes('about') || path.includes('story')) target = 'about';
+      else if (path.includes('store')) target = 'stores';
+      else if (path.includes('contact')) target = 'contact';
+      else if (path.includes('faq')) target = 'faqs';
+      else if (path.includes('wishlist')) target = 'wishlist';
+      else if (path.includes('term')) target = 'terms';
+      else if (path.includes('privacy')) target = 'privacy';
+      else if (path.includes('sustain')) target = 'sustainability';
+
+      document.querySelectorAll('.route-view').forEach(function (el) {
+        el.style.display = 'none';
       });
 
-      panels.forEach(p => {
-        if (p.id === 'dir-panel-' + target) {
-          p.classList.remove('hidden');
-        } else {
-          p.classList.add('hidden');
+      if (target) {
+        var activeEl = document.getElementById('view-' + target);
+        if (activeEl) {
+          activeEl.style.display = 'block';
+          var heading = activeEl.querySelector('h1, h2');
+          if (heading) {
+            document.title = heading.innerText.trim() + ' | Libas India';
+          }
         }
-      });
+      } else {
+        var defEl = document.getElementById('view-default-directory');
+        if (defEl) defEl.style.display = 'block';
+      }
     }
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', function () {
-        const target = this.getAttribute('data-dir-tab');
-        switchTab(target);
-      });
-    });
-
-    // Auto-activate tab based on URL path or hash
-    const path = (window.location.pathname + window.location.hash).toLowerCase();
-    if (path.includes('suit')) switchTab('suits');
-    else if (path.includes('kurta')) switchTab('kurtas');
-    else if (path.includes('saree')) switchTab('sarees');
-    else if (path.includes('dress')) switchTab('dresses');
-    else if (path.includes('track')) switchTab('track');
-    else if (path.includes('return')) switchTab('returns');
-    else if (path.includes('ship')) switchTab('shipping');
-    else if (path.includes('about')) switchTab('about');
-    else if (path.includes('store') || path.includes('contact')) switchTab('stores');
-    else if (path.includes('faq')) switchTab('faqs');
-    else if (path.includes('term') || path.includes('privacy')) switchTab('legal');
-  });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', resolveRoute);
+    } else {
+      resolveRoute();
+    }
+  })();
 </script>
 
 {% schema %}
 {
-  "name": "Main 404",
+  "name": "Main 404 Route Resolver",
   "settings": []
 }
 {% endschema %}
