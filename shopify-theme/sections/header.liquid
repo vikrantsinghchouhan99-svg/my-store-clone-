@@ -43,7 +43,7 @@
 
         <!-- Wishlist -->
         <a
-          href="{{ routes.root_url }}#wishlist"
+          href="#wishlist"
           class="hover:text-[#71006A] transition-colors flex items-center gap-1"
           title="Wishlist"
         >
@@ -58,7 +58,7 @@
         >
           {% render 'icon-cart' %}
           <span class="hidden sm:inline">Bag</span>
-          <span class="bg-white text-[#71006A] w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center ml-1">
+          <span class="cart-count-badge">
             {{ cart.item_count | default: 0 }}
           </span>
         </button>
@@ -70,23 +70,23 @@
       
       <!-- Suits Dropdown -->
       <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="{{ routes.all_products_collection_url }}?filter=suits">Suits & Sets ▾</a>
+        <a href="#suits">Suits & Sets ▾</a>
         <div class="dropdown-menu">
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="{{ routes.all_products_collection_url }}?filter=anarkali" class="hover:text-[#71006A]">Anarkali Suits</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=sharara" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=palazzo" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=straight" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
+            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+              <li><a href="#suits" class="hover:text-[#71006A]">Anarkali Suits</a></li>
+              <li><a href="#suits" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
+              <li><a href="#suits" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
+              <li><a href="#suits" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
             </ul>
           </div>
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Occasion</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="{{ routes.all_products_collection_url }}?filter=wedding" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=festive" class="hover:text-[#71006A]">Festive Parties</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=daily" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
+            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+              <li><a href="#suits" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
+              <li><a href="#suits" class="hover:text-[#71006A]">Festive Parties</a></li>
+              <li><a href="#suits" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
             </ul>
           </div>
         </div>
@@ -94,38 +94,38 @@
 
       <!-- Kurtas Dropdown -->
       <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="{{ routes.all_products_collection_url }}?filter=kurtas">Kurtas & Kurtis ▾</a>
+        <a href="#kurtas">Kurtas & Kurtis ▾</a>
         <div class="dropdown-menu">
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="{{ routes.all_products_collection_url }}?filter=straight" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=flared" class="hover:text-[#71006A]">A-Line & Flared</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=short" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
+            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+              <li><a href="#kurtas" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
+              <li><a href="#kurtas" class="hover:text-[#71006A]">A-Line & Flared</a></li>
+              <li><a href="#kurtas" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
             </ul>
           </div>
           <div>
             <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">Craft & Print</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case">
-              <li><a href="{{ routes.all_products_collection_url }}?filter=zari" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=blockprint" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
-              <li><a href="{{ routes.all_products_collection_url }}?filter=chikankari" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
+            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+              <li><a href="#kurtas" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
+              <li><a href="#kurtas" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
+              <li><a href="#kurtas" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <a href="{{ routes.all_products_collection_url }}?filter=sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
-      <a href="{{ routes.all_products_collection_url }}?filter=dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
-      <a href="{{ routes.all_products_collection_url }}?filter=loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
+      <a href="#sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
+      <a href="#dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
+      <a href="#loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
       
       <!-- Plus Size -->
-      <a href="{{ routes.all_products_collection_url }}?filter=plus-size" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
+      <a href="#extralove" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
         ExtraLove (3XL-6XL)
       </a>
 
       <!-- Sale -->
-      <a href="{{ routes.all_products_collection_url }}?filter=sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
+      <a href="#sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
         Festive Sale
       </a>
     </nav>

@@ -1,20 +1,20 @@
-<div class="py-12 bg-white">
+<div class="py-10 bg-white">
   <div class="container max-w-5xl">
     
     <!-- Top Notice & Header -->
     <div class="text-center max-w-2xl mx-auto space-y-3 mb-8">
       <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#71006A]/10 text-[#71006A] text-[10px] font-bold tracking-widest uppercase font-mono">
-        LIBAS EDITORIAL DIRECTORY
+        LIBAS EDITORIAL STORE DIRECTORY
       </span>
       <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
-        Interactive Store Showcase
+        All Collections & Store Pages
       </h1>
       <p class="text-xs sm:text-sm text-[#737373]">
-        Explore our hallmark festive collection, artisan heritage story, and customer care portals directly using the quick tabs below:
+        Looking for a specific festive silhouette, return portal, or brand story? Select any category or customer service tab below:
       </p>
       <div class="pt-2">
         <a href="{{ routes.root_url }}" class="btn-primary">
-          <span>Return To Storefront Home</span>
+          <span>Go to Storefront Home</span>
           <span>→</span>
         </a>
       </div>
@@ -22,31 +22,46 @@
 
     <!-- Interactive Navigation Tabs -->
     <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" style="scrollbar-width: none;">
-      <button type="button" data-dir-tab="products" class="dir-tab-btn active px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#71006A] text-white cursor-pointer border-none shadow-xs whitespace-nowrap">
-        ✨ Festive Outfits
+      <button type="button" data-dir-tab="featured" class="dir-tab-btn active px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#71006A] text-white cursor-pointer border-none shadow-xs whitespace-nowrap">
+        ✨ Featured
       </button>
-      <button type="button" data-dir-tab="about" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        📖 About Libas
+      <button type="button" data-dir-tab="suits" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        👗 Suits & Sets
+      </button>
+      <button type="button" data-dir-tab="kurtas" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        👚 Kurtas
+      </button>
+      <button type="button" data-dir-tab="sarees" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        🥻 Sarees
+      </button>
+      <button type="button" data-dir-tab="dresses" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        💃 Dresses
+      </button>
+      <button type="button" data-dir-tab="track" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        📦 Track Order
       </button>
       <button type="button" data-dir-tab="returns" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
         🔄 15-Day Returns
       </button>
       <button type="button" data-dir-tab="shipping" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        🚚 Shipping Policy
+        🚚 Shipping SLA
       </button>
-      <button type="button" data-dir-tab="faqs" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        ❓ FAQs & Help
+      <button type="button" data-dir-tab="about" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        📖 About Us
       </button>
       <button type="button" data-dir-tab="stores" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
         📍 Stores & Contact
       </button>
+      <button type="button" data-dir-tab="faqs" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
+        ❓ FAQs
+      </button>
       <button type="button" data-dir-tab="legal" class="dir-tab-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-[#FAF7F9] text-[#252525] hover:bg-[#F5F5F5] cursor-pointer border border-[#E6E6E6] whitespace-nowrap">
-        📜 Terms & Privacy
+        📜 Legal
       </button>
     </div>
 
-    <!-- Tab 1: Products Showcase -->
-    <div id="dir-panel-products" class="dir-panel">
+    <!-- Tab 1: Featured Highlights -->
+    <div id="dir-panel-featured" class="dir-panel">
       <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
         <div>
           <h2 class="text-xl font-serif font-bold text-[#252525]">Curated Festive Silhouette Grid</h2>
@@ -82,18 +97,126 @@
           original_price: '₹8,999',
           image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
         %}
+      </div>
+    </div>
+
+    <!-- Tab 2: Suits & Sets -->
+    <div id="dir-panel-suits" class="dir-panel hidden">
+      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-serif font-bold text-[#252525]">Anarkali, Sharara & Palazzo Suits</h2>
+          <p class="text-xs text-[#737373]">Signature 3-piece coordinated suit sets with matching dupattas</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         {% render 'product-card',
-          title: 'Wine Chanderi Silk Foil Print Kurta',
+          title: 'Purple Zari Embroidered Silk Anarkali Suit Set',
+          price: '₹3,499',
+          original_price: '₹6,999',
+          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Mustard Gotta Patti Georgette Sharara Suit Set',
+          price: '₹2,799',
+          original_price: '₹5,599',
+          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Blush Floral Cotton Straight Kurta & Palazzo',
+          price: '₹1,899',
+          original_price: '₹3,799',
+          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Emerald Green Embroidered Velvet Suit Set',
+          price: '₹4,499',
+          original_price: '₹8,999',
+          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+    </div>
+
+    <!-- Tab 3: Kurtas & Kurtis -->
+    <div id="dir-panel-kurtas" class="dir-panel hidden">
+      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-serif font-bold text-[#252525]">Artisan Kurtas & Short Kurtis</h2>
+          <p class="text-xs text-[#737373]">Handblock prints, woven Chanderi, and breathable daytime cottons</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card',
+          title: 'Wine Chanderi Silk Foil Print Straight Kurta',
           price: '₹1,299',
           original_price: '₹2,599',
           image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
         %}
         {% render 'product-card',
-          title: 'Lavender Pure Organza Floral Saree',
-          price: '₹2,899',
-          original_price: '₹5,799',
+          title: 'Indigo Blue Ajrakh Handblock Pure Cotton Kurta',
+          price: '₹1,099',
+          original_price: '₹2,199',
+          image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Peach Embroidered Cotton Peplum Tunic Kurti',
+          price: '₹899',
+          original_price: '₹1,799',
+          image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Teal Green Woven Yoke Cotton Straight Kurta',
+          price: '₹1,199',
+          original_price: '₹2,399',
+          image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+    </div>
+
+    <!-- Tab 4: Sarees -->
+    <div id="dir-panel-sarees" class="dir-panel hidden">
+      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-serif font-bold text-[#252525]">Handloom & Festive Sarees</h2>
+          <p class="text-xs text-[#737373]">Sheer organza florals, ready-to-wear pre-draped, and woven Banarasi drapes</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        {% render 'product-card',
+          title: 'Burgundy Zari Woven Sheer Organza Saree',
+          price: '₹2,699',
+          original_price: '₹5,399',
           image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
         %}
+        {% render 'product-card',
+          title: 'Lavender Foil Print Ready-to-Wear Georgette Saree',
+          price: '₹2,199',
+          original_price: '₹4,399',
+          image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Royal Bottle Green Brocade Festive Silk Saree',
+          price: '₹3,299',
+          original_price: '₹6,599',
+          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Rose Gold Metallic Tissue Festive Saree',
+          price: '₹2,499',
+          original_price: '₹4,999',
+          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        %}
+      </div>
+    </div>
+
+    <!-- Tab 5: Dresses -->
+    <div id="dir-panel-dresses" class="dir-panel hidden">
+      <div class="border-b border-[#E6E6E6] pb-4 mb-6 flex items-baseline justify-between">
+        <div>
+          <h2 class="text-xl font-serif font-bold text-[#252525]">Ethnic Dresses & Festive Maxi Gowns</h2>
+          <p class="text-xs text-[#737373]">Flowing tier silhouettes combining contemporary poise with Indian grace</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         {% render 'product-card',
           title: 'Rust Red Tiered Georgette Maxi Dress',
           price: '₹2,199',
@@ -101,7 +224,19 @@
           image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop'
         %}
         {% render 'product-card',
-          title: 'Maroon Festive Silk Blend Anarkali Set',
+          title: 'Navy Blue Embroidered Angrakha Anarkali Dress',
+          price: '₹2,499',
+          original_price: '₹4,999',
+          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Sage Green Floral Flared Georgette Midi Dress',
+          price: '₹1,799',
+          original_price: '₹3,599',
+          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
+        %}
+        {% render 'product-card',
+          title: 'Maroon Festive Silk Blend Anarkali Gown',
           price: '₹3,799',
           original_price: '₹7,599',
           image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop'
@@ -109,34 +244,31 @@
       </div>
     </div>
 
-    <!-- Tab 2: About Libas -->
-    <div id="dir-panel-about" class="dir-panel hidden">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10 items-center">
-        <div class="md:col-span-7 rounded-2xl overflow-hidden aspect-[16/10] bg-[#F5F5F5] shadow-md">
-          <img
-            src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop"
-            alt="Artisan Craftsmanship"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <div class="md:col-span-5 space-y-4">
-          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-bold">HERITAGE SINCE 1993</span>
-          <h2 class="text-2xl font-serif font-bold text-[#252525]">Every Stitch Tells An Unhurried Story</h2>
-          <p class="text-xs text-[#4D4D4D] leading-relaxed">
-            We collaborate with over 2,500 master artisans across Jaipur, Chanderi, Lucknow, and Varanasi. Every motif, gota patti accent, and wooden block print is rendered with meticulous precision, honouring slow fashion and ethical artisan communities.
-          </p>
-          <div class="pt-2 flex gap-4 text-xs font-mono font-bold text-[#71006A]">
-            <div><span class="text-xl font-serif block">2,500+</span> Artisans Supported</div>
-            <div><span class="text-xl font-serif block">100%</span> Authentic Craft</div>
+    <!-- Tab 6: Track Order -->
+    <div id="dir-panel-track" class="dir-panel hidden">
+      <div class="max-w-xl mx-auto bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs mb-8">
+        <h3 class="text-xl font-serif font-bold text-[#252525] mb-2 text-center">Track Your Consignment</h3>
+        <p class="text-xs text-[#737373] text-center mb-6">Enter your Order ID (e.g. LIB-884920) to check real-time courier status.</p>
+        <form onsubmit="event.preventDefault(); document.getElementById('dirTrackResult').classList.remove('hidden');" class="space-y-4">
+          <div>
+            <label class="text-xs font-bold text-[#252525] block mb-1">Order ID *</label>
+            <input type="text" required value="LIB-884920" class="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono uppercase outline-none">
           </div>
+          <button type="submit" class="w-full py-3 rounded-lg bg-[#71006A] text-white text-xs font-bold uppercase tracking-wider hover:bg-[#560050] transition-colors shadow-md mt-2 border-none cursor-pointer">
+            Track Now
+          </button>
+        </form>
+        <div id="dirTrackResult" class="hidden mt-6 pt-4 border-t border-[#E6E6E6] space-y-2 text-xs">
+          <p class="font-bold text-[#71006A]">Status: Out for Delivery 🚚</p>
+          <p class="text-[#737373]">Estimated delivery today by 6:00 PM via BlueDart Express.</p>
         </div>
       </div>
     </div>
 
-    <!-- Tab 3: Returns & Exchanges -->
+    <!-- Tab 7: 15-Day Returns -->
     <div id="dir-panel-returns" class="dir-panel hidden">
       <div class="max-w-xl mx-auto bg-[#FAF7F9] border border-[#E6E6E6] rounded-2xl p-6 sm:p-8 shadow-xs mb-8">
-        <h3 class="text-xl font-serif font-bold text-[#252525] mb-2 text-center">15-Day Return & Exchange Request</h3>
+        <h3 class="text-xl font-serif font-bold text-[#252525] mb-2 text-center">15-Day Return & Exchange Portal</h3>
         <p class="text-xs text-[#737373] text-center mb-6">Enjoy free doorstep pickups and instant size exchanges or full refunds.</p>
         <form onsubmit="event.preventDefault(); alert('Return Request Registered! Our courier partner will arrive for pickup within 24-48 hours.');" class="space-y-4">
           <div>
@@ -163,7 +295,7 @@
       </div>
     </div>
 
-    <!-- Tab 4: Shipping Policy -->
+    <!-- Tab 8: Shipping Policy -->
     <div id="dir-panel-shipping" class="dir-panel hidden">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] text-center space-y-2">
@@ -184,25 +316,31 @@
       </div>
     </div>
 
-    <!-- Tab 5: FAQs -->
-    <div id="dir-panel-faqs" class="dir-panel hidden">
-      <div class="max-w-3xl mx-auto space-y-3">
-        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
-          <h4 class="text-xs font-bold text-[#252525] mb-1">What sizes do Libas garments come in?</h4>
-          <p class="text-xs text-[#737373]">We offer an inclusive size range from XS (34) to ExtraLove 6XL (52). Check our interactive Size Guide for bust, waist, and hip measurements.</p>
+    <!-- Tab 9: About Libas -->
+    <div id="dir-panel-about" class="dir-panel hidden">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10 items-center">
+        <div class="md:col-span-7 rounded-2xl overflow-hidden aspect-[16/10] bg-[#F5F5F5] shadow-md">
+          <img
+            src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop"
+            alt="Artisan Craftsmanship"
+            class="w-full h-full object-cover object-top"
+          >
         </div>
-        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
-          <h4 class="text-xs font-bold text-[#252525] mb-1">How do I exchange my size if it doesn't fit?</h4>
-          <p class="text-xs text-[#737373]">Simply visit our 15-Day Return Portal with your Order ID. Our logistics courier will pick up the parcel from your doorstep for free.</p>
-        </div>
-        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
-          <h4 class="text-xs font-bold text-[#252525] mb-1">How can I contact Libas customer support?</h4>
-          <p class="text-xs text-[#737373]">Our helpline is active Monday through Saturday, 9am - 7pm at +91 98999 90772, or email us anytime at care@libas.in.</p>
+        <div class="md:col-span-5 space-y-4">
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-bold">HERITAGE SINCE 1993</span>
+          <h2 class="text-2xl font-serif font-bold text-[#252525]">Every Stitch Tells An Unhurried Story</h2>
+          <p class="text-xs text-[#4D4D4D] leading-relaxed">
+            We collaborate with over 2,500 master artisans across Jaipur, Chanderi, Lucknow, and Varanasi. Every motif, gota patti accent, and wooden block print is rendered with meticulous precision, honouring slow fashion and ethical artisan communities.
+          </p>
+          <div class="pt-2 flex gap-4 text-xs font-mono font-bold text-[#71006A]">
+            <div><span class="text-xl font-serif block">2,500+</span> Artisans Supported</div>
+            <div><span class="text-xl font-serif block">100%</span> Authentic Craft</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Tab 6: Stores & Contact -->
+    <!-- Tab 10: Stores & Contact -->
     <div id="dir-panel-stores" class="dir-panel hidden">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
@@ -220,7 +358,25 @@
       </div>
     </div>
 
-    <!-- Tab 7: Legal -->
+    <!-- Tab 11: FAQs -->
+    <div id="dir-panel-faqs" class="dir-panel hidden">
+      <div class="max-w-3xl mx-auto space-y-3">
+        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
+          <h4 class="text-xs font-bold text-[#252525] mb-1">What sizes do Libas garments come in?</h4>
+          <p class="text-xs text-[#737373]">We offer an inclusive size range from XS (34) to ExtraLove 6XL (52). Check our interactive Size Guide for bust, waist, and hip measurements.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
+          <h4 class="text-xs font-bold text-[#252525] mb-1">How do I exchange my size if it doesn't fit?</h4>
+          <p class="text-xs text-[#737373]">Simply visit our 15-Day Return Portal with your Order ID. Our logistics courier will pick up the parcel from your doorstep for free.</p>
+        </div>
+        <div class="p-4 rounded-xl border border-[#E6E6E6] bg-white">
+          <h4 class="text-xs font-bold text-[#252525] mb-1">How can I contact Libas customer support?</h4>
+          <p class="text-xs text-[#737373]">Our helpline is active Monday through Saturday, 9am - 7pm at +91 98999 90772, or email us anytime at care@libas.in.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 12: Legal -->
     <div id="dir-panel-legal" class="dir-panel hidden">
       <div class="max-w-3xl mx-auto space-y-4 text-xs text-[#737373] leading-relaxed">
         <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6]">
@@ -267,11 +423,16 @@
 
     // Auto-activate tab based on URL path or hash
     const path = (window.location.pathname + window.location.hash).toLowerCase();
-    if (path.includes('about')) switchTab('about');
-    else if (path.includes('return') || path.includes('track')) switchTab('returns');
+    if (path.includes('suit')) switchTab('suits');
+    else if (path.includes('kurta')) switchTab('kurtas');
+    else if (path.includes('saree')) switchTab('sarees');
+    else if (path.includes('dress')) switchTab('dresses');
+    else if (path.includes('track')) switchTab('track');
+    else if (path.includes('return')) switchTab('returns');
     else if (path.includes('ship')) switchTab('shipping');
-    else if (path.includes('faq')) switchTab('faqs');
+    else if (path.includes('about')) switchTab('about');
     else if (path.includes('store') || path.includes('contact')) switchTab('stores');
+    else if (path.includes('faq')) switchTab('faqs');
     else if (path.includes('term') || path.includes('privacy')) switchTab('legal');
   });
 </script>

@@ -30,6 +30,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -481,7 +482,7 @@ textarea:focus {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   padding-top: 0.5rem;
   margin-top: 0.5rem;
   border-top: 1px solid #F5F5F5;
@@ -490,6 +491,100 @@ textarea:focus {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  color: #71006A;
+  font-size: 10px;
+  font-weight: 800;
+  margin-left: 0.375rem;
+}
+
+.page-switcher-bar {
+  background-color: #FAF7F9;
+  border-bottom: 1px solid #E6E6E6;
+  padding: 0.5rem 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-switcher-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.switcher-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.switcher-label {
+  font-family: monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #71006A;
+  font-weight: 800;
+  padding-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.switcher-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  border: 1px solid #E6E6E6;
+  color: #252525;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.switcher-pill:hover {
+  background-color: #71006A;
+  color: #FFFFFF;
+  border-color: #71006A;
+}
+
+.switcher-pill.pill-highlight {
+  color: #71006A;
+  border-color: rgba(113, 0, 106, 0.3);
+}
+
+.switcher-pill.pill-highlight:hover {
+  background-color: #71006A;
+  color: #FFFFFF;
+}
+
+.switcher-pill.pill-sale {
+  color: #D92D20;
+  border-color: rgba(217, 45, 32, 0.3);
+}
+
+.switcher-pill.pill-sale:hover {
+  background-color: #D92D20;
+  color: #FFFFFF;
 }
 
 .has-dropdown {
