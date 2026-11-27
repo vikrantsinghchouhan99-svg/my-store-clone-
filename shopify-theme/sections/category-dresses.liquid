@@ -5,58 +5,78 @@
     <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
       <div>
         <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">
-          CATEGORY • ETHNIC DRESSES & GOWNS
+          CATEGORY • ETHNIC DRESSES
         </span>
         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525] mt-1">
-          Tiered Maxi Gowns & Angrakha Dresses
+          Festive Maxi Dresses & Angrakha Gowns
         </h2>
         <p class="text-xs text-[#737373] mt-1">
-          Contemporary Indian silhouettes tailored with dramatic flares, botanical motifs, and comfortable linings.
+          Contemporary Indian flared gowns, cape dresses, and tiered floral silhouettes.
         </p>
       </div>
 
       <div class="flex items-center gap-2">
-        <a href="{{ routes.all_products_collection_url }}?filter=dresses" class="text-xs font-bold text-[#71006A] hover:underline flex items-center gap-1">
-          <span>View All Dresses</span>
-          <span>→</span>
-        </a>
+        <span class="text-xs font-mono font-bold text-[#71006A]">Showing 8 Festive Gowns</span>
       </div>
     </div>
 
     <!-- Product Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
       {% render 'product-card',
-        title: 'Maroon Floral Printed Tiered Ethnic Maxi Dress',
-        price: '₹1,799',
-        original_price: '₹3,599',
-        image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop'
+        title: 'Maroon Flared Angrakha Festive Maxi Gown',
+        price: '₹2,499',
+        original_price: '₹4,999',
+        image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000&auto=format&fit=crop'
       %}
       {% render 'product-card',
-        title: 'Blush Pink Angrakha Anarkali Flared Dress',
+        title: 'Emerald Green Embroidered Georgette Gown',
+        price: '₹2,999',
+        original_price: '₹5,999',
+        image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop'
+      %}
+      {% render 'product-card',
+        title: 'Mustard Floral Tiered Pure Cotton Maxi Dress',
         price: '₹1,699',
         original_price: '₹3,399',
-        image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop'
+        image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop'
       %}
       {% render 'product-card',
-        title: 'Rust Red Tiered Georgette Maxi Ethnic Dress',
+        title: 'Blush Pink Chikankari Pure Mulmul Dress',
         price: '₹2,199',
         original_price: '₹4,399',
-        image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+        image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=1000&auto=format&fit=crop'
       %}
       {% render 'product-card',
-        title: 'Olive Floral Cotton Tiered Maxi Dress',
+        title: 'Plum Purple Zari Foil Print Anarkali Gown',
+        price: '₹2,799',
+        original_price: '₹5,599',
+        image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop'
+      %}
+      {% render 'product-card',
+        title: 'Indigo Ajrakh Printed Fit & Flare Midi Dress',
         price: '₹1,499',
         original_price: '₹2,999',
-        image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop'
+      %}
+      {% render 'product-card',
+        title: 'Wine Chiffon Cape Sleeves Evening Gown',
+        price: '₹3,199',
+        original_price: '₹6,399',
+        image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=1000&auto=format&fit=crop'
+      %}
+      {% render 'product-card',
+        title: 'Ivory & Gold Zari Woven Anarkali Gown',
+        price: '₹2,899',
+        original_price: '₹5,799',
+        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop'
       %}
     </div>
-
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Dresses Showcase",
+  "name": "Category Dresses",
   "settings": []
 }
 {% endschema %}
