@@ -1543,4 +1543,39 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.style.overflow = '';
     }
   }));
+
+  // Mobile Navigation Drawer Toggle & Close
+  const mobileToggleBtns = document.querySelectorAll('[data-mobile-menu-toggle]');
+  const mobileCloseBtns = document.querySelectorAll('[data-mobile-menu-close]');
+  const mobileDrawer = document.getElementById('MobileNavDrawer');
+
+  function openMobileMenu() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMobileMenu() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mobileToggleBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    openMobileMenu();
+  }));
+
+  mobileCloseBtns.forEach(btn => btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeMobileMenu();
+  }));
+
+  if (mobileDrawer) {
+    mobileDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  }
 });

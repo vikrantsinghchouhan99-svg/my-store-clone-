@@ -25,32 +25,7 @@
 
     {{ content_for_header }}
 
-    <!-- Tailwind Play CDN for immediate runtime rendering in Shopify Admin / Storefront -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              brand: {
-                DEFAULT: '#71006A',
-                dark: '#560050',
-                blush: '#FF8C91',
-                surface: '#FAF7F9',
-                border: '#E6E6E6'
-              }
-            },
-            fontFamily: {
-              serif: ['"Playfair Display"', 'Georgia', 'serif'],
-              sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-              brand: ['"Cinzel"', 'serif'],
-            }
-          }
-        }
-      }
-    </script>
-
-    <!-- Theme Stylesheet (Standalone compiled styling & fallbacks) -->
+    <!-- Theme Stylesheet (100% Self-Contained Native Engine - Zero External CDN Dependency) -->
     {{ 'theme.css' | asset_url | stylesheet_tag }}
   </head>
 

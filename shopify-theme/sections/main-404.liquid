@@ -509,12 +509,14 @@
 
       document.querySelectorAll('.route-view').forEach(function (el) {
         el.style.display = 'none';
+        el.classList.add('hidden');
       });
 
       if (target) {
         var activeEl = document.getElementById('view-' + target);
         if (activeEl) {
           activeEl.style.display = 'block';
+          activeEl.classList.remove('hidden');
           var heading = activeEl.querySelector('h1, h2');
           if (heading) {
             document.title = heading.innerText.trim() + ' | Libas India';
@@ -522,7 +524,10 @@
         }
       } else {
         var defEl = document.getElementById('view-default-directory');
-        if (defEl) defEl.style.display = 'block';
+        if (defEl) {
+          defEl.style.display = 'block';
+          defEl.classList.remove('hidden');
+        }
       }
     }
 

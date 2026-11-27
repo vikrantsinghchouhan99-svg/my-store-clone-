@@ -1,0 +1,1452 @@
+<!-- ==========================================================================
+     LIBAS LUXURY EDITORIAL COMMERCE - COMPLETE ALL-IN-ONE HOMEPAGE CODE
+     Paste directly into Shopify:
+     Option 1: In Theme Customizer > Add Section > "Custom Liquid" / "Custom HTML"
+     Option 2: In Online Store > Pages > Add Page > Show HTML (<>) > Paste here
+     ========================================================================== -->
+
+<!-- 1. Google Fonts Preload -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- 2. Self-Contained Resilient Styling -->
+<style>
+  #libas-home-root {
+    --libas-plum: #71006A;
+    --libas-plum-dark: #560050;
+    --libas-blush: #FF8C91;
+    --libas-surface: #FAF7F9;
+    --libas-surface-gray: #F5F5F5;
+    --libas-text: #252525;
+    --libas-muted: #737373;
+    --libas-border: #E6E6E6;
+    --libas-sale: #D92D20;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: var(--libas-text);
+    background-color: #FFFFFF;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+  }
+  #libas-home-root *, #libas-home-root *::before, #libas-home-root *::after {
+    box-sizing: border-box;
+  }
+  #libas-home-root .font-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  #libas-home-root .font-brand {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.15em;
+  }
+  #libas-home-root a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  #libas-home-root img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  #libas-home-root .container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    #libas-home-root .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    #libas-home-root .container { padding-left: 2rem; padding-right: 2rem; }
+  }
+
+  /* Announcement Bar */
+  .libas-announcement {
+    background-color: var(--libas-plum);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Header */
+  .libas-header {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--libas-border);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  .libas-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 0;
+    gap: 1rem;
+  }
+  .libas-logo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: var(--libas-plum);
+    letter-spacing: 0.15em;
+  }
+  .libas-search {
+    flex: 1;
+    max-width: 28rem;
+    position: relative;
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .libas-search { display: block; }
+  }
+  .libas-search input {
+    width: 100%;
+    padding: 0.5rem 1rem 0.5rem 2.25rem;
+    border-radius: 9999px;
+    background: var(--libas-surface);
+    border: 1px solid var(--libas-border);
+    font-size: 0.75rem;
+    outline: none;
+  }
+  .libas-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .libas-bag-btn {
+    background: var(--libas-plum);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.4rem 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+  .libas-bag-count {
+    background: #FFFFFF;
+    color: var(--libas-plum);
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  /* Navigation Bar */
+  .libas-nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--libas-surface-gray);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .libas-nav-links::-webkit-scrollbar { display: none; }
+  .libas-nav-links a:hover { color: var(--libas-plum); }
+
+  /* Hero Section */
+  .libas-hero {
+    position: relative;
+    background-color: var(--libas-surface);
+    border-bottom: 1px solid var(--libas-border);
+    padding: 3rem 0;
+    overflow: hidden;
+  }
+  .libas-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .libas-hero-grid { grid-template-columns: 7fr 5fr; gap: 3rem; }
+  }
+  .libas-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(113, 0, 106, 0.1);
+    color: var(--libas-plum);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .libas-hero-title {
+    font-size: 2.25rem;
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--libas-text);
+    margin: 1rem 0;
+  }
+  @media (min-width: 640px) {
+    .libas-hero-title { font-size: 3.5rem; }
+  }
+  .libas-hero-desc {
+    font-size: 0.875rem;
+    color: #4D4D4D;
+    line-height: 1.6;
+    max-width: 34rem;
+    margin-bottom: 1.5rem;
+  }
+  .libas-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .libas-btn-primary {
+    background-color: var(--libas-plum);
+    color: #FFFFFF;
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .libas-btn-primary:hover { background-color: var(--libas-plum-dark); color: #fff; }
+  .libas-btn-outline {
+    border: 1px solid var(--libas-plum);
+    color: var(--libas-plum);
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .libas-btn-outline:hover { background: rgba(113, 0, 106, 0.05); }
+  .libas-btn-sale {
+    background: var(--libas-blush);
+    color: var(--libas-plum);
+    padding: 0.75rem 1.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .libas-hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--libas-border);
+    max-width: 28rem;
+  }
+  .libas-metric-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--libas-plum);
+  }
+  .libas-metric-label {
+    font-size: 11px;
+    color: var(--libas-muted);
+  }
+
+  /* Category Circles */
+  .libas-circles-section {
+    padding: 2rem 0;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--libas-border);
+  }
+  .libas-circles-scroll {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    scrollbar-width: none;
+  }
+  .libas-circles-scroll::-webkit-scrollbar { display: none; }
+  .libas-circle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 5rem;
+    flex-shrink: 0;
+  }
+  .libas-circle-img {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 9999px;
+    border: 2px solid rgba(113, 0, 106, 0.3);
+    padding: 2px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .libas-circle-item:hover .libas-circle-img {
+    transform: scale(1.08);
+    border-color: var(--libas-plum);
+  }
+  .libas-circle-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 9999px;
+  }
+  .libas-circle-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--libas-text);
+    margin-top: 0.5rem;
+    white-space: nowrap;
+  }
+  .libas-circle-tag {
+    font-size: 9px;
+    color: var(--libas-plum);
+    font-weight: 600;
+  }
+
+  /* Trending Grid */
+  .libas-section {
+    padding: 3rem 0;
+  }
+  .libas-section-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--libas-border);
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .libas-section-header { flex-direction: row; align-items: flex-end; }
+  }
+  .libas-section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--libas-text);
+  }
+  .libas-filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .libas-filter-tabs::-webkit-scrollbar { display: none; }
+  .libas-tab-btn {
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--libas-surface-gray);
+    color: #4D4D4D;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .libas-tab-btn.active {
+    background: var(--libas-plum);
+    color: #FFFFFF;
+  }
+  .libas-product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .libas-product-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  }
+  .libas-card {
+    background: #FFFFFF;
+    border: 1px solid var(--libas-border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+  }
+  .libas-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  }
+  .libas-card-img-wrap {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #F5F5F5;
+  }
+  .libas-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .libas-card:hover img {
+    transform: scale(1.05);
+  }
+  .libas-discount-badge {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    background: var(--libas-plum);
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  .libas-card-body {
+    padding: 0.75rem;
+  }
+  .libas-card-title {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--libas-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.25rem;
+  }
+  .libas-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+  }
+  .libas-price-now {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--libas-plum);
+  }
+  .libas-price-old {
+    font-size: 0.6875rem;
+    color: var(--libas-muted);
+    text-decoration: line-through;
+  }
+  .libas-add-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    background: var(--libas-surface);
+    color: var(--libas-plum);
+    border: 1px solid var(--libas-border);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .libas-add-btn:hover {
+    background: var(--libas-plum);
+    color: #FFFFFF;
+    border-color: var(--libas-plum);
+  }
+
+  /* Dual Festive Banners */
+  .libas-banners-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .libas-banners-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .libas-banner-box {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    padding: 2.5rem 2rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #FFFFFF;
+  }
+  .libas-banner-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .libas-banner-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    transition: transform 0.6s ease;
+  }
+  .libas-banner-box:hover .libas-banner-bg img {
+    transform: scale(1.05);
+  }
+  .libas-banner-overlay-plum {
+    background: linear-gradient(to right, #71006A, rgba(113, 0, 106, 0.8) 60%, transparent);
+  }
+  .libas-banner-overlay-dark {
+    background: linear-gradient(to right, #252525, rgba(37, 37, 37, 0.85) 60%, transparent);
+  }
+  .libas-banner-content {
+    position: relative;
+    z-index: 2;
+    max-width: 24rem;
+  }
+  .libas-banner-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    line-height: 1.2;
+  }
+  .libas-banner-content p {
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* Atelier Craft Section */
+  .libas-atelier-section {
+    background: var(--libas-surface);
+    border-top: 1px solid var(--libas-border);
+    border-bottom: 1px solid var(--libas-border);
+    padding: 4rem 0;
+  }
+  .libas-atelier-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .libas-atelier-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .libas-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .libas-mosaic-item {
+    border-radius: 1rem;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+  .libas-mosaic-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Testimonials */
+  .libas-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .libas-reviews-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .libas-review-card {
+    background: var(--libas-surface);
+    border: 1px solid var(--libas-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  /* Footer */
+  .libas-footer {
+    background: #FFFFFF;
+    border-top: 1px solid var(--libas-border);
+    padding: 3.5rem 0 2rem;
+  }
+  .libas-newsletter-card {
+    background: var(--libas-surface);
+    border: 1px solid var(--libas-border);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .libas-newsletter-card { flex-direction: row; align-items: center; }
+  }
+  .libas-footer-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  @media (min-width: 768px) {
+    .libas-footer-cols { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  }
+  .libas-footer-col h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--libas-plum);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  .libas-footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--libas-muted);
+  }
+  .libas-footer-col li { margin-bottom: 0.5rem; }
+  .libas-footer-col a:hover { color: var(--libas-plum); }
+
+  /* Mobile Menu Hamburger Button */
+  .libas-hamburger-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--libas-text);
+    padding: 0.35rem;
+    cursor: pointer;
+  }
+  @media (min-width: 1024px) {
+    .libas-hamburger-btn { display: none; }
+  }
+
+  /* Slide-Out Mobile Navigation Drawer */
+  .libas-mobile-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+  }
+  .libas-mobile-drawer.active {
+    display: block;
+  }
+  .libas-mobile-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  .libas-mobile-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+    max-width: 320px;
+    background: #FFFFFF;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    animation: drawerSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-overflow-scrolling: touch;
+  }
+  @keyframes drawerSlide {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  .libas-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--libas-border);
+    background: var(--libas-surface);
+  }
+  .libas-drawer-close {
+    background: transparent;
+    border: none;
+    color: var(--libas-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem;
+  }
+  .libas-drawer-links {
+    padding: 1rem 1.25rem;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .libas-drawer-section-title {
+    font-size: 10px;
+    font-family: monospace;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--libas-plum);
+    margin-bottom: 0.5rem;
+  }
+  .libas-drawer-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--libas-surface-gray);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--libas-text);
+    text-decoration: none;
+  }
+  .libas-drawer-item:hover {
+    color: var(--libas-plum);
+  }
+  .libas-drawer-care {
+    padding-top: 1rem;
+    border-top: 1px solid var(--libas-border);
+    margin-top: 1rem;
+  }
+  .libas-drawer-care a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    font-size: 0.8125rem;
+    color: #4D4D4D;
+    text-decoration: none;
+  }
+  .libas-drawer-footer {
+    padding: 1rem 1.25rem;
+    background: var(--libas-surface);
+    border-top: 1px solid var(--libas-border);
+    font-size: 0.75rem;
+  }
+
+  /* Mobile Grid & Typography Touch Polish */
+  @media (max-width: 639px) {
+    .libas-hero-title {
+      font-size: 2rem !important;
+      line-height: 1.2 !important;
+    }
+    .libas-product-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 0.625rem !important;
+    }
+    .libas-card-body {
+      padding: 0.5rem !important;
+    }
+    .libas-card-title {
+      font-size: 0.75rem !important;
+    }
+    .libas-price-now {
+      font-size: 0.8125rem !important;
+    }
+    .libas-add-btn {
+      padding: 0.4rem 0.25rem !important;
+      font-size: 10px !important;
+    }
+    .libas-banner-box {
+      min-height: 240px !important;
+      padding: 1.5rem 1rem !important;
+    }
+    .libas-banner-content h3 {
+      font-size: 1.35rem !important;
+    }
+    .libas-circles-scroll {
+      gap: 0.875rem !important;
+    }
+    .libas-circle-img {
+      width: 4rem !important;
+      height: 4rem !important;
+    }
+    .libas-circle-name {
+      font-size: 10px !important;
+    }
+  }
+
+</style>
+
+<div id="libas-home-root">
+
+  <!-- 1. Announcement Bar -->
+  <div class="libas-announcement">
+    ✨ THE FESTIVE EDIT 2026 • USE CODE PREPAID10 FOR EXTRA 10% OFF
+  </div>
+
+  <!-- 2. Header -->
+  <header class="libas-header">
+    <div class="container">
+      <div class="libas-nav-row">
+        <!-- Logo -->
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button type="button" class="libas-hamburger-btn" onclick="openLibasMobileDrawer()" aria-label="Open menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button type="button" class="libas-hamburger-btn" onclick="openLibasMobileDrawer()" aria-label="Open menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <button type="button" class="libas-hamburger-btn" onclick="openLibasMobileDrawer()" aria-label="Open menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <a href="/" class="libas-logo font-brand">LIBAS</a>
+        </div>
+        </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="libas-search">
+          <input type="search" placeholder="Search Suits, Kurtas, Sarees, Dresses...">
+        </div>
+
+        <!-- Header Actions -->
+        <div class="libas-header-actions">
+          <span>₹ INR</span>
+          <a href="/pages/track-order" style="display: flex; align-items: center; gap: 4px;">
+            <span>Sign In</span>
+          </a>
+          <a href="/pages/wishlist" title="Wishlist">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </a>
+          <button type="button" class="libas-bag-btn" onclick="alert('Bag: 1 item added to bag!');">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span>Bag</span>
+            <span class="libas-bag-count" id="headerBagCount">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mega Menu Navigation Links -->
+      <nav class="libas-nav-links">
+        <a href="/collections/suits">Suits & Sets</a>
+        <a href="/collections/kurtas">Kurtas & Kurtis</a>
+        <a href="/collections/sarees">Sarees</a>
+        <a href="/collections/dresses">Dresses</a>
+        <a href="/collections/loungewear">Co-ords & Lounge</a>
+        <a href="/collections/plus-size" style="color: var(--libas-plum); font-weight: 800;">ExtraLove (3XL-6XL)</a>
+        <a href="/collections/sale" style="color: var(--libas-sale); font-weight: 800;">Festive Sale</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="libasMobileDrawer" class="libas-mobile-drawer">
+    <div class="libas-mobile-backdrop" onclick="closeLibasMobileDrawer()"></div>
+    <div class="libas-mobile-menu">
+      <div class="libas-drawer-header">
+        <span class="libas-logo font-brand" style="font-size: 1.5rem;">LIBAS</span>
+        <button type="button" class="libas-drawer-close" onclick="closeLibasMobileDrawer()" aria-label="Close">✕</button>
+      </div>
+
+      <div class="libas-drawer-links">
+        <div class="libas-drawer-section-title">COLLECTIONS</div>
+        <a href="/collections/suits" class="libas-drawer-item" onclick="closeLibasMobileDrawer()">
+          <span>👗 Suits & Sets</span>
+          <span style="font-size: 10px; color: var(--libas-plum); font-family: monospace;">From ₹1,899</span>
+        </a>
+        <a href="/collections/kurtas" class="libas-drawer-item" onclick="closeLibasMobileDrawer()">
+          <span>👚 Kurtas & Kurtis</span>
+          <span style="font-size: 10px; color: var(--libas-plum); font-family: monospace;">From ₹899</span>
+        </a>
+        <a href="/collections/sarees" class="libas-drawer-item" onclick="closeLibasMobileDrawer()">
+          <span>🥻 Sarees</span>
+          <span style="font-size: 10px; color: var(--libas-plum); font-family: monospace;">From ₹2,199</span>
+        </a>
+        <a href="/collections/dresses" class="libas-drawer-item" onclick="closeLibasMobileDrawer()">
+          <span>💃 Ethnic Dresses</span>
+          <span style="font-size: 10px; color: var(--libas-plum); font-family: monospace;">From ₹1,699</span>
+        </a>
+        <a href="/collections/loungewear" class="libas-drawer-item" onclick="closeLibasMobileDrawer()">
+          <span>👘 Co-ords & Lounge</span>
+          <span style="font-size: 10px; color: var(--libas-plum); font-family: monospace;">From ₹1,299</span>
+        </a>
+        <a href="/collections/plus-size" class="libas-drawer-item" style="color: var(--libas-plum);" onclick="closeLibasMobileDrawer()">
+          <span>✨ ExtraLove (3XL-6XL)</span>
+          <span style="font-size: 9px; background: rgba(113,0,106,0.1); padding: 2px 6px; border-radius: 999px;">CURVE</span>
+        </a>
+        <a href="/collections/sale" class="libas-drawer-item" style="color: var(--libas-sale);" onclick="closeLibasMobileDrawer()">
+          <span>🔥 Festive Sale</span>
+          <span style="font-size: 9px; background: #fee2e2; padding: 2px 6px; border-radius: 999px; color: var(--libas-sale);">UP TO 60%</span>
+        </a>
+
+        <div class="libas-drawer-care">
+          <div class="libas-drawer-section-title">CUSTOMER SERVICE</div>
+          <a href="/pages/track-order" onclick="closeLibasMobileDrawer()">📦 Track My Order</a>
+          <a href="/pages/returns" onclick="closeLibasMobileDrawer()">🔄 15-Day Doorstep Returns</a>
+          <a href="/pages/shipping-policy" onclick="closeLibasMobileDrawer()">🚚 Shipping & Delivery SLA</a>
+          <a href="/pages/stores" onclick="closeLibasMobileDrawer()">📍 Flagship Boutiques</a>
+          <a href="/pages/about" onclick="closeLibasMobileDrawer()">📖 About Libas & Craft Heritage</a>
+          <a href="/pages/contact" onclick="closeLibasMobileDrawer()">📞 Contact Us & FAQs</a>
+        </div>
+      </div>
+
+      <div class="libas-drawer-footer">
+        <div style="display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 0.5rem;">
+          <span>Currency</span>
+          <span style="color: var(--libas-plum); font-family: monospace;">₹ INR</span>
+        </div>
+        <div style="font-size: 11px; color: #737373;">
+          Helpline: <a href="tel:+919899990772" style="color: var(--libas-plum); font-weight: 700;">+91 98999 90772</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 3. Hero Stage -->
+  <section class="libas-hero">
+    <div class="container">
+      <div class="libas-hero-grid">
+        <!-- Left Content -->
+        <div>
+          <div class="libas-pill">
+            <span>✨</span>
+            <span>THE FESTIVE EDIT 2026 • UP TO 60% OFF</span>
+          </div>
+          <h1 class="libas-hero-title font-serif">
+            Grace in Every Thread. <br>
+            <span style="font-style: italic; color: var(--libas-plum); font-weight: 400;">Timeless Festive Grandeur.</span>
+          </h1>
+          <p class="libas-hero-desc">
+            Discover exquisitely tailored Anarkalis, Sharara sets, sheer silk organza sarees, and breathable pure cotton kurtas crafted for celebratory moments.
+          </p>
+          <div class="libas-btn-row">
+            <a href="/collections/suits" class="libas-btn-primary">
+              <span>Shop Festive Suits</span>
+              <span>→</span>
+            </a>
+            <a href="/collections/sarees" class="libas-btn-outline">
+              Explore Sarees
+            </a>
+            <a href="/collections/sale" class="libas-btn-sale">
+              Flat 50% Off
+            </a>
+          </div>
+          <div class="libas-hero-metrics">
+            <div>
+              <div class="libas-metric-num font-serif">10M+</div>
+              <div class="libas-metric-label">Satisfied Women</div>
+            </div>
+            <div>
+              <div class="libas-metric-num font-serif">XS - 6XL</div>
+              <div class="libas-metric-label">Inclusive Sizing</div>
+            </div>
+            <div>
+              <div class="libas-metric-num font-serif">100%</div>
+              <div class="libas-metric-label">Authentic Craft</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual -->
+        <div style="position: relative;">
+          <div style="border-radius: 1rem; overflow: hidden; aspect-ratio: 3 / 4; background: #eee; box-shadow: 0 20px 40px rgba(0,0,0,0.12);">
+            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop" alt="Libas Festive Anarkali" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <!-- Spotlight Badge -->
+          <div style="position: absolute; bottom: -1rem; left: -1rem; background: #fff; padding: 0.75rem 1rem; border-radius: 0.75rem; border: 1px solid var(--libas-border); box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 210px;">
+            <div style="font-size: 9px; font-family: monospace; color: var(--libas-plum); font-weight: 800; text-transform: uppercase;">Trending Pick</div>
+            <div style="font-size: 12px; font-weight: 700; color: #252525; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Purple Silk Anarkali Set</div>
+            <div style="display: flex; gap: 6px; font-size: 11px; font-weight: 800; margin-top: 2px;">
+              <span style="color: var(--libas-plum);">₹3,499</span>
+              <span style="color: #999; text-decoration: line-through;">₹6,999</span>
+              <span style="color: #047857;">50% OFF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Category Circles (7 Categories) -->
+  <section class="libas-circles-section">
+    <div class="container">
+      <div class="libas-circles-scroll">
+        <a href="/collections/suits" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=300&auto=format&fit=crop" alt="Suits">
+          </div>
+          <span class="libas-circle-name">Suits & Sets</span>
+          <span class="libas-circle-tag">From ₹1,899</span>
+        </a>
+
+        <a href="/collections/kurtas" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=300&auto=format&fit=crop" alt="Kurtas">
+          </div>
+          <span class="libas-circle-name">Kurtas</span>
+          <span class="libas-circle-tag">From ₹899</span>
+        </a>
+
+        <a href="/collections/sarees" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=300&auto=format&fit=crop" alt="Sarees">
+          </div>
+          <span class="libas-circle-name">Sarees</span>
+          <span class="libas-circle-tag">From ₹2,199</span>
+        </a>
+
+        <a href="/collections/dresses" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=300&auto=format&fit=crop" alt="Dresses">
+          </div>
+          <span class="libas-circle-name">Ethnic Dresses</span>
+          <span class="libas-circle-tag">From ₹1,699</span>
+        </a>
+
+        <a href="/collections/loungewear" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=300&auto=format&fit=crop" alt="Co-ords">
+          </div>
+          <span class="libas-circle-name">Co-ords & Lounge</span>
+          <span class="libas-circle-tag">From ₹1,299</span>
+        </a>
+
+        <a href="/collections/plus-size" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=300&auto=format&fit=crop" alt="ExtraLove">
+          </div>
+          <span class="libas-circle-name">ExtraLove</span>
+          <span class="libas-circle-tag">3XL to 6XL</span>
+        </a>
+
+        <a href="/collections/sale" class="libas-circle-item">
+          <div class="libas-circle-img">
+            <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=300&auto=format&fit=crop" alt="Sale">
+          </div>
+          <span class="libas-circle-name">Sale Up to 60%</span>
+          <span class="libas-circle-tag" style="color: var(--libas-sale);">Flat 50-60%</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Curated Trending Ensembles Grid -->
+  <section class="libas-section">
+    <div class="container">
+      <div class="libas-section-header">
+        <div>
+          <span style="font-size: 10px; font-family: monospace; font-weight: 800; color: var(--libas-plum); text-transform: uppercase; letter-spacing: 0.1em;">
+            CURATED SELECTION
+          </span>
+          <h2 class="libas-section-title font-serif">Trending Celebratory Ensembles</h2>
+        </div>
+        <!-- Filter Tabs -->
+        <div class="libas-filter-tabs">
+          <button type="button" class="libas-tab-btn active" onclick="filterHomeGrid('All', this)">All</button>
+          <button type="button" class="libas-tab-btn" onclick="filterHomeGrid('Suits', this)">Suits</button>
+          <button type="button" class="libas-tab-btn" onclick="filterHomeGrid('Kurtas', this)">Kurtas</button>
+          <button type="button" class="libas-tab-btn" onclick="filterHomeGrid('Sarees', this)">Sarees</button>
+          <button type="button" class="libas-tab-btn" onclick="filterHomeGrid('Plus-Size', this)">ExtraLove (3XL-6XL)</button>
+        </div>
+      </div>
+
+      <!-- 8 Real Products Grid -->
+      <div class="libas-product-grid" id="homeProductGrid">
+        
+        <!-- Product 1 -->
+        <div class="libas-card" data-cat="Suits">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop" alt="Purple Silk Anarkali">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Purple Zari Silk Anarkali Set</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹3,499</span>
+              <span class="libas-price-old">₹6,999</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Purple Zari Silk Anarkali Set')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="libas-card" data-cat="Suits">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop" alt="Mustard Sharara">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Mustard Gotta Patti Sharara Set</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹2,799</span>
+              <span class="libas-price-old">₹5,599</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Mustard Gotta Patti Sharara Set')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="libas-card" data-cat="Kurtas">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=600&auto=format&fit=crop" alt="Blush Cotton Kurta">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Blush Pink Pure Cotton Kurta</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹1,499</span>
+              <span class="libas-price-old">₹2,999</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Blush Pink Pure Cotton Kurta')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="libas-card" data-cat="Suits">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop" alt="Emerald Velvet Suit">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Emerald Green Velvet Embroidered Suit</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹4,499</span>
+              <span class="libas-price-old">₹8,999</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Emerald Green Velvet Embroidered Suit')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="libas-card" data-cat="Kurtas">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop" alt="Wine Chanderi Kurta">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Wine Chanderi Silk Foil Print Kurta</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹1,299</span>
+              <span class="libas-price-old">₹2,599</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Wine Chanderi Silk Foil Print Kurta')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="libas-card" data-cat="Sarees">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop" alt="Lavender Organza Saree">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Lavender Pure Organza Floral Saree</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹2,899</span>
+              <span class="libas-price-old">₹5,799</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Lavender Pure Organza Floral Saree')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="libas-card" data-cat="Plus-Size">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop" alt="Teal ExtraLove Anarkali">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Teal ExtraLove Plus Size Anarkali Set</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹2,999</span>
+              <span class="libas-price-old">₹5,999</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Teal ExtraLove Plus Size Anarkali Set')">Add to Bag</button>
+          </div>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="libas-card" data-cat="Suits">
+          <div class="libas-card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=600&auto=format&fit=crop" alt="Maroon Silk Anarkali">
+            <span class="libas-discount-badge">50% OFF</span>
+          </div>
+          <div class="libas-card-body">
+            <div class="libas-card-title">Maroon Festive Silk Blend Anarkali Set</div>
+            <div class="libas-price-row">
+              <span class="libas-price-now">₹3,799</span>
+              <span class="libas-price-old">₹7,599</span>
+            </div>
+            <button class="libas-add-btn" onclick="addToBag('Maroon Festive Silk Blend Anarkali Set')">Add to Bag</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- View All Button -->
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="/collections/suits" class="libas-btn-outline" style="border-width: 2px;">
+          View Complete Collection →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Split Festive Editorial Banners -->
+  <section style="padding: 2.5rem 0; background: #FFFFFF;">
+    <div class="container">
+      <div class="libas-banners-grid">
+        <!-- Banner 1: Royal Ceremony -->
+        <div class="libas-banner-box libas-banner-overlay-plum">
+          <div class="libas-banner-bg">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop" alt="Royal Wedding Edit">
+          </div>
+          <div class="libas-banner-content">
+            <span class="libas-pill" style="background: rgba(255,255,255,0.2); color: var(--libas-blush);">ROYAL CEREMONY</span>
+            <h3 class="font-serif">The Wedding & Grand Soirée Edit</h3>
+            <p>Opulent micro-velvet, pure Chanderi silk, and hand-embroidered zari ensembles created for unforgettable nuptials.</p>
+          </div>
+          <div style="position: relative; z-index: 2; padding-top: 1rem;">
+            <a href="/collections/suits?occasion=Wedding" class="libas-btn-primary" style="background: #fff; color: var(--libas-plum);">
+              Shop Wedding Suits →
+            </a>
+          </div>
+        </div>
+
+        <!-- Banner 2: ExtraLove 3XL-6XL -->
+        <div class="libas-banner-box libas-banner-overlay-dark">
+          <div class="libas-banner-bg">
+            <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop" alt="ExtraLove Edit">
+          </div>
+          <div class="libas-banner-content">
+            <span class="libas-pill" style="background: rgba(255, 140, 145, 0.3); color: var(--libas-blush);">EXTRALOVE • 3XL TO 6XL</span>
+            <h3 class="font-serif">Fashion Has No Size Boundaries</h3>
+            <p>Dedicated plus-size silhouettes designed with custom drape, stretch linings, and flattering cuts for fuller curves.</p>
+          </div>
+          <div style="position: relative; z-index: 2; padding-top: 1rem;">
+            <a href="/collections/plus-size" class="libas-btn-sale">
+              Explore ExtraLove (3XL-6XL) →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. The Libas Atelier Craftsmanship Section -->
+  <section class="libas-atelier-section">
+    <div class="container">
+      <div class="libas-atelier-grid">
+        <!-- Visual Mosaic -->
+        <div class="libas-mosaic">
+          <div class="libas-mosaic-item">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop" alt="Zari Embroidery Craft">
+          </div>
+          <div class="libas-mosaic-item" style="padding-top: 1.5rem;">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=600&auto=format&fit=crop" alt="Artisanal Hand Block">
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div>
+          <span style="font-size: 10px; font-family: monospace; font-weight: 800; color: var(--libas-plum); text-transform: uppercase; letter-spacing: 0.1em;">
+            THE LIBAS ATELIER
+          </span>
+          <h2 class="font-serif" style="font-size: 2.25rem; font-weight: 700; color: #252525; margin: 0.5rem 0 1rem; line-height: 1.2;">
+            Authentic Craftsmanship. <br>
+            <span style="color: var(--libas-plum);">Tailored for Modern Celebrations.</span>
+          </h2>
+          <p style="font-size: 0.8125rem; color: #4D4D4D; line-height: 1.6; margin-bottom: 1.5rem;">
+            Every Libas creation represents a harmony between India’s time-honored textile heritage and contemporary sensibilities. From pure Chanderi weaves to handcrafted Rajasthani gotta patti and Lucknowi resham stitches.
+          </p>
+          
+          <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.75rem; margin-bottom: 1.5rem;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <div style="width: 2rem; height: 2rem; border-radius: 0.5rem; background: #fff; border: 1px solid var(--libas-border); display: flex; align-items: center; justify-content: center; color: var(--libas-plum); font-weight: 800; flex-shrink: 0;">✂️</div>
+              <div>
+                <h4 style="font-weight: 700; margin: 0; color: #252525;">Bespoke Grading & Fit</h4>
+                <p style="color: #737373; font-size: 11px; margin: 2px 0 0;">Tailored with comfort-stretch waistbands and roomier armhole cuts for easy movement.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <div style="width: 2rem; height: 2rem; border-radius: 0.5rem; background: #fff; border: 1px solid var(--libas-border); display: flex; align-items: center; justify-content: center; color: var(--libas-plum); font-weight: 800; flex-shrink: 0;">🪶</div>
+              <div>
+                <h4 style="font-weight: 700; margin: 0; color: #252525;">Natural Breathable Weaves</h4>
+                <p style="color: #737373; font-size: 11px; margin: 2px 0 0;">Premium 60s combed cotton, pure silk blends, and featherweight organza that stay fresh all day.</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <div style="width: 2rem; height: 2rem; border-radius: 0.5rem; background: #fff; border: 1px solid var(--libas-border); display: flex; align-items: center; justify-content: center; color: var(--libas-plum); font-weight: 800; flex-shrink: 0;">🧭</div>
+              <div>
+                <h4 style="font-weight: 700; margin: 0; color: #252525;">Direct from Weaver to Wardrobe</h4>
+                <p style="color: #737373; font-size: 11px; margin: 2px 0 0;">Fair remuneration for regional master artisans across Jaipur, Chanderi, and Varanasi.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="/collections/suits" class="libas-btn-primary">
+            <span>Explore The Atelier Edit</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Customer Testimonials (Loved by 10 Million Women) -->
+  <section class="libas-section" style="background: #FFFFFF;">
+    <div class="container">
+      <div style="text-align: center; max-w-xl mx-auto; margin-bottom: 2.5rem;">
+        <div style="color: #f59e0b; font-size: 1rem; margin-bottom: 0.25rem;">★★★★★</div>
+        <h2 class="font-serif" style="font-size: 1.875rem; font-weight: 700; color: #252525; margin: 0.25rem 0;">Loved by Over 10 Million Women</h2>
+        <p style="font-size: 0.75rem; color: #737373;">Discover why Libas is India's most cherished ethnic and fusion destination.</p>
+      </div>
+
+      <div class="libas-reviews-grid">
+        <!-- Review 1 -->
+        <div class="libas-review-card">
+          <div style="color: #f59e0b; font-size: 13px; margin-bottom: 0.5rem;">★★★★★</div>
+          <h3 class="font-serif" style="font-size: 14px; font-weight: 700; margin: 0 0 0.5rem; color: #252525;">“Wore the Anarkali to my sister's Sangeet”</h3>
+          <p style="font-size: 12px; color: #4D4D4D; line-height: 1.6;">The rich plum tone and gold zari work were stunning in photos. The Chanderi silk is so lightweight yet feels regal. Received countless compliments all night!</p>
+          <div style="padding-top: 0.75rem; margin-top: 0.75rem; border-top: 1px solid var(--libas-border); display: flex; justify-content: space-between; font-size: 11px;">
+            <span style="font-weight: 700; color: #252525;">Ananya Sengupta <span style="color: #047857;">✓</span></span>
+            <span style="color: #999; font-family: monospace;">Kolkata</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="libas-review-card">
+          <div style="color: #f59e0b; font-size: 13px; margin-bottom: 0.5rem;">★★★★★</div>
+          <h3 class="font-serif" style="font-size: 14px; font-weight: 700; margin: 0 0 0.5rem; color: #252525;">“ExtraLove 4XL fit is an absolute dream!”</h3>
+          <p style="font-size: 12px; color: #4D4D4D; line-height: 1.6;">Finding plus-size ethnic wear that looks festive and doesn't feel tight around the arms was impossible until I found Libas. Beautiful cut and true to size!</p>
+          <div style="padding-top: 0.75rem; margin-top: 0.75rem; border-top: 1px solid var(--libas-border); display: flex; justify-content: space-between; font-size: 11px;">
+            <span style="font-weight: 700; color: #252525;">Ritika Oberoi <span style="color: #047857;">✓</span></span>
+            <span style="color: #999; font-family: monospace;">New Delhi</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="libas-review-card">
+          <div style="color: #f59e0b; font-size: 13px; margin-bottom: 0.5rem;">★★★★★</div>
+          <h3 class="font-serif" style="font-size: 14px; font-weight: 700; margin: 0 0 0.5rem; color: #252525;">“Organza Saree delivered in 48 hours”</h3>
+          <p style="font-size: 12px; color: #4D4D4D; line-height: 1.6;">Super fast delivery and packaging was premium. The organza has the right amount of stiffness to hold pleats, and the scalloped border is exquisite.</p>
+          <div style="padding-top: 0.75rem; margin-top: 0.75rem; border-top: 1px solid var(--libas-border); display: flex; justify-content: space-between; font-size: 11px;">
+            <span style="font-weight: 700; color: #252525;">Dr. Meenakshi Iyer <span style="color: #047857;">✓</span></span>
+            <span style="color: #999; font-family: monospace;">Bengaluru</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Footer -->
+  <footer class="libas-footer">
+    <div class="container">
+      <!-- Newsletter Card -->
+      <div class="libas-newsletter-card">
+        <div>
+          <span style="font-size: 10px; font-family: monospace; font-weight: 800; color: var(--libas-plum); text-transform: uppercase;">LIBAS PRIVILEGE CLUB</span>
+          <h3 class="font-serif" style="font-size: 1.5rem; font-weight: 700; color: #252525; margin: 0.25rem 0;">Receive ₹500 Off Your First Festive Order</h3>
+          <p style="font-size: 0.75rem; color: #737373;">Be the first to access limited festive couture releases and VIP flash sales.</p>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Subscribed! Check your email for ₹500 discount coupon.');" style="display: flex; gap: 0.5rem; max-width: 24rem; width: 100%;">
+          <input type="email" required placeholder="Enter your email" style="flex: 1; padding: 0.625rem 1rem; border-radius: 0.5rem; border: 1px solid var(--libas-border); font-size: 0.75rem; outline: none;">
+          <button type="submit" style="background: #252525; color: #fff; padding: 0.625rem 1.25rem; border-radius: 0.5rem; border: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; cursor: pointer;">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Links Grid -->
+      <div class="libas-footer-cols">
+        <!-- Col 1 -->
+        <div>
+          <div class="libas-logo font-brand" style="margin-bottom: 0.75rem;">LIBAS</div>
+          <p style="font-size: 0.75rem; color: #737373; line-height: 1.6;">Libas is India's leading ethnic fashion destination creating contemporary ethnic wear, suits, sarees, and festive silhouettes with comfortable fabrics, inclusive sizing (XS to 6XL), and honest craft.</p>
+          <div style="margin-top: 1rem; font-size: 0.75rem; color: #4D4D4D;">
+            <p>📞 +91 98999 90772 (Mon-Sat, 9am - 7pm)</p>
+            <p>✉️ care@libas.in</p>
+          </div>
+        </div>
+
+        <!-- Col 2 -->
+        <div class="libas-footer-col">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="/collections/suits">Suits & Sets</a></li>
+            <li><a href="/collections/kurtas">Kurtas & Kurtis</a></li>
+            <li><a href="/collections/sarees">Sarees</a></li>
+            <li><a href="/collections/dresses">Ethnic Dresses</a></li>
+            <li><a href="/collections/loungewear">Co-ords & Loungewear</a></li>
+            <li><a href="/collections/plus-size">ExtraLove (3XL-6XL)</a></li>
+            <li><a href="/collections/sale" style="color: var(--libas-sale); font-weight: 700;">Festive Sale</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="libas-footer-col">
+          <h4>Customer Care</h4>
+          <ul>
+            <li><a href="/pages/track-order">Track Consignment</a></li>
+            <li><a href="/pages/returns">15-Day Return Portal</a></li>
+            <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
+            <li><a href="/pages/contact">Contact Concierge</a></li>
+            <li><a href="/pages/faqs">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 -->
+        <div class="libas-footer-col">
+          <h4>About Libas</h4>
+          <ul>
+            <li><a href="/pages/about">Our Story & Craft</a></li>
+            <li><a href="/pages/stores">Store Locator</a></li>
+            <li><a href="/pages/sustainability">Sustainability</a></li>
+            <li><a href="/pages/terms">Terms of Service</a></li>
+            <li><a href="/pages/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div style="border-top: 1px solid var(--libas-border); margin-top: 2.5rem; padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 11px; color: #999;">
+        <p>© 2026 Libas Consumer Products Ltd. All rights reserved.</p>
+        <p>100% Encrypted & Safe Checkout • PCI-DSS Certified</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Client-side Interactive Filter Script -->
+<script>
+  function filterHomeGrid(cat, btn) {
+    var tabs = document.querySelectorAll('.libas-tab-btn');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+
+    var cards = document.querySelectorAll('#homeProductGrid .libas-card');
+    cards.forEach(function(card) {
+      var c = card.getAttribute('data-cat');
+      if (cat === 'All' || c === cat) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  var currentBag = 0;
+  function addToBag(productName) {
+    currentBag++;
+    var el = document.getElementById('headerBagCount');
+    if (el) el.innerText = currentBag;
+    alert('✓ Added "' + productName + '" to your Bag!');
+  }
+</script>
