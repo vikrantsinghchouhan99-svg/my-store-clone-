@@ -10,7 +10,6 @@ import {
   Eye,
   EyeOff,
   ShieldAlert,
-  ShieldCheck,
   CheckCircle2,
   Clock,
   Sparkles,
@@ -161,7 +160,7 @@ export function LibasAuthModal() {
             <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 space-y-2 animate-in fade-in">
               <div className="flex items-center gap-2 font-bold text-xs text-red-700">
                 <ShieldAlert className="w-4 h-4 text-red-600 animate-pulse" />
-                <span>BRUTE-FORCE LOCKOUT ACTIVE</span>
+                <span>ACCOUNT TEMPORARILY LOCKED</span>
               </div>
               <p className="text-[11px] leading-relaxed">{errorMessage}</p>
               <div className="flex items-center gap-2 text-xs font-mono font-bold text-red-700 pt-1">
@@ -174,15 +173,7 @@ export function LibasAuthModal() {
               <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0" />
               <span>{errorMessage}</span>
             </div>
-          ) : (
-            <div className="p-2.5 rounded-lg bg-emerald-50/70 border border-emerald-200 text-emerald-800 text-[11px] flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-medium">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Brute-force shield enabled: Max 3 attempts</span>
-              </span>
-              <span className="font-mono text-[10px] font-bold text-emerald-700">Protected</span>
-            </div>
-          )}
+          ) : null}
 
           <form onSubmit={handleSubmit} className="space-y-3.5">
             {mode === 'register' && (
