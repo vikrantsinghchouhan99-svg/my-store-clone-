@@ -43,7 +43,11 @@
             </div>
             <div class="flex items-center justify-between pt-1">
               <span class="text-xs font-bold text-[#71006A]">{{ item.price | money }}</span>
-              <span class="text-xs text-[#737373]">Qty: {{ item.quantity }}</span>
+              <div class="flex items-center border border-[#E6E6E6] rounded bg-[#F5F5F5] overflow-hidden">
+                <button type="button" onclick="updateCartItemQty({{ forloop.index }}, {{ item.quantity | minus: 1 }})" class="px-2 py-0.5 text-xs text-[#737373] hover:bg-[#E6E6E6]">-</button>
+                <span class="px-2 text-xs font-bold text-[#252525]">{{ item.quantity }}</span>
+                <button type="button" onclick="updateCartItemQty({{ forloop.index }}, {{ item.quantity | plus: 1 }})" class="px-2 py-0.5 text-xs text-[#737373] hover:bg-[#E6E6E6]">+</button>
+              </div>
             </div>
           </div>
         </div>

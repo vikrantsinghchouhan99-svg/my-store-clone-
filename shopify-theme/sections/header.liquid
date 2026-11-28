@@ -88,67 +88,75 @@
 
     <!-- Mega Menu Navigation Links -->
     <nav class="site-nav hidden lg:flex items-center justify-center gap-1 pt-2 border-t border-[#F5F5F5] mt-2 text-xs font-bold tracking-wider uppercase">
-      
-      <!-- Suits Dropdown -->
-      <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="/collections/suits">Suits & Sets ▾</a>
-        <div class="dropdown-menu">
-          <div>
-            <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="/collections/suits?style=Anarkali" class="hover:text-[#71006A]">Anarkali Suits</a></li>
-              <li><a href="/collections/suits?style=Sharara" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
-              <li><a href="/collections/suits?style=Palazzo" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
-              <li><a href="/collections/suits?style=Straight" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Occasion</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="/collections/suits?occasion=Wedding" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
-              <li><a href="/collections/suits?occasion=Festive" class="hover:text-[#71006A]">Festive Parties</a></li>
-              <li><a href="/collections/suits?occasion=Daily" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Kurtas Dropdown -->
-      <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
-        <a href="/collections/kurtas">Kurtas & Kurtis ▾</a>
-        <div class="dropdown-menu">
-          <div>
-            <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="/collections/kurtas?style=Straight" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
-              <li><a href="/collections/kurtas?style=A-Line" class="hover:text-[#71006A]">A-Line & Flared</a></li>
-              <li><a href="/collections/kurtas?style=Short" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">Craft & Print</h5>
-            <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
-              <li><a href="/collections/kurtas?fabric=Silk" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
-              <li><a href="/collections/kurtas?fabric=Cotton" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
-              <li><a href="/collections/kurtas?occasion=Daily" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
-            </ul>
+      {% if section.settings.menu != blank and linklists[section.settings.menu].links.size > 0 %}
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}" class="py-2 px-3 hover:text-[#71006A] transition-colors {% if link.active %}text-[#71006A]{% endif %}">
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      {% else %}
+        <!-- Default Libas Navigation -->
+        <!-- Suits Dropdown -->
+        <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
+          <a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}">Suits & Sets ▾</a>
+          <div class="dropdown-menu">
+            <div>
+              <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
+              <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?style=Anarkali" class="hover:text-[#71006A]">Anarkali Suits</a></li>
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?style=Sharara" class="hover:text-[#71006A]">Sharara & Gharara Sets</a></li>
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?style=Palazzo" class="hover:text-[#71006A]">Palazzo Suit Sets</a></li>
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?style=Straight" class="hover:text-[#71006A]">Straight Cut Suits</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Occasion</h5>
+              <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?occasion=Wedding" class="hover:text-[#71006A]">Wedding Celebrations</a></li>
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?occasion=Festive" class="hover:text-[#71006A]">Festive Parties</a></li>
+                <li><a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}?occasion=Daily" class="hover:text-[#71006A]">Daily Casual Cotton</a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-      <a href="/collections/sarees" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
-      <a href="/collections/dresses" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
-      <a href="/collections/loungewear" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
-      
-      <!-- Plus Size -->
-      <a href="/collections/plus-size" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
-        ExtraLove (3XL-6XL)
-      </a>
+        <!-- Kurtas Dropdown -->
+        <div class="has-dropdown py-2 px-3 hover:text-[#71006A] cursor-pointer">
+          <a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}">Kurtas & Kurtis ▾</a>
+          <div class="dropdown-menu">
+            <div>
+              <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">By Silhouette</h5>
+              <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+                <li><a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}?style=Straight" class="hover:text-[#71006A]">Straight Cut Kurtas</a></li>
+                <li><a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}?style=A-Line" class="hover:text-[#71006A]">A-Line & Flared</a></li>
+                <li><a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}?style=Short" class="hover:text-[#71006A]">Short Tunic Kurtis</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="text-[10px] font-mono text-[#71006A] uppercase mb-2 font-bold">Craft & Print</h5>
+              <ul class="space-y-1.5 text-xs text-[#737373] font-normal normal-case" style="list-style: none;">
+                <li><a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}?fabric=Silk" class="hover:text-[#71006A]">Zari & Foil Work</a></li>
+                <li><a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}?fabric=Cotton" class="hover:text-[#71006A]">Ajrakh & Block Prints</a></li>
+                <li><a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}?occasion=Daily" class="hover:text-[#71006A]">Chikankari Threadwork</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-      <!-- Sale -->
-      <a href="/collections/sale" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
-        Festive Sale
-      </a>
+        <a href="{{ collections['sarees'].url | default: routes.all_products_collection_url }}" class="py-2 px-3 hover:text-[#71006A]">Sarees</a>
+        <a href="{{ collections['dresses'].url | default: routes.all_products_collection_url }}" class="py-2 px-3 hover:text-[#71006A]">Dresses</a>
+        <a href="{{ collections['loungewear'].url | default: routes.all_products_collection_url }}" class="py-2 px-3 hover:text-[#71006A]">Co-ords & Lounge</a>
+        
+        <!-- Plus Size -->
+        <a href="{{ collections['plus-size'].url | default: routes.all_products_collection_url }}" class="py-2 px-3 text-[#71006A] font-extrabold hover:text-[#560050]">
+          ExtraLove (3XL-6XL)
+        </a>
+
+        <!-- Sale -->
+        <a href="{{ collections['sale'].url | default: routes.all_products_collection_url }}" class="py-2 px-3 text-[#D92D20] font-extrabold hover:underline">
+          Festive Sale
+        </a>
+      {% endif %}
     </nav>
   </div>
 
@@ -188,49 +196,49 @@
         <div class="pb-2 text-[10px] font-mono font-extrabold uppercase tracking-widest text-[#71006A]">COLLECTIONS</div>
         
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/suits" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
+          <a href="{{ collections['suits'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
             <span>👗 Suits & Sets</span>
             <span class="text-[10px] text-[#71006A] font-mono">From ₹1,899</span>
           </a>
         </div>
 
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/kurtas" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
+          <a href="{{ collections['kurtas'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
             <span>👚 Kurtas & Kurtis</span>
             <span class="text-[10px] text-[#71006A] font-mono">From ₹899</span>
           </a>
         </div>
 
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/sarees" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
+          <a href="{{ collections['sarees'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
             <span>🥻 Sarees</span>
             <span class="text-[10px] text-[#71006A] font-mono">From ₹2,199</span>
           </a>
         </div>
 
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/dresses" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
+          <a href="{{ collections['dresses'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
             <span>💃 Ethnic Dresses</span>
             <span class="text-[10px] text-[#71006A] font-mono">From ₹1,699</span>
           </a>
         </div>
 
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/loungewear" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
+          <a href="{{ collections['loungewear'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-bold text-sm text-[#252525] hover:text-[#71006A]">
             <span>👘 Co-ords & Lounge</span>
             <span class="text-[10px] text-[#71006A] font-mono">From ₹1,299</span>
           </a>
         </div>
 
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/plus-size" class="flex items-center justify-between font-extrabold text-sm text-[#71006A]">
+          <a href="{{ collections['plus-size'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-extrabold text-sm text-[#71006A]">
             <span>✨ ExtraLove (3XL-6XL)</span>
             <span class="px-2 py-0.5 rounded-full text-[9px] bg-[#71006A]/10 text-[#71006A]">CURVE</span>
           </a>
         </div>
 
         <div class="border-b border-[#F5F5F5] py-2">
-          <a href="/collections/sale" class="flex items-center justify-between font-extrabold text-sm text-[#D92D20]">
+          <a href="{{ collections['sale'].url | default: routes.all_products_collection_url }}" class="flex items-center justify-between font-extrabold text-sm text-[#D92D20]">
             <span>🔥 Festive Sale</span>
             <span class="px-2 py-0.5 rounded-full text-[9px] bg-red-100 text-[#D92D20]">UP TO 60%</span>
           </a>
