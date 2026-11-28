@@ -14,8 +14,14 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
-        <a href="{{ routes.root_url }}" class="brand-font text-2xl sm:text-3xl font-extrabold tracking-widest text-[#71006A]">
-          LIBAS
+        <a href="{{ routes.root_url }}" class="flex items-center">
+          {%- if section.settings.logo != blank -%}
+            {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag: class: 'h-auto object-contain', alt: shop.name }}
+          {%- else -%}
+            <span class="brand-font text-2xl sm:text-3xl font-extrabold tracking-widest text-[#71006A]">
+              {{ section.settings.logo_text | default: 'LIBAS' }}
+            </span>
+          {%- endif -%}
         </a>
       </div>
 
@@ -43,7 +49,7 @@
       <div class="flex items-center gap-4 sm:gap-6 text-[#252525]">
         <!-- Currency -->
         <span class="currency-badge hidden sm:inline-block text-xs font-mono font-bold text-[#71006A] px-2 py-0.5 rounded bg-[#FAF7F9] border border-[#E6E6E6]">
-          ₹ INR
+          {{ section.settings.currency_label | default: '₹ INR' }}
         </span>
 
         <!-- Account -->
@@ -264,10 +270,10 @@
       <div class="p-4 border-t border-[#E6E6E6] bg-[#FAF7F9] space-y-2 text-xs">
         <div class="flex items-center justify-between font-bold">
           <span>Currency</span>
-          <span class="font-mono text-[#71006A]">₹ INR</span>
+          <span class="font-mono text-[#71006A]">{{ section.settings.currency_label | default: '₹ INR' }}</span>
         </div>
         <div class="text-[11px] text-[#737373]">
-          Helpline: <a href="tel:+919899990772" class="text-[#71006A] font-bold">+91 98999 90772</a>
+          Helpline: <a href="tel:{{ section.settings.helpline_phone | default: '+919899990772' | replace: ' ', '' }}" class="text-[#71006A] font-bold">{{ section.settings.helpline_phone | default: '+91 98999 90772' }}</a>
         </div>
       </div>
     </div>
@@ -277,6 +283,46 @@
 {% schema %}
 {
   "name": "Header",
-  "settings": []
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 260,
+      "step": 10,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 130
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Brand Name (Fallback)",
+      "default": "LIBAS"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main Navigation Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "currency_label",
+      "label": "Currency Display Badge",
+      "default": "₹ INR"
+    },
+    {
+      "type": "text",
+      "id": "helpline_phone",
+      "label": "Customer Helpline Phone",
+      "default": "+91 98999 90772"
+    }
+  ]
 }
 {% endschema %}

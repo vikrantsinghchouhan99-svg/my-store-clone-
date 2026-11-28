@@ -1,69 +1,87 @@
-<!-- Customer Stories & Social Proof Section -->
-<section class="py-14 bg-white">
+<section class="py-14 bg-white border-b border-[#E6E6E6]">
   <div class="container max-w-7xl">
-    <div class="text-center max-w-xl mx-auto mb-10 space-y-1.5">
-      <div class="flex items-center justify-center gap-1 text-amber-500 mb-1">
-        <span class="text-amber-500 text-base">★★★★★</span>
-      </div>
+    
+    <div class="text-center max-w-2xl mx-auto space-y-2 mb-10">
+      {% if section.settings.eyebrow != blank %}
+        <span class="text-[10px] font-mono tracking-widest uppercase font-extrabold text-[#71006A]">
+          {{ section.settings.eyebrow }}
+        </span>
+      {% endif %}
       <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525]">
-        Loved by Over 10 Million Women
+        {{ section.settings.heading | default: 'Treasured Words from Our Community' }}
       </h2>
       <p class="text-xs text-[#737373]">
-        Discover why Libas is India's most cherished ethnic and fusion destination.
+        {{ section.settings.description | default: 'Over 10 million celebrations adorned across 42 countries worldwide.' }}
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Review 1 -->
-      <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-3">
-        <div class="text-amber-500 text-sm">★★★★★</div>
-        <h3 class="font-bold text-sm text-[#252525] font-serif">
-          &ldquo;Wore the Anarkali to my sister's Sangeet&rdquo;
-        </h3>
-        <p class="text-xs text-[#4D4D4D] leading-relaxed">
-          The rich plum tone and gold zari work were stunning in photos. The Chanderi silk is so lightweight yet feels regal. Received countless compliments all night!
-        </p>
-        <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
-          <span class="font-bold text-[#252525] flex items-center gap-1">
-            Ananya Sengupta <span class="text-emerald-700 font-bold">✓</span>
-          </span>
-          <span class="text-[#999999] font-mono">Kolkata</span>
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] flex flex-col justify-between space-y-4 shadow-xs" {{ block.shopify_attributes }}>
+            <div class="space-y-3">
+              <div class="text-[#D9822B] text-sm">
+                {% for i in (1..block.settings.rating) %}★{% endfor %}
+              </div>
+              <p class="text-xs text-[#4D4D4D] leading-relaxed italic">
+                &ldquo;{{ block.settings.quote }}&rdquo;
+              </p>
+            </div>
+            <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
+              <span class="font-bold text-[#252525] flex items-center gap-1">
+                {{ block.settings.author }} <span class="text-emerald-700 font-bold">✓</span>
+              </span>
+              <span class="text-[#999999] font-mono">{{ block.settings.location }}</span>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Default fallback testimonials -->
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] flex flex-col justify-between space-y-4 shadow-xs">
+          <div class="space-y-3">
+            <div class="text-[#D9822B] text-sm">★★★★★</div>
+            <p class="text-xs text-[#4D4D4D] leading-relaxed italic">
+              &ldquo;The fall and flair of the silk anarkali are regal beyond expectation. The pure zari highlights on the yoke catch the banquet lights with exceptional subtlety. Ordered on a Wednesday and arrived in Mumbai by Friday noon.&rdquo;
+            </p>
+          </div>
+          <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
+            <span class="font-bold text-[#252525] flex items-center gap-1">
+              Ritika Malhotra <span class="text-emerald-700 font-bold">✓</span>
+            </span>
+            <span class="text-[#999999] font-mono">Mumbai</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Review 2 -->
-      <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-3">
-        <div class="text-amber-500 text-sm">★★★★★</div>
-        <h3 class="font-bold text-sm text-[#252525] font-serif">
-          &ldquo;ExtraLove 4XL fit is an absolute dream!&rdquo;
-        </h3>
-        <p class="text-xs text-[#4D4D4D] leading-relaxed">
-          Finding plus-size ethnic wear that looks festive and doesn't feel tight around the arms was impossible until I found Libas. Beautiful cut and true to size!
-        </p>
-        <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
-          <span class="font-bold text-[#252525] flex items-center gap-1">
-            Ritika Oberoi <span class="text-emerald-700 font-bold">✓</span>
-          </span>
-          <span class="text-[#999999] font-mono">New Delhi</span>
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] flex flex-col justify-between space-y-4 shadow-xs">
+          <div class="space-y-3">
+            <div class="text-[#D9822B] text-sm">★★★★★</div>
+            <p class="text-xs text-[#4D4D4D] leading-relaxed italic">
+              &ldquo;Finding celebratory ethnic wear in authentic 4XL that drapes gracefully without clinging is nearly impossible in high street retail. The ExtraLove line has restored festive shopping joy for me.&rdquo;
+            </p>
+          </div>
+          <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
+            <span class="font-bold text-[#252525] flex items-center gap-1">
+              Ananya Sengupta <span class="text-emerald-700 font-bold">✓</span>
+            </span>
+            <span class="text-[#999999] font-mono">Kolkata</span>
+          </div>
         </div>
-      </div>
 
-      <!-- Review 3 -->
-      <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-3">
-        <div class="text-amber-500 text-sm">★★★★★</div>
-        <h3 class="font-bold text-sm text-[#252525] font-serif">
-          &ldquo;Organza Saree delivered in 48 hours&rdquo;
-        </h3>
-        <p class="text-xs text-[#4D4D4D] leading-relaxed">
-          Super fast delivery and packaging was premium. The organza has the right amount of stiffness to hold pleats, and the scalloped border is exquisite.
-        </p>
-        <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
-          <span class="font-bold text-[#252525] flex items-center gap-1">
-            Dr. Meenakshi Iyer <span class="text-emerald-700 font-bold">✓</span>
-          </span>
-          <span class="text-[#999999] font-mono">Bengaluru</span>
+        <div class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] flex flex-col justify-between space-y-4 shadow-xs">
+          <div class="space-y-3">
+            <div class="text-[#D9822B] text-sm">★★★★★</div>
+            <p class="text-xs text-[#4D4D4D] leading-relaxed italic">
+              &ldquo;Pure tissue organza that breathes easily throughout an eight-hour wedding sangeet. The scalloped gotta patti borders stay pristine. The pre-draped option saved 45 minutes of frantic pleating.&rdquo;
+            </p>
+          </div>
+          <div class="pt-2 border-t border-[#E6E6E6] flex items-center justify-between text-[11px]">
+            <span class="font-bold text-[#252525] flex items-center gap-1">
+              Dr. Meenakshi Iyer <span class="text-emerald-700 font-bold">✓</span>
+            </span>
+            <span class="text-[#999999] font-mono">Bengaluru</span>
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -71,6 +89,94 @@
 {% schema %}
 {
   "name": "Customer Testimonials",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "VERIFIED PATRON REVIEWS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Treasured Words from Our Community"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Over 10 million celebrations adorned across 42 countries worldwide."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Patron Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review Quote",
+          "default": "The fall and flair of the silk anarkali are regal beyond expectation. Beautiful craftsmanship!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Customer Name",
+          "default": "Ritika Malhotra"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Customer City",
+          "default": "Mumbai"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The fall and flair of the silk anarkali are regal beyond expectation. The pure zari highlights on the yoke catch the banquet lights with exceptional subtlety. Ordered on a Wednesday and arrived in Mumbai by Friday noon.",
+            "author": "Ritika Malhotra",
+            "location": "Mumbai"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Finding celebratory ethnic wear in authentic 4XL that drapes gracefully without clinging is nearly impossible in high street retail. The ExtraLove line has restored festive shopping joy for me.",
+            "author": "Ananya Sengupta",
+            "location": "Kolkata"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Pure tissue organza that breathes easily throughout an eight-hour wedding sangeet. The scalloped gotta patti borders stay pristine. The pre-draped option saved 45 minutes of frantic pleating.",
+            "author": "Dr. Meenakshi Iyer",
+            "location": "Bengaluru"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

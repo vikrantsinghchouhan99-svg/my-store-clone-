@@ -1,0 +1,118 @@
+<div class="py-10 bg-white min-h-[70vh]">
+  <div class="container">
+    
+    <!-- Search Header -->
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-10">
+      <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+        SEARCH DIRECTORY
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
+        {% if search.performed %}
+          Results for "{{ search.terms | escape }}"
+        {% else %}
+          Search Our Festive Collections
+        {% endif %}
+      </h1>
+
+      <!-- In-Page Search Bar -->
+      <form action="{{ routes.search_url }}" method="get" class="max-w-md mx-auto relative pt-2">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search Suits, Kurtas, Sarees, Dresses..."
+          class="w-full pl-10 pr-24 py-2.5 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A] transition-colors"
+        >
+        <svg class="w-4 h-4 text-[#737373] absolute left-3.5 top-[19px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        <button type="submit" class="absolute right-1.5 top-[11px] px-4 py-1.5 bg-[#71006A] text-white rounded-full text-xs font-bold hover:bg-[#560050] transition-colors border-none cursor-pointer">
+          Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Search Results Grid -->
+    {% if search.performed %}
+      {% paginate search.results by section.settings.products_per_page %}
+        <div class="flex items-center justify-between pb-4 border-b border-[#E6E6E6] mb-8 text-xs text-[#737373]">
+          <div>
+            Found <strong class="text-[#252525]">{{ search.results_count }}</strong> results matching "{{ search.terms }}"
+          </div>
+        </div>
+
+        {% if search.results_count > 0 %}
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {% for item in search.results %}
+              {% if item.object_type == 'product' %}
+                {% render 'product-card', product: item %}
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% if paginate.pages > 1 %}
+            <div class="flex items-center justify-center gap-2 pt-12">
+              {{ paginate | default_pagination }}
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="max-w-md mx-auto text-center py-16 space-y-4 bg-[#FAF7F9] rounded-2xl border border-[#E6E6E6] p-8">
+            <div class="w-16 h-16 rounded-full bg-white text-[#71006A] flex items-center justify-center mx-auto text-3xl shadow-xs">🔍</div>
+            <h3 class="text-base font-bold text-[#252525]">No styles found matching "{{ search.terms }}"</h3>
+            <p class="text-xs text-[#737373]">
+              Check your spelling or explore our popular festive collections below.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2 justify-center">
+              <a href="/collections/suits" class="px-4 py-2 rounded-full bg-[#71006A] text-white text-xs font-bold hover:bg-[#560050]">View Suits</a>
+              <a href="/collections/kurtas" class="px-4 py-2 rounded-full bg-white border border-[#E6E6E6] text-xs font-bold text-[#252525] hover:border-[#71006A]">View Kurtas</a>
+              <a href="/collections/sarees" class="px-4 py-2 rounded-full bg-white border border-[#E6E6E6] text-xs font-bold text-[#252525] hover:border-[#71006A]">View Sarees</a>
+            </div>
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <!-- Initial Search Discovery State -->
+      <div class="max-w-3xl mx-auto text-center space-y-6 pt-4">
+        <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-[#71006A]">EXPLORE POPULAR COLLECTIONS</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <a href="/collections/suits" class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] hover:border-[#71006A] transition-colors space-y-2">
+            <span class="text-3xl block">👗</span>
+            <h4 class="font-bold text-xs text-[#252525]">Suits & Sets</h4>
+            <span class="text-[10px] text-[#71006A] font-mono">From ₹1,899</span>
+          </a>
+          <a href="/collections/kurtas" class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] hover:border-[#71006A] transition-colors space-y-2">
+            <span class="text-3xl block">👚</span>
+            <h4 class="font-bold text-xs text-[#252525]">Kurtas & Kurtis</h4>
+            <span class="text-[10px] text-[#71006A] font-mono">From ₹899</span>
+          </a>
+          <a href="/collections/sarees" class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] hover:border-[#71006A] transition-colors space-y-2">
+            <span class="text-3xl block">🥻</span>
+            <h4 class="font-bold text-xs text-[#252525]">Festive Sarees</h4>
+            <span class="text-[10px] text-[#71006A] font-mono">From ₹2,199</span>
+          </a>
+          <a href="/collections/plus-size" class="p-6 rounded-2xl bg-[#FAF7F9] border border-[#E6E6E6] hover:border-[#71006A] transition-colors space-y-2">
+            <span class="text-3xl block">💜</span>
+            <h4 class="font-bold text-xs text-[#71006A]">ExtraLove (3XL-6XL)</h4>
+            <span class="text-[10px] text-[#71006A] font-mono">Curve Fit</span>
+          </a>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search Results",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 32,
+      "step": 4,
+      "label": "Products per Page",
+      "default": 16
+    }
+  ]
+}
+{% endschema %}

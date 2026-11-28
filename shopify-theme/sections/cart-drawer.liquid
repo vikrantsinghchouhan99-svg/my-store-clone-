@@ -94,6 +94,25 @@
 {% schema %}
 {
   "name": "Cart Drawer",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "drawer_title",
+      "label": "Drawer Title",
+      "default": "Your Shopping Bag"
+    },
+    {
+      "type": "text",
+      "id": "shipping_threshold_text",
+      "label": "Free Shipping Banner",
+      "default": "🎉 Free Domestic Shipping Unlocked!"
+    },
+    {
+      "type": "text",
+      "id": "checkout_btn_text",
+      "label": "Checkout Button Text",
+      "default": "Proceed to Pay"
+    }
+  ]
 }
 {% endschema %}

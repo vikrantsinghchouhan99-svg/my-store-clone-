@@ -3,13 +3,13 @@
     
     <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
       <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
-        DOORSTEP REVERSE LOGISTICS
+        {{ section.settings.eyebrow | default: 'DOORSTEP REVERSE LOGISTICS' }}
       </span>
       <h1 class="text-3xl sm:text-4xl font-serif font-bold text-[#252525]">
-        15-Day Return / Exchange Portal
+        {{ section.settings.heading | default: '15-Day Return / Exchange Portal' }}
       </h1>
       <p class="text-xs sm:text-sm text-[#737373]">
-        Enjoy 100% free doorstep pickups and instant size exchanges or full refunds to your bank or UPI.
+        {{ section.settings.description | default: 'Enjoy 100% free doorstep pickups and instant size exchanges or full refunds to your bank or UPI.' }}
       </p>
     </div>
 
@@ -41,32 +41,39 @@
 
     <!-- Recommended Exchange Products -->
     <div class="pt-8 border-t border-[#E6E6E6]">
-      <h3 class="text-xl font-serif font-bold text-[#252525] mb-6">Popular Styles For Instant Exchange</h3>
+      <h3 class="text-xl font-serif font-bold text-[#252525] mb-6">{{ section.settings.showcase_heading | default: 'Popular Styles For Instant Exchange' }}</h3>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {% render 'product-card',
-          title: 'Purple Zari Silk Anarkali Suit Set',
-          price: '₹3,499',
-          original_price: '₹6,999',
-          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Mustard Georgette Sharara Suit Set',
-          price: '₹2,799',
-          original_price: '₹5,599',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Wine Chanderi Silk Foil Print Kurta',
-          price: '₹1,299',
-          original_price: '₹2,599',
-          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
-        %}
-        {% render 'product-card',
-          title: 'Lavender Pure Organza Floral Saree',
-          price: '₹2,899',
-          original_price: '₹5,799',
-          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
-        %}
+        {% assign showcase_col = section.settings.collection %}
+        {% if showcase_col != blank and showcase_col.products_count > 0 %}
+          {% for product in showcase_col.products limit: 4 %}
+            {% render 'product-card', product: product %}
+          {% endfor %}
+        {% else %}
+          {% render 'product-card',
+            title: 'Purple Zari Silk Anarkali Suit Set',
+            price: '₹3,499',
+            original_price: '₹6,999',
+            image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=600&auto=format&fit=crop'
+          %}
+          {% render 'product-card',
+            title: 'Mustard Georgette Sharara Suit Set',
+            price: '₹2,799',
+            original_price: '₹5,599',
+            image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=600&auto=format&fit=crop'
+          %}
+          {% render 'product-card',
+            title: 'Wine Chanderi Silk Foil Print Kurta',
+            price: '₹1,299',
+            original_price: '₹2,599',
+            image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=600&auto=format&fit=crop'
+          %}
+          {% render 'product-card',
+            title: 'Lavender Pure Organza Floral Saree',
+            price: '₹2,899',
+            original_price: '₹5,799',
+            image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
+          %}
+        {% endif %}
       </div>
     </div>
 
@@ -75,7 +82,16 @@
 
 {% schema %}
 {
-  "name": "Returns Page",
-  "settings": []
+  "name": "Returns & Exchanges",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "DOORSTEP REVERSE LOGISTICS" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "15-Day Return / Exchange Portal" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Enjoy 100% free doorstep pickups and instant size exchanges or full refunds to your bank or UPI." },
+    { "type": "text", "id": "showcase_heading", "label": "Showcase Heading", "default": "Popular Styles For Instant Exchange" },
+    { "type": "collection", "id": "collection", "label": "Showcase Collection" }
+  ],
+  "presets": [
+    { "name": "Returns & Exchanges" }
+  ]
 }
 {% endschema %}

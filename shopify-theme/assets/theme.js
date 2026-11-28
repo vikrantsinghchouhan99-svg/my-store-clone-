@@ -3662,6 +3662,39 @@ document.addEventListener('DOMContentLoaded', function () {
   updateCartUI();
   updateWishlistUI();
 
+  // Handle Shopify Ajax Cart submission for real store products
+  document.addEventListener('submit', function(e) {
+    const form = e.target.closest('form[action*="/cart/add"]');
+    if (!form) return;
+    if (window.Shopify && !window.Shopify.designMode) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('/cart/add.js', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(() => {
+        fetch('/cart.js')
+          .then(res => res.json())
+          .then(cart => {
+            const badges = document.querySelectorAll('[data-cart-badge], .site-header .bg-white.text-\\[\\#71006A\\]');
+            badges.forEach(b => b.textContent = cart.item_count);
+            openCartDrawer();
+          });
+      })
+      .catch(() => {
+        form.submit();
+      });
+    }
+  });
+
+  // If in Shopify Theme Customizer (designMode), do not hijack DOM routing so merchant can edit Liquid sections live
+  if (window.Shopify && window.Shopify.designMode) {
+    console.log('Shopify Theme Editor (designMode) active: Native Liquid Customizer enabled.');
+    return;
+  }
+
   // Intercept all internal navigation links
   document.body.addEventListener('click', function(e) {
     const anchor = e.target.closest('a');

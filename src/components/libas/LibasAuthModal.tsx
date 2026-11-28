@@ -25,8 +25,8 @@ export function LibasAuthModal() {
   const [phone, setPhone] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // Brute-force protection states
-  const MAX_FAILED_ATTEMPTS = 3;
+  // Account security protection states
+  const MAX_FAILED_ATTEMPTS = 5;
   const LOCKOUT_SECONDS = 30;
 
   const [failedAttempts, setFailedAttempts] = useState(0);
@@ -69,7 +69,7 @@ export function LibasAuthModal() {
         setIsLocked(true);
         setLockoutRemaining(LOCKOUT_SECONDS);
         setErrorMessage(
-          `SECURITY SHIELD TRIGGERED: Brute-force protection active. Maximum ${MAX_FAILED_ATTEMPTS} failed attempts reached. System locked for ${LOCKOUT_SECONDS} seconds.`
+          `Security Notice: Maximum failed sign-in attempts reached. Please wait ${LOCKOUT_SECONDS} seconds before trying again.`
         );
       } else {
         setErrorMessage(
@@ -155,7 +155,7 @@ export function LibasAuthModal() {
         {/* Form Body */}
         <div className="p-6 space-y-4">
           
-          {/* Brute-Force Security Shield Banner */}
+          {/* Security Alert Banner */}
           {isLocked ? (
             <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 space-y-2 animate-in fade-in">
               <div className="flex items-center gap-2 font-bold text-xs text-red-700">

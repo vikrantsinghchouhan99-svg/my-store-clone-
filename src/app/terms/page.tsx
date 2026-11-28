@@ -63,9 +63,9 @@ export default function TermsPage() {
           </section>
 
           <section className="space-y-2">
-            <h2 className="text-base font-serif font-bold text-[#252525]">2. Account Security & Brute-Force Safeguards</h2>
+            <h2 className="text-base font-serif font-bold text-[#252525]">2. Account Security & Verification</h2>
             <p>
-              When creating an account, you agree to maintain the strict confidentiality of your credentials. In accordance with our security framework, after 3 consecutive failed login attempts, accounts are temporarily locked for a 30-second cooldown period to prevent unauthorized brute-force attempts.
+              When creating an account, you agree to maintain the strict confidentiality of your credentials. In accordance with our security framework, customer accounts are protected with multi-layered encryption, verified authentication sessions, and automatic rate-limiting safeguards.
             </p>
           </section>
 

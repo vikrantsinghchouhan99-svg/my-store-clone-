@@ -1,28 +1,38 @@
-<section id="sarees" class="py-14 bg-white border-b border-[#E6E6E6]">
+<section id="sarees" class="py-14 bg-[#FAF7F9] border-b border-[#E6E6E6]">
   <div class="container">
     
     <!-- Section Header -->
     <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
       <div>
         <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">
-          CATEGORY • SAREES
+          {{ section.settings.eyebrow | default: 'CATEGORY • HANDCRAFTED SAREES' }}
         </span>
         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525] mt-1">
-          Designer Sarees & 1-Minute Drapes
+          {{ section.settings.heading | default: 'Pure Organza, Chiffon & Silk Blend Drapes' }}
         </h2>
         <p class="text-xs text-[#737373] mt-1">
-          Sheer tissue organza, pre-pleated ready-to-wear, and heirloom Banarasi zari weaves.
+          {{ section.settings.description | default: 'Lightweight cocktail sarees, embroidered borders, and festive heritage weaves.' }}
         </p>
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-xs font-mono font-bold text-[#71006A]">Showing 9 Curated Drapes</span>
+        {% if section.settings.collection != blank and section.settings.collection.products_count > 0 %}
+          <span class="text-xs font-mono font-bold text-[#71006A]">Showing {{ section.settings.collection.products_count }} Products</span>
+        {% else %}
+          <span class="text-xs font-mono font-bold text-[#71006A]">Showing Signature Drapes</span>
+        {% endif %}
       </div>
     </div>
 
     <!-- Product Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      {% render 'product-card',
+      {% assign chosen_col = section.settings.collection %}
+      {% if chosen_col != blank and chosen_col.products_count > 0 %}
+        {% for product in chosen_col.products limit: section.settings.products_to_show %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {% render 'product-card',
         title: 'Burgundy Zari Woven Sheer Organza Saree',
         price: '₹2,699',
         original_price: '₹5,399',
@@ -76,13 +86,53 @@
         original_price: '₹2,999',
         image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop'
       %}
+      {% endif %}
     </div>
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Category Sarees",
-  "settings": []
+  "name": "Handcrafted Sarees",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "CATEGORY • HANDCRAFTED SAREES"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Pure Organza, Chiffon & Silk Blend Drapes"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Lightweight cocktail sarees, embroidered borders, and festive heritage weaves."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Shopify Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 8,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Handcrafted Sarees"
+    }
+  ]
 }
 {% endschema %}

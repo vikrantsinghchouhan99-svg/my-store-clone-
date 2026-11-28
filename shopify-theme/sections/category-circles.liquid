@@ -1,98 +1,96 @@
 <section class="py-8 bg-white border-b border-[#E6E6E6]">
   <div class="container">
+    {% if section.settings.heading != blank %}
+      <div class="text-center mb-6">
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#252525]">{{ section.settings.heading }}</h2>
+      </div>
+    {% endif %}
+
     <div class="category-circles-scroll flex items-center justify-between gap-4 sm:gap-6 py-2 overflow-x-auto">
-      
-      <!-- 1. Suits -->
-      <a href="/collections/suits" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=300&auto=format&fit=crop"
-            alt="Suits & Sets"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Suits & Sets</span>
-        <span class="text-[9px] text-[#71006A] font-semibold">From ₹1,899</span>
-      </a>
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.link | default: '/collections/suits' }}" class="category-circle-item group text-center shrink-0" {{ block.shopify_attributes }}>
+            <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 300 | image_tag: class: 'w-full h-full object-cover object-top', loading: 'lazy', alt: block.settings.title }}
+              {% elsif block.settings.fallback_image != blank %}
+                <img
+                  src="{{ block.settings.fallback_image }}"
+                  alt="{{ block.settings.title | escape }}"
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                >
+              {% else %}
+                <img
+                  src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=300&auto=format&fit=crop"
+                  alt="{{ block.settings.title | escape }}"
+                  class="w-full h-full object-cover object-top"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+            <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">{{ block.settings.title }}</span>
+            <span class="text-[9px] text-[#71006A] font-semibold">{{ block.settings.subtitle }}</span>
+          </a>
+        {% endfor %}
+      {% else %}
+        <!-- Default Fallback Category Bubbles -->
+        <a href="/collections/suits" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=300&auto=format&fit=crop" alt="Suits & Sets" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Suits & Sets</span>
+          <span class="text-[9px] text-[#71006A] font-semibold">From ₹1,899</span>
+        </a>
 
-      <!-- 2. Kurtas -->
-      <a href="/collections/kurtas" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=300&auto=format&fit=crop"
-            alt="Kurtas"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Kurtas</span>
-        <span class="text-[9px] text-[#71006A] font-semibold">From ₹899</span>
-      </a>
+        <a href="/collections/kurtas" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=300&auto=format&fit=crop" alt="Kurtas" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Kurtas</span>
+          <span class="text-[9px] text-[#71006A] font-semibold">From ₹899</span>
+        </a>
 
-      <!-- 3. Sarees -->
-      <a href="/collections/sarees" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=300&auto=format&fit=crop"
-            alt="Sarees"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Sarees</span>
-        <span class="text-[9px] text-[#71006A] font-semibold">From ₹2,199</span>
-      </a>
+        <a href="/collections/sarees" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=300&auto=format&fit=crop" alt="Sarees" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Sarees</span>
+          <span class="text-[9px] text-[#71006A] font-semibold">From ₹2,199</span>
+        </a>
 
-      <!-- 4. Dresses -->
-      <a href="/collections/dresses" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=300&auto=format&fit=crop"
-            alt="Ethnic Dresses"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Ethnic Dresses</span>
-        <span class="text-[9px] text-[#71006A] font-semibold">From ₹1,699</span>
-      </a>
+        <a href="/collections/dresses" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=300&auto=format&fit=crop" alt="Ethnic Dresses" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Ethnic Dresses</span>
+          <span class="text-[9px] text-[#71006A] font-semibold">From ₹1,699</span>
+        </a>
 
-      <!-- 5. Co-ords -->
-      <a href="/collections/loungewear" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=300&auto=format&fit=crop"
-            alt="Co-ords & Lounge"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Co-ords & Lounge</span>
-        <span class="text-[9px] text-[#71006A] font-semibold">From ₹1,299</span>
-      </a>
+        <a href="/collections/loungewear" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=300&auto=format&fit=crop" alt="Co-ords & Lounge" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Co-ords & Lounge</span>
+          <span class="text-[9px] text-[#71006A] font-semibold">From ₹1,299</span>
+        </a>
 
-      <!-- 6. Plus Size -->
-      <a href="/collections/plus-size" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=300&auto=format&fit=crop"
-            alt="ExtraLove"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">ExtraLove</span>
-        <span class="text-[9px] text-[#71006A] font-semibold">3XL to 6XL</span>
-      </a>
+        <a href="/collections/plus-size" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=300&auto=format&fit=crop" alt="ExtraLove" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">ExtraLove</span>
+          <span class="text-[9px] text-[#71006A] font-semibold">3XL to 6XL</span>
+        </a>
 
-      <!-- 7. Sale -->
-      <a href="/collections/sale" class="category-circle-item group text-center">
-        <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs">
-          <img
-            src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=300&auto=format&fit=crop"
-            alt="Sale Up to 60%"
-            class="w-full h-full object-cover object-top"
-          >
-        </div>
-        <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Sale Up to 60%</span>
-        <span class="text-[9px] text-[#D92D20] font-semibold">Flat 50-60%</span>
-      </a>
-
+        <a href="/collections/sale" class="category-circle-item group text-center shrink-0">
+          <div class="circle-img-box w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-[#71006A]/30 overflow-hidden shadow-xs mx-auto">
+            <img src="https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=300&auto=format&fit=crop" alt="Sale Up to 60%" class="w-full h-full object-cover object-top">
+          </div>
+          <span class="text-[11px] font-bold text-[#252525] group-hover:text-[#71006A] mt-2 block">Sale Up to 60%</span>
+          <span class="text-[9px] text-[#D92D20] font-semibold">Flat 50-60%</span>
+        </a>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -100,10 +98,116 @@
 {% schema %}
 {
   "name": "Category Circles",
-  "settings": [],
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading (Optional)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_bubble",
+      "name": "Category Bubble",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Circle Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback Image URL"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Suits & Sets"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Price Tag / Subtitle",
+          "default": "From ₹1,899"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Category Circles"
+      "name": "Category Circles",
+      "blocks": [
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Suits & Sets",
+            "subtitle": "From ₹1,899",
+            "fallback_image": "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/suits"
+          }
+        },
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Kurtas",
+            "subtitle": "From ₹899",
+            "fallback_image": "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/kurtas"
+          }
+        },
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Sarees",
+            "subtitle": "From ₹2,199",
+            "fallback_image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/sarees"
+          }
+        },
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Ethnic Dresses",
+            "subtitle": "From ₹1,699",
+            "fallback_image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/dresses"
+          }
+        },
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Co-ords & Lounge",
+            "subtitle": "From ₹1,299",
+            "fallback_image": "https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/loungewear"
+          }
+        },
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "ExtraLove",
+            "subtitle": "3XL to 6XL",
+            "fallback_image": "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/plus-size"
+          }
+        },
+        {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Sale Up to 60%",
+            "subtitle": "Flat 50-60%",
+            "fallback_image": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/sale"
+          }
+        }
+      ]
     }
   ]
 }

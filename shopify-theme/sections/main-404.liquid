@@ -557,7 +557,25 @@
 
 {% schema %}
 {
-  "name": "Main 404 Route Resolver",
-  "settings": []
+  "name": "404 Page Resolver",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Page Not Found"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "The page you are looking for does not exist or has been moved."
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Recommended Collection"
+    }
+  ]
 }
 {% endschema %}

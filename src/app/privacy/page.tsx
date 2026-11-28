@@ -79,7 +79,7 @@ export default function PrivacyPage() {
               <li>Processing, packaging, and dispatching your orders with logistics partners (Bluedart, Delhivery).</li>
               <li>Sending live WhatsApp/SMS and email shipment dispatch tracking links and delivery OTPs.</li>
               <li>Processing authorized returns, exchanges, or refunds directly to your original bank/UPI channel.</li>
-              <li>Preventing malicious bot activities and unauthorized login brute-force attacks.</li>
+              <li>Preventing malicious bot activities and unauthorized login attempts.</li>
             </ul>
           </section>
 

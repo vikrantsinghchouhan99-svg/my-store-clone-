@@ -4,165 +4,174 @@
     <!-- Header & Category switcher tabs -->
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#E6E6E6] gap-4">
       <div>
-        <span class="text-[10px] font-mono font-bold tracking-widest uppercase text-[#71006A]">
-          CURATED SELECTION
-        </span>
+        {% if section.settings.eyebrow != blank %}
+          <span class="text-[10px] font-mono font-bold tracking-widest uppercase text-[#71006A]">
+            {{ section.settings.eyebrow }}
+          </span>
+        {% endif %}
         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525] mt-0.5">
-          Trending Celebratory Ensembles
+          {{ section.settings.heading | default: 'Trending Celebratory Ensembles' }}
         </h2>
       </div>
 
       <!-- Filter Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar" style="scrollbar-width: none;">
-        <button type="button" data-trend-tab="All" class="trend-tab-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#71006A] text-white cursor-pointer border-none shadow-xs whitespace-nowrap">
-          All
-        </button>
-        <button type="button" data-trend-tab="Suits" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
-          Suits
-        </button>
-        <button type="button" data-trend-tab="Kurtas" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
-          Kurtas
-        </button>
-        <button type="button" data-trend-tab="Sarees" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
-          Sarees
-        </button>
-        <button type="button" data-trend-tab="Plus-Size" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
-          ExtraLove (3XL-6XL)
-        </button>
-      </div>
+      {% if section.settings.show_tabs %}
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar" style="scrollbar-width: none;">
+          <button type="button" data-trend-tab="All" class="trend-tab-btn active px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#71006A] text-white cursor-pointer border-none shadow-xs whitespace-nowrap">
+            All
+          </button>
+          <button type="button" data-trend-tab="Suits" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
+            Suits
+          </button>
+          <button type="button" data-trend-tab="Kurtas" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
+            Kurtas
+          </button>
+          <button type="button" data-trend-tab="Sarees" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
+            Sarees
+          </button>
+          <button type="button" data-trend-tab="Plus-Size" class="trend-tab-btn px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-[#F5F5F5] text-[#4D4D4D] hover:bg-[#E6E6E6] hover:text-[#252525] cursor-pointer border-none whitespace-nowrap">
+            ExtraLove (3XL-6XL)
+          </button>
+        </div>
+      {% endif %}
     </div>
 
     <!-- Product Grid -->
+    {%- assign primary_collection = section.settings.collection -%}
+    {%- assign limit_count = section.settings.products_to_show | default: 12 -%}
+
     <div id="trendProductsGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      <div data-trend-category="Suits">
-        {% render 'product-card',
-          title: 'Purple Zari Embroidered Silk Anarkali Suit Set',
-          price: '₹3,499',
-          original_price: '₹6,999',
-          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Suits">
-        {% render 'product-card',
-          title: 'Mustard Gotta Patti Georgette Sharara Suit Set',
-          price: '₹2,799',
-          original_price: '₹5,599',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Suits">
-        {% render 'product-card',
-          title: 'Blush Floral Pure Cotton Straight Kurta & Palazzo Set',
-          price: '₹1,899',
-          original_price: '₹3,799',
-          image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Suits">
-        {% render 'product-card',
-          title: 'Emerald Green Embroidered Velvet Suit Set',
-          price: '₹4,499',
-          original_price: '₹8,999',
-          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Kurtas">
-        {% render 'product-card',
-          title: 'Wine Chanderi Silk Foil Print Straight Kurta',
-          price: '₹1,299',
-          original_price: '₹2,599',
-          image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Kurtas">
-        {% render 'product-card',
-          title: 'Indigo Blue Ajrakh Handblock Pure Cotton Kurta',
-          price: '₹1,099',
-          original_price: '₹2,199',
-          image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Kurtas">
-        {% render 'product-card',
-          title: 'Peach Embroidered Cotton Peplum Tunic Kurti',
-          price: '₹899',
-          original_price: '₹1,799',
-          image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Sarees">
-        {% render 'product-card',
-          title: 'Burgundy Zari Woven Sheer Organza Saree',
-          price: '₹2,699',
-          original_price: '₹5,399',
-          image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Sarees">
-        {% render 'product-card',
-          title: '1-Minute Ready-to-Wear Pleated Georgette Saree',
-          price: '₹2,199',
-          original_price: '₹4,399',
-          image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Sarees">
-        {% render 'product-card',
-          title: 'Royal Banarasi Kathan Silk Zari Saree',
-          price: '₹3,999',
-          original_price: '₹7,999',
-          image: 'https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Dresses">
-        {% render 'product-card',
-          title: 'Maroon Flared Angrakha Festive Maxi Gown',
-          price: '₹2,499',
-          original_price: '₹4,999',
-          image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Dresses">
-        {% render 'product-card',
-          title: 'Emerald Green Embroidered Georgette Gown',
-          price: '₹2,999',
-          original_price: '₹5,999',
-          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Dresses">
-        {% render 'product-card',
-          title: 'Mustard Floral Tiered Pure Cotton Maxi Dress',
-          price: '₹1,699',
-          original_price: '₹3,399',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Plus-Size">
-        {% render 'product-card',
-          title: 'ExtraLove Mustard Flared Anarkali Suit Set (3XL-6XL)',
-          price: '₹3,199',
-          original_price: '₹6,399',
-          image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Plus-Size">
-        {% render 'product-card',
-          title: 'ExtraLove Plum Cotton Straight Kurta Set (3XL-6XL)',
-          price: '₹1,999',
-          original_price: '₹3,999',
-          image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
-      <div data-trend-category="Plus-Size">
-        {% render 'product-card',
-          title: 'ExtraLove Emerald Green Velvet Winter Suit (3XL-6XL)',
-          price: '₹4,499',
-          original_price: '₹8,999',
-          image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop'
-        %}
-      </div>
+      {%- if primary_collection != blank and primary_collection.products.size > 0 -%}
+        {%- for product in primary_collection.products limit: limit_count -%}
+          <div data-trend-category="{{ product.type | default: 'All' }}">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Curated Fallback Styles (Shown when store collection is empty or not yet assigned) -->
+        <div data-trend-category="Suits">
+          {% render 'product-card',
+            title: 'Purple Zari Embroidered Silk Anarkali Suit Set',
+            price: '₹3,499',
+            original_price: '₹6,999',
+            image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/suits'
+          %}
+        </div>
+        <div data-trend-category="Suits">
+          {% render 'product-card',
+            title: 'Mustard Gotta Patti Georgette Sharara Suit Set',
+            price: '₹2,799',
+            original_price: '₹5,599',
+            image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/suits'
+          %}
+        </div>
+        <div data-trend-category="Suits">
+          {% render 'product-card',
+            title: 'Blush Floral Pure Cotton Straight Kurta & Palazzo Set',
+            price: '₹1,899',
+            original_price: '₹3,799',
+            image: 'https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/suits'
+          %}
+        </div>
+        <div data-trend-category="Suits">
+          {% render 'product-card',
+            title: 'Emerald Green Embroidered Velvet Suit Set',
+            price: '₹4,499',
+            original_price: '₹8,999',
+            image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/suits'
+          %}
+        </div>
+        <div data-trend-category="Kurtas">
+          {% render 'product-card',
+            title: 'Wine Chanderi Silk Foil Print Straight Kurta',
+            price: '₹1,299',
+            original_price: '₹2,599',
+            image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/kurtas'
+          %}
+        </div>
+        <div data-trend-category="Kurtas">
+          {% render 'product-card',
+            title: 'Indigo Blue Ajrakh Handblock Pure Cotton Kurta',
+            price: '₹1,099',
+            original_price: '₹2,199',
+            image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/kurtas'
+          %}
+        </div>
+        <div data-trend-category="Kurtas">
+          {% render 'product-card',
+            title: 'Peach Embroidered Cotton Peplum Tunic Kurti',
+            price: '₹899',
+            original_price: '₹1,799',
+            image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/kurtas'
+          %}
+        </div>
+        <div data-trend-category="Sarees">
+          {% render 'product-card',
+            title: 'Burgundy Zari Woven Sheer Organza Saree',
+            price: '₹2,699',
+            original_price: '₹5,399',
+            image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/sarees'
+          %}
+        </div>
+        <div data-trend-category="Sarees">
+          {% render 'product-card',
+            title: 'Sage Green Foil Printed Tissue Silk Festive Saree',
+            price: '₹2,199',
+            original_price: '₹4,399',
+            image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/sarees'
+          %}
+        </div>
+        <div data-trend-category="Plus-Size">
+          {% render 'product-card',
+            title: 'ExtraLove Mustard Flared Anarkali Suit Set (3XL-6XL)',
+            price: '₹3,199',
+            original_price: '₹6,399',
+            image: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/plus-size'
+          %}
+        </div>
+        <div data-trend-category="Plus-Size">
+          {% render 'product-card',
+            title: 'ExtraLove Plum Cotton Straight Kurta Set (3XL-6XL)',
+            price: '₹1,999',
+            original_price: '₹3,999',
+            image: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/plus-size'
+          %}
+        </div>
+        <div data-trend-category="Plus-Size">
+          {% render 'product-card',
+            title: 'ExtraLove Emerald Green Velvet Winter Suit (3XL-6XL)',
+            price: '₹4,499',
+            original_price: '₹8,999',
+            image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop',
+            url: '/collections/plus-size'
+          %}
+        </div>
+      {%- endif -%}
     </div>
+
+    <!-- View All Button -->
+    {% if section.settings.show_view_all %}
+      <div class="text-center pt-10">
+        <a
+          href="{{ section.settings.view_all_link | default: '/collections/suits' }}"
+          class="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md"
+        >
+          <span>{{ section.settings.view_all_text | default: 'Explore All Festive Ensembles' }}</span>
+          <span>→</span>
+        </a>
+      </div>
+    {% endif %}
 
   </div>
 </section>
@@ -199,6 +208,61 @@
 {% schema %}
 {
   "name": "Featured Collection",
-  "settings": []
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "CURATED SELECTION"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Trending Celebratory Ensembles"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Shopify Collection (Dynamic)"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "label": "Products to Show",
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tabs",
+      "label": "Show Category Tabs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "Explore All Festive Ensembles"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
 }
 {% endschema %}

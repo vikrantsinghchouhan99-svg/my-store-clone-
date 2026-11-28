@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Libas Editorial Commerce",
-    "theme_version": "1.0.0",
+    "theme_version": "2.0.0",
     "theme_author": "Libas Atelier",
     "theme_documentation_url": "https://www.libas.in",
     "theme_support_url": "https://www.libas.in/contact"
@@ -39,26 +39,66 @@
         "id": "color_surface",
         "label": "Surface / Off-White",
         "default": "#FAF7F9"
+      },
+      {
+        "type": "color",
+        "id": "color_sale",
+        "label": "Sale Badge Color",
+        "default": "#D92D20"
       }
     ]
   },
   {
-    "name": "Social Media",
+    "name": "Cart Drawer",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart Experience",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Slide-Out Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Dedicated Page"
+          }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Free Shipping Threshold (₹)",
+        "default": "999"
+      }
+    ]
+  },
+  {
+    "name": "Social Media Links",
     "settings": [
       {
         "type": "text",
         "id": "social_instagram_link",
-        "label": "Instagram URL"
+        "label": "Instagram URL",
+        "default": "https://instagram.com/libasindia"
       },
       {
         "type": "text",
         "id": "social_facebook_link",
-        "label": "Facebook URL"
+        "label": "Facebook URL",
+        "default": "https://facebook.com/libasindia"
       },
       {
         "type": "text",
         "id": "social_youtube_link",
         "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest URL"
       }
     ]
   }

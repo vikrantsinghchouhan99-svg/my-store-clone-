@@ -1,28 +1,38 @@
-<section id="suits" class="py-14 bg-white border-b border-[#E6E6E6]">
+<section id="suits" class="py-14 bg-[#FAF7F9] border-b border-[#E6E6E6]">
   <div class="container">
     
     <!-- Section Header -->
     <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
       <div>
         <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">
-          CATEGORY • SUITS & SETS
+          {{ section.settings.eyebrow | default: 'CATEGORY • SUITS & SETS' }}
         </span>
         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525] mt-1">
-          Anarkali, Sharara & Palazzo Suit Sets
+          {{ section.settings.heading | default: 'Anarkali, Sharara & Palazzo Suits' }}
         </h2>
         <p class="text-xs text-[#737373] mt-1">
-          From magnificent wedding Anarkalis to breathable everyday cotton palazzos, explore our hallmark festive suit sets.
+          {{ section.settings.description | default: 'Magnificent wedding Anarkalis and breathable everyday cotton palazzos.' }}
         </p>
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-xs font-mono font-bold text-[#71006A]">Showing 10 Hallmark Ensembles</span>
+        {% if section.settings.collection != blank and section.settings.collection.products_count > 0 %}
+          <span class="text-xs font-mono font-bold text-[#71006A]">Showing {{ section.settings.collection.products_count }} Products</span>
+        {% else %}
+          <span class="text-xs font-mono font-bold text-[#71006A]">Showing Festive Suit Sets</span>
+        {% endif %}
       </div>
     </div>
 
     <!-- Product Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      {% render 'product-card',
+      {% assign chosen_col = section.settings.collection %}
+      {% if chosen_col != blank and chosen_col.products_count > 0 %}
+        {% for product in chosen_col.products limit: section.settings.products_to_show %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {% render 'product-card',
         title: 'Purple Zari Embroidered Silk Anarkali Suit Set',
         price: '₹3,499',
         original_price: '₹6,999',
@@ -82,13 +92,53 @@
         original_price: '₹8,599',
         image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop'
       %}
+      {% endif %}
     </div>
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Category Suits",
-  "settings": []
+  "name": "Suits & Sets",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "CATEGORY • SUITS & SETS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Anarkali, Sharara & Palazzo Suits"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Magnificent wedding Anarkalis and breathable everyday cotton palazzos."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Shopify Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 8,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Suits & Sets"
+    }
+  ]
 }
 {% endschema %}

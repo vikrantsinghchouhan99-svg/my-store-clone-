@@ -3,69 +3,83 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       
       <!-- Banner 1: Wedding Edit -->
-      <div class="relative rounded-2xl overflow-hidden bg-[#71006A] text-white p-8 sm:p-10 flex flex-col justify-between min-h-[320px] group shadow-md">
+      <div class="relative rounded-2xl overflow-hidden text-white p-8 sm:p-10 flex flex-col justify-between min-h-[320px] group shadow-md" style="background-color: {{ section.settings.banner_1_bg | default: '#71006A' }};">
         <div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-50 transition-opacity">
-          <img
-            src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop"
-            alt="Wedding Edit"
-            class="w-full h-full object-cover object-center"
-            onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop';"
-          >
+          {% if section.settings.banner_1_image != blank %}
+            {{ section.settings.banner_1_image | image_url: width: 1000 | image_tag: class: 'w-full h-full object-cover object-center', loading: 'lazy', alt: section.settings.banner_1_title }}
+          {% else %}
+            <img
+              src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop"
+              alt="Wedding Edit"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+              onerror="this.src='https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop';"
+            >
+          {% endif %}
         </div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#71006A] via-[#71006A]/80 to-transparent z-1"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-1"></div>
 
         <div class="relative z-10 space-y-2 max-w-sm">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-[#FF8C91] text-[10px] font-bold tracking-widest uppercase font-mono">
-            ROYAL CEREMONY
-          </span>
+          {% if section.settings.banner_1_pill != blank %}
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 text-[#FF8C91] text-[10px] font-bold tracking-widest uppercase font-mono">
+              {{ section.settings.banner_1_pill }}
+            </span>
+          {% endif %}
           <h3 class="text-2xl sm:text-3xl font-serif font-bold leading-tight">
-            The Wedding & Grand Soirée Edit
+            {{ section.settings.banner_1_title | default: 'The Wedding & Grand Soirée Edit' }}
           </h3>
           <p class="text-xs text-white/80 leading-relaxed">
-            Opulent micro-velvet, pure Chanderi silk, and hand-embroidered zari ensembles created for unforgettable nuptials.
+            {{ section.settings.banner_1_desc | default: 'Opulent micro-velvet, pure Chanderi silk, and hand-embroidered zari ensembles created for unforgettable nuptials.' }}
           </p>
         </div>
 
         <div class="relative z-10 pt-4">
           <a
-            href="/collections/suits?occasion=Wedding"
+            href="{{ section.settings.banner_1_btn_link | default: '/collections/suits?occasion=Wedding' }}"
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-[#71006A] text-xs font-bold tracking-wider uppercase hover:bg-[#FAF7F9] transition-all shadow-md"
           >
-            <span>Shop Wedding Suits</span>
+            <span>{{ section.settings.banner_1_btn_text | default: 'Shop Wedding Suits' }}</span>
             <span>→</span>
           </a>
         </div>
       </div>
 
       <!-- Banner 2: ExtraLove 3XL-6XL -->
-      <div id="extralove" class="relative rounded-2xl overflow-hidden bg-[#252525] text-white p-8 sm:p-10 flex flex-col justify-between min-h-[320px] group shadow-md">
+      <div id="extralove" class="relative rounded-2xl overflow-hidden text-white p-8 sm:p-10 flex flex-col justify-between min-h-[320px] group shadow-md" style="background-color: {{ section.settings.banner_2_bg | default: '#252525' }};">
         <div class="absolute inset-0 z-0 opacity-35 group-hover:opacity-45 transition-opacity">
-          <img
-            src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop"
-            alt="ExtraLove Collection"
-            class="w-full h-full object-cover object-top"
-          >
+          {% if section.settings.banner_2_image != blank %}
+            {{ section.settings.banner_2_image | image_url: width: 1000 | image_tag: class: 'w-full h-full object-cover object-top', loading: 'lazy', alt: section.settings.banner_2_title }}
+          {% else %}
+            <img
+              src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=1000&auto=format&fit=crop"
+              alt="ExtraLove Collection"
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+            >
+          {% endif %}
         </div>
-        <div class="absolute inset-0 bg-gradient-to-r from-[#252525] via-[#252525]/85 to-transparent z-1"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent z-1"></div>
 
         <div class="relative z-10 space-y-2 max-w-sm">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF8C91]/30 text-[#FF8C91] text-[10px] font-bold tracking-widest uppercase font-mono">
-            EXTRALOVE • 3XL TO 6XL
-          </span>
+          {% if section.settings.banner_2_pill != blank %}
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF8C91]/30 text-[#FF8C91] text-[10px] font-bold tracking-widest uppercase font-mono">
+              {{ section.settings.banner_2_pill }}
+            </span>
+          {% endif %}
           <h3 class="text-2xl sm:text-3xl font-serif font-bold leading-tight">
-            Fashion Has No Size Boundaries
+            {{ section.settings.banner_2_title | default: 'Fashion Has No Size Boundaries' }}
           </h3>
           <p class="text-xs text-white/80 leading-relaxed">
-            Dedicated plus-size silhouettes designed with custom drape, stretch linings, and flattering cuts for fuller curves.
+            {{ section.settings.banner_2_desc | default: 'Dedicated plus-size silhouettes designed with custom drape, stretch linings, and flattering cuts for fuller curves.' }}
           </p>
         </div>
 
         <div class="relative z-10 pt-4">
           <a
-            href="/collections/plus-size"
+            href="{{ section.settings.banner_2_btn_link | default: '/collections/plus-size' }}"
             class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF8C91] text-[#71006A] text-xs font-bold tracking-wider uppercase hover:bg-white transition-all shadow-md"
           >
-            <span>Explore ExtraLove (3XL-6XL)</span>
+            <span>{{ section.settings.banner_2_btn_text | default: 'Explore ExtraLove (3XL-6XL)' }}</span>
             <span>→</span>
           </a>
         </div>
@@ -78,7 +92,96 @@
 {% schema %}
 {
   "name": "Festive Banners",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left Banner (Ceremony / Wedding)"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_1_image",
+      "label": "Banner 1 Image"
+    },
+    {
+      "type": "text",
+      "id": "banner_1_pill",
+      "label": "Banner 1 Pill Label",
+      "default": "ROYAL CEREMONY"
+    },
+    {
+      "type": "text",
+      "id": "banner_1_title",
+      "label": "Banner 1 Title",
+      "default": "The Wedding & Grand Soirée Edit"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_1_desc",
+      "label": "Banner 1 Description",
+      "default": "Opulent micro-velvet, pure Chanderi silk, and hand-embroidered zari ensembles created for unforgettable nuptials."
+    },
+    {
+      "type": "text",
+      "id": "banner_1_btn_text",
+      "label": "Banner 1 Button Text",
+      "default": "Shop Wedding Suits"
+    },
+    {
+      "type": "url",
+      "id": "banner_1_btn_link",
+      "label": "Banner 1 Button Link"
+    },
+    {
+      "type": "color",
+      "id": "banner_1_bg",
+      "label": "Banner 1 Background Color",
+      "default": "#71006A"
+    },
+    {
+      "type": "header",
+      "content": "Right Banner (Curve / Plus-Size)"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_2_image",
+      "label": "Banner 2 Image"
+    },
+    {
+      "type": "text",
+      "id": "banner_2_pill",
+      "label": "Banner 2 Pill Label",
+      "default": "EXTRALOVE • 3XL TO 6XL"
+    },
+    {
+      "type": "text",
+      "id": "banner_2_title",
+      "label": "Banner 2 Title",
+      "default": "Fashion Has No Size Boundaries"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_2_desc",
+      "label": "Banner 2 Description",
+      "default": "Dedicated plus-size silhouettes designed with custom drape, stretch linings, and flattering cuts for fuller curves."
+    },
+    {
+      "type": "text",
+      "id": "banner_2_btn_text",
+      "label": "Banner 2 Button Text",
+      "default": "Explore ExtraLove (3XL-6XL)"
+    },
+    {
+      "type": "url",
+      "id": "banner_2_btn_link",
+      "label": "Banner 2 Button Link"
+    },
+    {
+      "type": "color",
+      "id": "banner_2_bg",
+      "label": "Banner 2 Background Color",
+      "default": "#252525"
+    }
+  ],
   "presets": [
     {
       "name": "Festive Banners"

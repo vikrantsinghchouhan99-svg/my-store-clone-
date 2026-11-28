@@ -2,27 +2,217 @@
   "sections": {
     "hero": {
       "type": "hero-banner",
-      "settings": {}
+      "settings": {
+        "subheading": "THE FESTIVE EDIT 2026 • UP TO 60% OFF",
+        "heading": "Grace in Every Thread.",
+        "heading_highlight": "Timeless Festive Grandeur.",
+        "description": "Discover exquisitely tailored Anarkalis, Sharara sets, sheer silk organza sarees, and breathable pure cotton kurtas crafted for celebratory moments.",
+        "btn_1_text": "Shop Festive Suits",
+        "btn_1_link": "/collections/suits",
+        "btn_2_text": "Explore Sarees",
+        "btn_2_link": "/collections/sarees",
+        "btn_3_text": "Flat 50% Off",
+        "btn_3_link": "/collections/sale",
+        "spotlight_badge": "Trending Pick",
+        "spotlight_title": "Purple Silk Anarkali Set",
+        "spotlight_price": "₹3,499",
+        "spotlight_orig_price": "₹6,999",
+        "spotlight_discount": "50% OFF",
+        "stat_1_num": "10M+",
+        "stat_1_label": "Satisfied Customers",
+        "stat_2_num": "XS - 6XL",
+        "stat_2_label": "Inclusive Fit For All",
+        "stat_3_num": "100%",
+        "stat_3_label": "Pure Ethnic Craft"
+      }
     },
     "category_circles": {
       "type": "category-circles",
+      "blocks": {
+        "bubble_1": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Suits & Sets",
+            "subtitle": "From ₹1,899",
+            "fallback_image": "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/suits"
+          }
+        },
+        "bubble_2": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Kurtas",
+            "subtitle": "From ₹899",
+            "fallback_image": "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/kurtas"
+          }
+        },
+        "bubble_3": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Sarees",
+            "subtitle": "From ₹2,199",
+            "fallback_image": "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/sarees"
+          }
+        },
+        "bubble_4": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Ethnic Dresses",
+            "subtitle": "From ₹1,699",
+            "fallback_image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/dresses"
+          }
+        },
+        "bubble_5": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Co-ords & Lounge",
+            "subtitle": "From ₹1,299",
+            "fallback_image": "https://images.unsplash.com/photo-1596783074918-c84cb06531ca?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/loungewear"
+          }
+        },
+        "bubble_6": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "ExtraLove",
+            "subtitle": "3XL to 6XL",
+            "fallback_image": "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/plus-size"
+          }
+        },
+        "bubble_7": {
+          "type": "category_bubble",
+          "settings": {
+            "title": "Sale Up to 60%",
+            "subtitle": "Flat 50-60%",
+            "fallback_image": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?q=80&w=300&auto=format&fit=crop",
+            "link": "/collections/sale"
+          }
+        }
+      },
+      "block_order": [
+        "bubble_1",
+        "bubble_2",
+        "bubble_3",
+        "bubble_4",
+        "bubble_5",
+        "bubble_6",
+        "bubble_7"
+      ],
       "settings": {}
     },
     "featured_collection": {
       "type": "featured-collection",
-      "settings": {}
+      "settings": {
+        "eyebrow": "CURATED SELECTION",
+        "heading": "Trending Celebratory Ensembles",
+        "products_to_show": 12,
+        "show_tabs": true,
+        "show_view_all": true,
+        "view_all_text": "Explore All Festive Ensembles",
+        "view_all_link": "/collections/suits"
+      }
     },
     "festive_banners": {
       "type": "festive-banners",
-      "settings": {}
+      "settings": {
+        "banner_1_pill": "ROYAL CEREMONY",
+        "banner_1_title": "The Wedding & Grand Soirée Edit",
+        "banner_1_desc": "Opulent micro-velvet, pure Chanderi silk, and hand-embroidered zari ensembles created for unforgettable nuptials.",
+        "banner_1_btn_text": "Shop Wedding Suits",
+        "banner_1_btn_link": "/collections/suits?occasion=Wedding",
+        "banner_1_bg": "#71006A",
+        "banner_2_pill": "EXTRALOVE • 3XL TO 6XL",
+        "banner_2_title": "Fashion Has No Size Boundaries",
+        "banner_2_desc": "Dedicated plus-size silhouettes designed with custom drape, stretch linings, and flattering cuts for fuller curves.",
+        "banner_2_btn_text": "Explore ExtraLove (3XL-6XL)",
+        "banner_2_btn_link": "/collections/plus-size",
+        "banner_2_bg": "#252525"
+      }
     },
     "atelier_craft": {
       "type": "atelier-craft",
-      "settings": {}
+      "blocks": {
+        "craft_1": {
+          "type": "craft_point",
+          "settings": {
+            "title": "Bespoke Grading & Fit",
+            "description": "Tailored with comfort-stretch waistbands and roomier armhole cuts for easy movement."
+          }
+        },
+        "craft_2": {
+          "type": "craft_point",
+          "settings": {
+            "title": "Azo-Free Certified Natural Dyes",
+            "description": "Gentle on festive skin and protective of Rajasthan and Gujarat groundwater reservoirs."
+          }
+        },
+        "craft_3": {
+          "type": "craft_point",
+          "settings": {
+            "title": "Direct from Weaver to Wardrobe",
+            "description": "Fair remuneration for regional master artisans across Jaipur, Chanderi, and Varanasi."
+          }
+        }
+      },
+      "block_order": [
+        "craft_1",
+        "craft_2",
+        "craft_3"
+      ],
+      "settings": {
+        "eyebrow": "THE LIBAS ATELIER",
+        "heading": "Authentic Craftsmanship.",
+        "heading_highlight": "Tailored for Modern Celebrations.",
+        "description": "Every Libas creation represents a harmony between India’s time-honored textile heritage and contemporary sensibilities. From pure Chanderi weaves to handcrafted Rajasthani gotta patti and Lucknowi resham stitches.",
+        "btn_text": "Explore The Atelier Edit",
+        "btn_link": "/collections/suits"
+      }
     },
     "testimonials": {
       "type": "testimonials",
-      "settings": {}
+      "blocks": {
+        "review_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The fall and flair of the silk anarkali are regal beyond expectation. The pure zari highlights on the yoke catch the banquet lights with exceptional subtlety. Ordered on a Wednesday and arrived in Mumbai by Friday noon.",
+            "author": "Ritika Malhotra",
+            "location": "Mumbai"
+          }
+        },
+        "review_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Finding celebratory ethnic wear in authentic 4XL that drapes gracefully without clinging is nearly impossible in high street retail. The ExtraLove line has restored festive shopping joy for me.",
+            "author": "Ananya Sengupta",
+            "location": "Kolkata"
+          }
+        },
+        "review_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Pure tissue organza that breathes easily throughout an eight-hour wedding sangeet. The scalloped gotta patti borders stay pristine. The pre-draped option saved 45 minutes of frantic pleating.",
+            "author": "Dr. Meenakshi Iyer",
+            "location": "Bengaluru"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "eyebrow": "VERIFIED PATRON REVIEWS",
+        "heading": "Treasured Words from Our Community",
+        "description": "Over 10 million celebrations adorned across 42 countries worldwide."
+      }
     }
   },
   "order": [

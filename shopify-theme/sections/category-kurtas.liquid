@@ -5,24 +5,34 @@
     <div class="flex flex-col sm:flex-row items-baseline justify-between mb-8 border-b border-[#E6E6E6] pb-4 gap-4">
       <div>
         <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold block">
-          CATEGORY • KURTAS & KURTIS
+          {{ section.settings.eyebrow | default: 'CATEGORY • KURTAS & KURTIS' }}
         </span>
         <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525] mt-1">
-          Artisan Kurtas & Daily Tunics
+          {{ section.settings.heading | default: 'Artisan Kurtas & Daily Tunics' }}
         </h2>
         <p class="text-xs text-[#737373] mt-1">
-          Hand block prints, woven Chanderi silks, and breathable everyday cotton kurtis.
+          {{ section.settings.description | default: 'Hand block prints, woven Chanderi silks, and breathable everyday cotton kurtis.' }}
         </p>
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-xs font-mono font-bold text-[#71006A]">Showing 9 Artisan Kurtas</span>
+        {% if section.settings.collection != blank and section.settings.collection.products_count > 0 %}
+          <span class="text-xs font-mono font-bold text-[#71006A]">Showing {{ section.settings.collection.products_count }} Products</span>
+        {% else %}
+          <span class="text-xs font-mono font-bold text-[#71006A]">Showing Daily & Festive Kurtas</span>
+        {% endif %}
       </div>
     </div>
 
     <!-- Product Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-      {% render 'product-card',
+      {% assign chosen_col = section.settings.collection %}
+      {% if chosen_col != blank and chosen_col.products_count > 0 %}
+        {% for product in chosen_col.products limit: section.settings.products_to_show %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {% render 'product-card',
         title: 'Wine Chanderi Silk Foil Print Straight Kurta',
         price: '₹1,299',
         original_price: '₹2,599',
@@ -76,13 +86,53 @@
         original_price: '₹2,799',
         image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop'
       %}
+      {% endif %}
     </div>
+
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Category Kurtas",
-  "settings": []
+  "name": "Kurtas & Kurtis",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "CATEGORY • KURTAS & KURTIS"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Artisan Kurtas & Daily Tunics"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Hand block prints, woven Chanderi silks, and breathable everyday cotton kurtis."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Shopify Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 8,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kurtas & Kurtis"
+    }
+  ]
 }
 {% endschema %}

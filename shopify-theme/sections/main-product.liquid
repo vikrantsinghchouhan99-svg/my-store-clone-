@@ -1,79 +1,218 @@
 <div class="py-12 bg-white">
-  <div class="container">
+  <div class="container max-w-6xl">
+    
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-[#737373] pb-6 mb-8 border-b border-[#E6E6E6]">
+      <a href="{{ routes.root_url }}" class="hover:text-[#71006A]">Home</a>
+      <span>/</span>
+      {% if collection %}
+        <a href="{{ collection.url }}" class="hover:text-[#71006A]">{{ collection.title }}</a>
+        <span>/</span>
+      {% else %}
+        <a href="/collections/suits" class="hover:text-[#71006A]">Suits & Sets</a>
+        <span>/</span>
+      {% endif %}
+      <span class="text-[#252525] font-bold truncate max-w-xs">{{ product.title | default: 'Purple Zari Silk Anarkali' }}</span>
+    </nav>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
       
-      <!-- Gallery -->
+      <!-- Gallery Column -->
       <div class="space-y-4">
-        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F5F5] border border-[#E6E6E6]">
-          <img
-            src="{{ product.featured_image | default: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop' }}"
-            alt="{{ product.title | escape }}"
-            class="w-full h-full object-cover object-top"
-            onerror="this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop';"
-          >
+        <!-- Main Image -->
+        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-[#F5F5F5] border border-[#E6E6E6] shadow-sm">
+          {% if product and product.featured_image != blank %}
+            {{ product.featured_image | image_url: width: 1000 | image_tag: class: 'w-full h-full object-cover object-top', loading: 'eager', id: 'ProductMainImage' }}
+          {% else %}
+            <img
+              id="ProductMainImage"
+              src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?q=80&w=1000&auto=format&fit=crop"
+              alt="{{ product.title | default: 'Product Showcase' | escape }}"
+              class="w-full h-full object-cover object-top"
+              onerror="this.src='https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1000&auto=format&fit=crop';"
+            >
+          {% endif %}
         </div>
+
+        <!-- Thumbnails Gallery -->
+        {% if product and product.images.size > 1 %}
+          <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar" style="scrollbar-width: none;">
+            {% for img in product.images %}
+              <button
+                type="button"
+                onclick="document.getElementById('ProductMainImage').src = '{{ img | image_url: width: 1000 }}';"
+                class="w-16 h-20 rounded-lg overflow-hidden border-2 border-transparent hover:border-[#71006A] focus:border-[#71006A] transition-colors shrink-0 bg-[#F5F5F5]"
+              >
+                {{ img | image_url: width: 200 | image_tag: class: 'w-full h-full object-cover object-top' }}
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
 
       <!-- Product Buy Box -->
       <div class="space-y-6">
         <div class="space-y-2 border-b border-[#E6E6E6] pb-4">
           <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
-            LIBAS FESTIVE EDIT
+            {{ product.vendor | default: 'LIBAS FESTIVE EDIT' }}
           </span>
           <h1 class="text-2xl sm:text-3xl font-serif font-bold text-[#252525]">
             {{ product.title | default: 'Purple Zari Embroidered Silk Anarkali Suit Set' }}
           </h1>
+
           <div class="flex items-baseline gap-3 pt-1">
-            <span class="text-xl font-bold text-[#71006A]">{{ product.price | money | default: '₹3,499' }}</span>
-            <span class="text-sm text-[#999999] line-through">{{ product.compare_at_price | money | default: '₹6,999' }}</span>
-            <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">50% OFF</span>
+            <span class="text-2xl font-bold text-[#71006A]">
+              {{ product.price | money | default: '₹3,499' }}
+            </span>
+            {% if product.compare_at_price > product.price or product == blank %}
+              <span class="text-sm text-[#999999] line-through">
+                {{ product.compare_at_price | money | default: '₹6,999' }}
+              </span>
+              <span class="text-xs text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                50% OFF
+              </span>
+            {% endif %}
           </div>
         </div>
 
-        <!-- Size Selection -->
-        <div class="space-y-2">
-          <label class="text-xs font-bold text-[#252525] uppercase tracking-wider block">Select Size</label>
-          <div class="flex gap-2">
-            {% for s in (1..5) %}
-              {% assign size_label = 'S,M,L,XL,XXL' | split: ',' %}
-              <button type="button" class="px-4 py-2 rounded-lg border border-[#E6E6E6] hover:border-[#71006A] text-xs font-bold transition-colors">
-                {{ size_label[forloop.index0] }}
-              </button>
+        <!-- Dynamic Shopify Add to Cart Form -->
+        {% form 'product', product, id: 'product-form', class: 'space-y-5' %}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
+          >
+
+          <!-- Variant Pickers -->
+          {% if product and product.has_only_default_variant == false %}
+            {% for option in product.options_with_values %}
+              <div class="space-y-2">
+                <div class="flex justify-between items-center text-xs font-bold text-[#252525] uppercase tracking-wider">
+                  <span>{{ option.name }}</span>
+                  {% if option.name == 'Size' or option.name == 'size' %}
+                    <button type="button" class="text-[11px] font-normal text-[#71006A] underline">Size Guide (XS-6XL)</button>
+                  {% endif %}
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {% for val in option.values %}
+                    <label class="px-4 py-2 rounded-lg border border-[#E6E6E6] hover:border-[#71006A] text-xs font-bold transition-colors cursor-pointer bg-white text-[#252525] has-[:checked]:bg-[#71006A] has-[:checked]:text-white has-[:checked]:border-[#71006A]">
+                      <input
+                        type="radio"
+                        name="options[{{ option.name | escape }}]"
+                        value="{{ val | escape }}"
+                        class="sr-only"
+                        {% if option.selected_value == val %}checked{% endif %}
+                      >
+                      <span>{{ val }}</span>
+                    </label>
+                  {% endfor %}
+                </div>
+              </div>
             {% endfor %}
-          </div>
-        </div>
+          {% else %}
+            <!-- Mock Size Selector when previewing -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-bold text-[#252525] uppercase tracking-wider">
+                <span>Select Size</span>
+                <span class="text-[11px] text-[#71006A] font-normal">Inclusive Fit (XS - 6XL)</span>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {% assign mock_sizes = 'XS,S,M,L,XL,XXL,3XL,4XL,5XL,6XL' | split: ',' %}
+                {% for sz in mock_sizes %}
+                  <button type="button" class="px-3.5 py-2 rounded-lg border border-[#E6E6E6] hover:border-[#71006A] text-xs font-bold transition-colors {% if forloop.index == 2 %}bg-[#71006A] text-white border-[#71006A]{% else %}bg-white text-[#252525]{% endif %}">
+                    {{ sz }}
+                  </button>
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
 
-        <!-- Add to Cart Form -->
-        {% form 'product', product %}
-          <div class="space-y-3">
-            <button
-              type="button"
-              data-cart-drawer-trigger
-              class="w-full py-3.5 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2"
-            >
-              <span>Add to Bag</span>
-              <span>•</span>
-              <span>Free Delivery</span>
-            </button>
+          <!-- Quantity & Action Buttons -->
+          <div class="space-y-3 pt-2">
+            <div class="flex gap-3">
+              <div class="w-24 flex items-center border border-[#E6E6E6] rounded-lg bg-white overflow-hidden">
+                <button type="button" onclick="const q = document.getElementById('QuantityInput'); if (q.value > 1) q.value--;" class="w-8 py-3 text-sm text-[#737373] hover:text-[#252525] bg-transparent border-none cursor-pointer">-</button>
+                <input type="number" id="QuantityInput" name="quantity" min="1" value="1" class="w-8 text-center text-xs font-bold border-none outline-none">
+                <button type="button" onclick="const q = document.getElementById('QuantityInput'); q.value++;" class="w-8 py-3 text-sm text-[#737373] hover:text-[#252525] bg-transparent border-none cursor-pointer">+</button>
+              </div>
+
+              <button
+                type="submit"
+                name="add"
+                class="flex-1 py-3.5 rounded-lg bg-[#71006A] hover:bg-[#560050] text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 border-none cursor-pointer"
+              >
+                <span>Add to Shopping Bag</span>
+                <span>•</span>
+                <span>Free Delivery</span>
+              </button>
+            </div>
+
+            <!-- Instant Checkout Button -->
+            {{ form | payment_button }}
           </div>
         {% endform %}
 
-        <!-- Pincode Estimator -->
-        <div class="p-4 rounded-xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
-          <h4 class="text-xs font-bold text-[#252525]">Check Delivery & Cash on Delivery (COD)</h4>
-          <form id="PincodeForm" class="flex gap-2">
-            <input
-              id="PincodeInput"
-              type="text"
-              maxlength="6"
-              placeholder="Enter 6-digit Pincode"
-              class="flex-1 px-3 py-2 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono outline-none"
-            >
-            <button type="submit" class="px-4 py-2 rounded-lg bg-[#252525] text-white text-xs font-bold">
-              Check
-            </button>
-          </form>
-          <div id="PincodeResult"></div>
+        <!-- Pincode Checker -->
+        {% if section.settings.show_pincode %}
+          <div class="p-4 rounded-xl bg-[#FAF7F9] border border-[#E6E6E6] space-y-2">
+            <h4 class="text-xs font-bold text-[#252525]">Check Delivery & Cash on Delivery (COD)</h4>
+            <form onsubmit="event.preventDefault(); const p = document.getElementById('PincodeInput').value; document.getElementById('PincodeResult').innerHTML = p.length === 6 ? '<span class=\'text-emerald-700 font-bold text-xs\'>✓ Delivery available by Tomorrow! COD available.</span>' : '<span class=\'text-red-600 text-xs\'>Please enter valid 6-digit Pincode</span>';" class="flex gap-2">
+              <input
+                id="PincodeInput"
+                type="text"
+                maxlength="6"
+                placeholder="Enter 6-digit Pincode"
+                class="flex-1 px-3 py-2 rounded-lg bg-white border border-[#E6E6E6] text-xs font-mono outline-none"
+              >
+              <button type="submit" class="px-4 py-2 rounded-lg bg-[#252525] hover:bg-black text-white text-xs font-bold border-none cursor-pointer">
+                Check
+              </button>
+            </form>
+            <div id="PincodeResult"></div>
+          </div>
+        {% endif %}
+
+        <!-- Collapsible Accordion Tabs -->
+        <div class="divide-y divide-[#E6E6E6] border-y border-[#E6E6E6] text-xs">
+          <!-- Description -->
+          <details class="py-3 group" open>
+            <summary class="font-bold text-[#252525] flex justify-between items-center cursor-pointer list-none">
+              <span>Fabric, Pattern & Craft Specifications</span>
+              <span class="group-open:rotate-180 transition-transform">▾</span>
+            </summary>
+            <div class="pt-2 text-[#4D4D4D] leading-relaxed space-y-1">
+              {% if product.description != blank %}
+                {{ product.description }}
+              {% else %}
+                <p>Tailored from premium woven Chanderi silk with santoon lining. Adorned with delicate zari embroidery along the neckline and cuffs.</p>
+                <p>Wash Care: Dry Clean Recommended for best preservation of metallic hand embroidery.</p>
+              {% endif %}
+            </div>
+          </details>
+
+          <!-- Delivery Policy -->
+          <details class="py-3 group">
+            <summary class="font-bold text-[#252525] flex justify-between items-center cursor-pointer list-none">
+              <span>Delivery Time & Shipping Policy</span>
+              <span class="group-open:rotate-180 transition-transform">▾</span>
+            </summary>
+            <div class="pt-2 text-[#737373] leading-relaxed">
+              <p>Metro Cities: 1 - 2 business days.</p>
+              <p>Rest of India: 3 - 5 business days via BlueDart & Delhivery Express.</p>
+              <p>100% Free Shipping on all prepaid orders.</p>
+            </div>
+          </details>
+
+          <!-- Returns Policy -->
+          <details class="py-3 group">
+            <summary class="font-bold text-[#252525] flex justify-between items-center cursor-pointer list-none">
+              <span>15-Day Easy Returns & Exchanges</span>
+              <span class="group-open:rotate-180 transition-transform">▾</span>
+            </summary>
+            <div class="pt-2 text-[#737373] leading-relaxed">
+              <p>Hassle-free 15-day return and size exchange policy with free doorstep pickup from your address.</p>
+            </div>
+          </details>
         </div>
 
       </div>
@@ -85,6 +224,13 @@
 {% schema %}
 {
   "name": "Main Product",
-  "settings": []
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_pincode",
+      "label": "Show Pincode Delivery Checker",
+      "default": true
+    }
+  ]
 }
 {% endschema %}

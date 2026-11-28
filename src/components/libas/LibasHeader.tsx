@@ -204,7 +204,7 @@ export function LibasHeader() {
       {/* 2. Main Branding & Utility Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
         <div className="flex items-center justify-between gap-4 sm:gap-8">
-          
+
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -233,7 +233,7 @@ export function LibasHeader() {
 
           {/* Right Action Icons (Account, Wishlist, Bag) */}
           <div className="flex items-center gap-3 sm:gap-6 shrink-0">
-            
+
             {/* Account Login Button */}
             <div className="relative">
               {user ? (
@@ -345,21 +345,19 @@ export function LibasHeader() {
                 >
                   <Link
                     href={item.href}
-                    className={`inline-flex items-center gap-1.5 py-2 px-1 transition-colors ${
-                      item.sale
+                    className={`inline-flex items-center gap-1.5 py-2 px-1 transition-colors ${item.sale
                         ? 'text-[#D92D20] font-black'
                         : item.highlight
-                        ? 'text-[#71006A] font-black'
-                        : isActive
-                        ? 'text-[#71006A] border-b-2 border-[#71006A]'
-                        : 'text-[#252525] hover:text-[#71006A]'
-                    }`}
+                          ? 'text-[#71006A] font-black'
+                          : isActive
+                            ? 'text-[#71006A] border-b-2 border-[#71006A]'
+                            : 'text-[#252525] hover:text-[#71006A]'
+                      }`}
                   >
                     <span>{item.title}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${
-                        isHovered ? 'rotate-180 text-[#71006A]' : ''
-                      }`}
+                      className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${isHovered ? 'rotate-180 text-[#71006A]' : ''
+                        }`}
                     />
                   </Link>
 
@@ -404,13 +402,12 @@ export function LibasHeader() {
                 <Link
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`text-sm font-bold tracking-wider block ${
-                    item.sale
+                  className={`text-sm font-bold tracking-wider block ${item.sale
                       ? 'text-[#D92D20]'
                       : item.highlight
-                      ? 'text-[#71006A]'
-                      : 'text-[#252525]'
-                  }`}
+                        ? 'text-[#71006A]'
+                        : 'text-[#252525]'
+                    }`}
                 >
                   {item.title}
                 </Link>
