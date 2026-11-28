@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLibas } from '@/context/LibasContext';
+import { LibasSearchBar } from '@/components/libas/LibasSearchBar';
 import {
-  Search,
   Heart,
   ShoppingBag,
   User,
@@ -166,7 +166,6 @@ export function LibasHeader() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
   return (
@@ -227,18 +226,9 @@ export function LibasHeader() {
             </Link>
           </div>
 
-          {/* Center Search Bar */}
+          {/* Center Predictive Search Bar */}
           <div className="hidden lg:flex flex-1 max-w-lg mx-auto">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Search Suits, Kurtas, Sarees, Dresses..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#F5F5F5] border border-transparent focus:border-[#71006A] rounded-full py-2.5 pl-10 pr-4 text-xs text-[#252525] placeholder-[#999999] outline-none transition-all shadow-2xs"
-              />
-              <Search className="w-4 h-4 text-[#71006A] absolute left-3.5 top-1/2 -translate-y-1/2" />
-            </div>
+            <LibasSearchBar />
           </div>
 
           {/* Right Action Icons (Account, Wishlist, Bag) */}
@@ -332,18 +322,9 @@ export function LibasHeader() {
           </div>
         </div>
 
-        {/* Mobile Search input bar */}
+        {/* Mobile Predictive Search Bar */}
         <div className="lg:hidden mt-2.5">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder="Search Suits, Kurtas, Sarees..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-[#F5F5F5] border border-[#E6E6E6] rounded-full py-2 pl-9 pr-4 text-xs text-[#252525] outline-none"
-            />
-            <Search className="w-4 h-4 text-[#71006A] absolute left-3 top-1/2 -translate-y-1/2" />
-          </div>
+          <LibasSearchBar isMobile />
         </div>
       </div>
 

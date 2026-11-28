@@ -106,6 +106,69 @@
   @media (min-width: 768px) {
     .libas-search { display: block; }
   }
+  .libas-mobile-search-bar {
+    display: block;
+  }
+  @media (min-width: 768px) {
+    .libas-mobile-search-bar {
+      display: none;
+    }
+  }
+  .libas-search-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid var(--libas-border);
+    border-radius: 1rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 70vh;
+    overflow-y: auto;
+    display: none;
+  }
+  .libas-search-dropdown.active {
+    display: block;
+  }
+  .libas-search-dropdown::-webkit-scrollbar {
+    width: 4px;
+  }
+  .libas-search-dropdown::-webkit-scrollbar-thumb {
+    background: #E6E6E6;
+    border-radius: 9999px;
+  }
+  .libas-search-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--libas-surface);
+    border: 1px solid var(--libas-border);
+    border-radius: 9999px;
+    font-size: 11px;
+    color: #252525;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .libas-search-chip:hover {
+    background: #F3EBF1;
+    border-color: var(--libas-plum);
+    color: var(--libas-plum);
+  }
+  .libas-search-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #F5F5F5;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.15s ease;
+  }
+  .libas-search-item:hover {
+    background-color: var(--libas-surface);
+  }
   .libas-search input {
     width: 100%;
     padding: 0.5rem 1rem 0.5rem 2.25rem;
@@ -798,22 +861,25 @@
           <button type="button" class="libas-hamburger-btn" onclick="openLibasMobileDrawer()" aria-label="Open menu">
             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
           </button>
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <button type="button" class="libas-hamburger-btn" onclick="openLibasMobileDrawer()" aria-label="Open menu">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          </button>
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <button type="button" class="libas-hamburger-btn" onclick="openLibasMobileDrawer()" aria-label="Open menu">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-          </button>
           <a href="/" class="libas-logo font-brand">LIBAS</a>
         </div>
-        </div>
-        </div>
 
-        <!-- Search Bar -->
-        <div class="libas-search">
-          <input type="search" placeholder="Search Suits, Kurtas, Sarees, Dresses...">
+        <!-- Search Bar with Predictive Dropdown -->
+        <div class="libas-search" id="desktopSearchContainer" style="position: relative;">
+          <form id="desktopSearchForm" onsubmit="event.preventDefault(); executeSearch(document.getElementById('homeSearchInput').value);" style="position: relative; width: 100%;">
+            <input
+              type="search"
+              id="homeSearchInput"
+              placeholder="Search Suits, Kurtas, Sarees, Dresses..."
+              autocomplete="off"
+              style="width: 100%; padding: 0.55rem 2rem 0.55rem 2.25rem; border-radius: 9999px; background: var(--libas-surface); border: 1px solid var(--libas-border); font-size: 0.75rem; outline: none; transition: border-color 0.2s;"
+            >
+            <svg style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: #737373; pointer-events: none;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            <button type="button" id="homeSearchClear" onclick="clearHomeSearch('desktop')" style="display: none; position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); border: none; background: transparent; font-size: 11px; color: #737373; cursor: pointer;" aria-label="Clear">✕</button>
+          </form>
+          
+          <!-- Desktop Predictive Search Dropdown -->
+          <div id="desktopSearchDropdown" style="display: none; position: absolute; left: 0; right: 0; top: calc(100% + 8px); background: #ffffff; border: 1px solid #e6e6e6; border-radius: 1rem; box-shadow: 0 20px 30px rgba(0,0,0,0.12); z-index: 100; max-height: 480px; overflow-y: auto;"></div>
         </div>
 
         <!-- Header Actions -->
@@ -831,6 +897,16 @@
             <span class="libas-bag-count" id="headerBagCount">0</span>
           </button>
         </div>
+      </div>
+
+      <!-- Mobile Search Bar (Visible directly on mobile screens) -->
+      <div class="libas-mobile-search-bar" data-search-container="mobile-bar" style="position: relative; padding-bottom: 0.5rem;">
+        <div style="position: relative; width: 100%;">
+          <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--libas-plum);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="search" placeholder="Search Suits, Kurtas, Sarees, Dresses..." autocomplete="off" style="width: 100%; padding: 0.5rem 1.75rem 0.5rem 2.25rem; border-radius: 9999px; background: var(--libas-surface); border: 1px solid var(--libas-border); font-size: 0.75rem; outline: none;" data-search-input="mobile-bar">
+          <button type="button" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 11px; color: #737373; cursor: pointer;" data-search-clear="mobile-bar">✕</button>
+        </div>
+        <div class="libas-search-dropdown" data-search-dropdown="mobile-bar"></div>
       </div>
 
       <!-- Mega Menu Navigation Links -->
@@ -853,6 +929,32 @@
       <div class="libas-drawer-header">
         <span class="libas-logo font-brand" style="font-size: 1.5rem;">LIBAS</span>
         <button type="button" class="libas-drawer-close" onclick="closeLibasMobileDrawer()" aria-label="Close">✕</button>
+      </div>
+
+      <!-- Mobile Drawer Search -->
+      <div style="padding: 0.75rem 1rem; border-bottom: 1px solid var(--libas-border); position: relative;" data-search-container="mobile-drawer">
+        <div style="position: relative; width: 100%;">
+          <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--libas-plum);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="search" placeholder="Search Suits, Kurtas, Sarees..." autocomplete="off" style="width: 100%; padding: 0.5rem 1.75rem 0.5rem 2.25rem; border-radius: 9999px; background: var(--libas-surface); border: 1px solid var(--libas-border); font-size: 0.75rem; outline: none;" data-search-input="mobile-drawer">
+          <button type="button" style="display: none; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 11px; color: #737373; cursor: pointer;" data-search-clear="mobile-drawer">✕</button>
+        </div>
+        <div class="libas-search-dropdown" data-search-dropdown="mobile-drawer"></div>
+      </div>
+
+      <!-- Mobile Search with Predictive Dropdown -->
+      <div id="mobileSearchContainer" style="padding: 0.75rem 1rem; border-bottom: 1px solid var(--libas-border); position: relative;">
+        <form id="mobileSearchForm" onsubmit="event.preventDefault(); executeSearch(document.getElementById('mobileSearchInput').value);" style="position: relative; width: 100%;">
+          <input
+            type="search"
+            id="mobileSearchInput"
+            placeholder="Search Suits, Kurtas, Sarees..."
+            autocomplete="off"
+            style="width: 100%; padding: 0.5rem 2rem 0.5rem 2.25rem; border-radius: 9999px; background: var(--libas-surface); border: 1px solid var(--libas-border); font-size: 0.75rem; outline: none;"
+          >
+          <svg style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--libas-plum); pointer-events: none;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <button type="button" id="mobileSearchClear" onclick="clearHomeSearch('mobile')" style="display: none; position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); border: none; background: transparent; font-size: 11px; color: #737373; cursor: pointer;" aria-label="Clear">✕</button>
+        </form>
+        <div id="mobileSearchDropdown" style="display: none; margin-top: 0.5rem; background: #ffffff; border: 1px solid #e6e6e6; border-radius: 0.75rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 100; max-height: 380px; overflow-y: auto;"></div>
       </div>
 
       <div class="libas-drawer-links">
@@ -1543,12 +1645,22 @@
 
 </div>
 
-<!-- Client-side Interactive Filter Script -->
+<!-- Client-side Interactive Search & Filter Script -->
 <script>
+  // 1. Bag Management
+  var currentBag = 0;
+  function addToBag(productName) {
+    currentBag++;
+    var el = document.getElementById('headerBagCount');
+    if (el) el.innerText = currentBag;
+    alert('✓ Added "' + productName + '" to your Bag!');
+  }
+
+  // 2. Category Tab Filter
   function filterHomeGrid(cat, btn) {
     var tabs = document.querySelectorAll('.libas-tab-btn');
     tabs.forEach(function(t) { t.classList.remove('active'); });
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
 
     var cards = document.querySelectorAll('#homeProductGrid .libas-card');
     cards.forEach(function(card) {
@@ -1561,11 +1673,299 @@
     });
   }
 
-  var currentBag = 0;
-  function addToBag(productName) {
-    currentBag++;
-    var el = document.getElementById('headerBagCount');
-    if (el) el.innerText = currentBag;
-    alert('✓ Added "' + productName + '" to your Bag!');
+  // 3. Search Engine & History Management
+  var TRENDING_SEARCHES = [
+    'Anarkali Suits',
+    'Organza Sarees',
+    'Cotton Kurtis',
+    'Sharara Sets',
+    'ExtraLove 3XL-6XL',
+    'Festive Sale Deals',
+    'Velvet Kurta',
+    'Silk Dupatta'
+  ];
+
+  function getSearchHistory() {
+    try {
+      var raw = localStorage.getItem('libas_search_history');
+      if (!raw) return ['Anarkali Suits', 'Cotton Kurti', 'Festive Sarees'];
+      return JSON.parse(raw);
+    } catch (e) {
+      return ['Anarkali Suits', 'Cotton Kurti', 'Festive Sarees'];
+    }
   }
+
+  function addSearchHistory(term) {
+    if (!term || !term.trim()) return;
+    var clean = term.trim();
+    var history = getSearchHistory().filter(function(item) {
+      return item.toLowerCase() !== clean.toLowerCase();
+    });
+    history.unshift(clean);
+    if (history.length > 8) history = history.slice(0, 8);
+    try {
+      localStorage.setItem('libas_search_history', JSON.stringify(history));
+    } catch (e) {}
+  }
+
+  function removeSearchHistory(term) {
+    var history = getSearchHistory().filter(function(item) { return item !== term; });
+    try {
+      localStorage.setItem('libas_search_history', JSON.stringify(history));
+    } catch (e) {}
+  }
+
+  function clearAllSearchHistory() {
+    try {
+      localStorage.removeItem('libas_search_history');
+    } catch (e) {}
+  }
+
+  // Extract products from page DOM for real-time autocomplete
+  function getPageProducts() {
+    var cards = document.querySelectorAll('#homeProductGrid .libas-card');
+    var prods = [];
+    cards.forEach(function(card, idx) {
+      var titleEl = card.querySelector('.libas-card-title');
+      var priceEl = card.querySelector('.libas-price-now');
+      var oldPriceEl = card.querySelector('.libas-price-old');
+      var imgEl = card.querySelector('img');
+      var discountEl = card.querySelector('.libas-discount-badge');
+      var cat = card.getAttribute('data-cat') || 'Suits';
+
+      if (titleEl) {
+        prods.push({
+          id: 'card-' + idx,
+          name: titleEl.innerText.trim(),
+          category: cat,
+          price: priceEl ? priceEl.innerText.trim() : '₹2,499',
+          oldPrice: oldPriceEl ? oldPriceEl.innerText.trim() : '₹4,999',
+          image: imgEl ? imgEl.src : '',
+          discount: discountEl ? discountEl.innerText.trim() : '50% OFF',
+          cardElement: card
+        });
+      }
+    });
+    return prods;
+  }
+
+  function renderSearchDropdown(query) {
+    var q = (query || '').trim().toLowerCase();
+    var history = getSearchHistory();
+
+    if (!q) {
+      var html = '<div style="padding: 1rem; text-align: left;">';
+      if (history.length > 0) {
+        html += '<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #F5F5F5; padding-bottom: 0.5rem; margin-bottom: 0.5rem;">';
+        html += '<span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #737373;">Recent Searches</span>';
+        html += '<button type="button" onclick="clearSearchHistoryAction(event)" style="background: none; border: none; font-size: 10px; font-weight: 700; color: var(--libas-plum); cursor: pointer;">Clear All</button>';
+        html += '</div>';
+        html += '<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem;">';
+        history.forEach(function(item) {
+          var safeItem = item.replace(/'/g, "\\'");
+          html += '<div class="libas-search-chip" onclick="triggerSearchTerm(\'' + safeItem + '\')">';
+          html += '<span>' + item + '</span>';
+          html += '<span onclick="removeSearchHistoryAction(event, \'' + safeItem + '\')" style="color: #999; font-size: 10px; margin-left: 4px;">✕</span>';
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+
+      html += '<div style="border-bottom: 1px solid #F5F5F5; padding-bottom: 0.5rem; margin-bottom: 0.5rem; font-size: 11px; font-weight: 700; text-transform: uppercase; color: #737373;">Trending Searches 🔥</div>';
+      html += '<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem;">';
+      TRENDING_SEARCHES.forEach(function(tag) {
+        var safeTag = tag.replace(/'/g, "\\'");
+        html += '<button type="button" class="libas-search-chip" onclick="triggerSearchTerm(\'' + safeTag + '\')">' + tag + '</button>';
+      });
+      html += '</div>';
+
+      html += '<div style="font-size: 10px; font-weight: 800; font-family: monospace; text-transform: uppercase; color: var(--libas-plum); margin-bottom: 0.5rem;">QUICK CATEGORIES</div>';
+      html += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 11px;">';
+      html += '<a href="/collections/suits" style="padding: 6px 10px; background: var(--libas-surface); border-radius: 8px; font-weight: 700; color: #252525;">👗 Suits & Sets</a>';
+      html += '<a href="/collections/kurtas" style="padding: 6px 10px; background: var(--libas-surface); border-radius: 8px; font-weight: 700; color: #252525;">👚 Kurtas & Kurtis</a>';
+      html += '<a href="/collections/sarees" style="padding: 6px 10px; background: var(--libas-surface); border-radius: 8px; font-weight: 700; color: #252525;">🥻 Sarees</a>';
+      html += '<a href="/collections/plus-size" style="padding: 6px 10px; background: var(--libas-surface); border-radius: 8px; font-weight: 700; color: var(--libas-plum);">💜 ExtraLove 3XL-6XL</a>';
+      html += '</div>';
+      html += '</div>';
+      return html;
+    }
+
+    var allProds = getPageProducts();
+    var matches = allProds.filter(function(p) {
+      return p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+    });
+
+    if (matches.length === 0) {
+      var noHtml = '<div style="padding: 1.5rem; text-align: center;">';
+      noHtml += '<div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>';
+      noHtml += '<div style="font-weight: 700; font-size: 12px; color: #252525;">No products found for "' + query + '"</div>';
+      noHtml += '<p style="font-size: 11px; color: #737373; margin: 0.25rem 0 1rem 0;">Try searching for Anarkali, Sharara, Kurta, or Saree</p>';
+      noHtml += '<div style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;">';
+      TRENDING_SEARCHES.slice(0, 4).forEach(function(tag) {
+        var safeTag = tag.replace(/'/g, "\\'");
+        noHtml += '<button type="button" class="libas-search-chip" onclick="triggerSearchTerm(\'' + safeTag + '\')">' + tag + '</button>';
+      });
+      noHtml += '</div>';
+      noHtml += '</div>';
+      return noHtml;
+    }
+
+    var listHtml = '<div style="padding: 0.5rem 0;">';
+    listHtml += '<div style="padding: 0.5rem 1rem; background: var(--libas-surface); border-bottom: 1px solid var(--libas-border); font-size: 11px; font-weight: 700; display: flex; justify-content: space-between;">';
+    listHtml += '<span>Matching Styles (' + matches.length + ')</span>';
+    listHtml += '<button type="button" onclick="triggerSearchTerm(\'' + query.replace(/'/g, "\\'") + '\')" style="background: none; border: none; color: var(--libas-plum); font-weight: 700; cursor: pointer;">Show All in Grid →</button>';
+    listHtml += '</div>';
+
+    matches.slice(0, 5).forEach(function(p) {
+      listHtml += '<div class="libas-search-item" onclick="selectProductFromSearch(\'' + p.name.replace(/'/g, "\\'") + '\')">';
+      listHtml += '<img src="' + p.image + '" style="width: 40px; height: 52px; object-fit: cover; border-radius: 4px; flex-shrink: 0;">';
+      listHtml += '<div style="flex: 1; min-width: 0;">';
+      listHtml += '<span style="font-size: 9px; font-family: monospace; color: var(--libas-plum); font-weight: 700; text-transform: uppercase;">' + p.category + '</span>';
+      listHtml += '<div style="font-size: 11px; font-weight: 700; color: #252525; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">' + p.name + '</div>';
+      listHtml += '<div style="font-size: 11px; font-weight: 800; color: var(--libas-plum); margin-top: 2px;">' + p.price + ' <span style="font-size: 9px; color: #737373; text-decoration: line-through; margin-left: 4px;">' + p.oldPrice + '</span> <span style="font-size: 9px; color: var(--libas-sale); margin-left: 4px;">' + p.discount + '</span></div>';
+      listHtml += '</div>';
+      listHtml += '<span style="color: #737373; font-size: 12px;">→</span>';
+      listHtml += '</div>';
+    });
+
+    listHtml += '<div style="padding: 0.75rem; text-align: center; border-top: 1px solid var(--libas-border);">';
+    listHtml += '<button type="button" onclick="triggerSearchTerm(\'' + query.replace(/'/g, "\\'") + '\')" style="width: 100%; padding: 0.5rem; background: var(--libas-plum); color: #fff; border: none; border-radius: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; cursor: pointer;">Filter Page Results for "' + query + '" →</button>';
+    listHtml += '</div>';
+    listHtml += '</div>';
+    return listHtml;
+  }
+
+  function triggerSearchTerm(term) {
+    addSearchHistory(term);
+    var inputs = document.querySelectorAll('[data-search-input]');
+    inputs.forEach(function(inp) { inp.value = term; });
+    var dropdowns = document.querySelectorAll('[data-search-dropdown]');
+    dropdowns.forEach(function(dd) { dd.classList.remove('active'); });
+    closeLibasMobileDrawer();
+
+    // Filter home grid based on search term
+    var q = term.toLowerCase().trim();
+    var cards = document.querySelectorAll('#homeProductGrid .libas-card');
+    var matchedCount = 0;
+    cards.forEach(function(card) {
+      var text = card.innerText.toLowerCase();
+      var cat = (card.getAttribute('data-cat') || '').toLowerCase();
+      if (text.includes(q) || cat.includes(q) || q.includes(cat)) {
+        card.style.display = 'block';
+        matchedCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update active tab label to reflect search
+    var tabs = document.querySelectorAll('.libas-tab-btn');
+    tabs.forEach(function(t) { t.classList.remove('active'); });
+
+    // Scroll smoothly to products grid
+    var gridSection = document.getElementById('homeProductGrid');
+    if (gridSection) {
+      gridSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function selectProductFromSearch(name) {
+    triggerSearchTerm(name);
+  }
+
+  function removeSearchHistoryAction(event, term) {
+    event.stopPropagation();
+    removeSearchHistory(term);
+    var activeInput = document.querySelector('[data-search-input]:focus') || document.querySelector('[data-search-input]');
+    var q = activeInput ? activeInput.value : '';
+    document.querySelectorAll('[data-search-dropdown]').forEach(function(dd) {
+      dd.innerHTML = renderSearchDropdown(q);
+    });
+  }
+
+  function clearSearchHistoryAction(event) {
+    event.stopPropagation();
+    clearAllSearchHistory();
+    var activeInput = document.querySelector('[data-search-input]:focus') || document.querySelector('[data-search-input]');
+    var q = activeInput ? activeInput.value : '';
+    document.querySelectorAll('[data-search-dropdown]').forEach(function(dd) {
+      dd.innerHTML = renderSearchDropdown(q);
+    });
+  }
+
+  // Bind Search Inputs & Dropdowns
+  document.addEventListener('DOMContentLoaded', function() {
+    var searchInputs = document.querySelectorAll('[data-search-input]');
+    var clearButtons = document.querySelectorAll('[data-search-clear]');
+    var dropdowns = document.querySelectorAll('[data-search-dropdown]');
+
+    function updateClearBtn(input) {
+      var container = input.closest('[data-search-container]');
+      if (!container) return;
+      var clearBtn = container.querySelector('[data-search-clear]');
+      if (clearBtn) {
+        if (input.value.trim().length > 0) {
+          clearBtn.style.display = 'block';
+        } else {
+          clearBtn.style.display = 'none';
+        }
+      }
+    }
+
+    searchInputs.forEach(function(inp) {
+      var container = inp.closest('[data-search-container]');
+      var dd = container ? container.querySelector('[data-search-dropdown]') : null;
+
+      inp.addEventListener('focus', function() {
+        if (dd) {
+          dd.innerHTML = renderSearchDropdown(inp.value);
+          dd.classList.add('active');
+        }
+        updateClearBtn(inp);
+      });
+
+      inp.addEventListener('input', function() {
+        if (dd) {
+          dd.innerHTML = renderSearchDropdown(inp.value);
+          dd.classList.add('active');
+        }
+        updateClearBtn(inp);
+      });
+
+      inp.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          var term = inp.value.trim();
+          if (term) triggerSearchTerm(term);
+        }
+      });
+    });
+
+    clearButtons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var container = btn.closest('[data-search-container]');
+        if (!container) return;
+        var inp = container.querySelector('[data-search-input]');
+        var dd = container.querySelector('[data-search-dropdown]');
+        if (inp) {
+          inp.value = '';
+          inp.focus();
+          btn.style.display = 'none';
+          if (dd) {
+            dd.innerHTML = renderSearchDropdown('');
+            dd.classList.add('active');
+          }
+        }
+      });
+    });
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('[data-search-container]')) {
+        dropdowns.forEach(function(dd) { dd.classList.remove('active'); });
+      }
+    });
+  });
 </script>
+</body>
+</html>

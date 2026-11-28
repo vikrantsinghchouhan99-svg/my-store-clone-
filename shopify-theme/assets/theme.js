@@ -2681,6 +2681,303 @@ function renderProductCardHTML(prod) {
 
 // --- 5. Page Views Generator (Full Next.js Clones) ---
 
+// --- 2.5 Search Engine & Predictive Autocomplete Logic ---
+const TRENDING_SEARCHES = [
+  'Anarkali Suits',
+  'Organza Sarees',
+  'Cotton Kurtis',
+  'Sharara Sets',
+  'ExtraLove 3XL-6XL',
+  'Festive Sale Deals',
+  'Velvet Kurta',
+  'Silk Dupatta'
+];
+
+function getSearchHistory() {
+  try {
+    const raw = localStorage.getItem('libas_search_history');
+    if (!raw) return ['Anarkali Suits', 'Cotton Kurti', 'Festive Sarees'];
+    return JSON.parse(raw);
+  } catch (e) {
+    return ['Anarkali Suits', 'Cotton Kurti', 'Festive Sarees'];
+  }
+}
+
+function addSearchHistory(term) {
+  if (!term || !term.trim()) return;
+  const clean = term.trim();
+  let history = getSearchHistory().filter(item => item.toLowerCase() !== clean.toLowerCase());
+  history.unshift(clean);
+  if (history.length > 8) history = history.slice(0, 8);
+  try {
+    localStorage.setItem('libas_search_history', JSON.stringify(history));
+  } catch (e) {}
+}
+
+function removeSearchHistory(term) {
+  let history = getSearchHistory().filter(item => item !== term);
+  try {
+    localStorage.setItem('libas_search_history', JSON.stringify(history));
+  } catch (e) {}
+}
+
+function clearAllSearchHistory() {
+  try {
+    localStorage.removeItem('libas_search_history');
+  } catch (e) {}
+}
+
+function searchCatalogProducts(query) {
+  if (!query || !query.trim()) return [];
+  const q = query.toLowerCase().trim();
+  const tokens = q.split(/\s+/).filter(Boolean);
+
+  return LIBAS_CATALOG.filter(p => {
+    const searchTarget = [
+      p.name,
+      p.category,
+      p.subCategory || '',
+      p.fabric || '',
+      p.occasion || '',
+      p.pattern || '',
+      p.description || '',
+      (p.colors || []).map(c => c.name).join(' ')
+    ].join(' ').toLowerCase();
+
+    if (searchTarget.includes(q)) return true;
+
+    return tokens.every(tok => {
+      if ((tok === 'suit' || tok === 'suits') && searchTarget.includes('suit')) return true;
+      if ((tok === 'kurta' || tok === 'kurti' || tok === 'kurtas') && searchTarget.includes('kurta')) return true;
+      if ((tok === 'saree' || tok === 'sari' || tok === 'sarees') && searchTarget.includes('saree')) return true;
+      if ((tok === 'dress' || tok === 'dresses' || tok === 'gown') && (searchTarget.includes('dress') || searchTarget.includes('gown'))) return true;
+      if ((tok === 'plus' || tok === 'curvy' || tok === 'extralove') && (p.isExtraLove || searchTarget.includes('plus'))) return true;
+      if ((tok === 'sale' || tok === 'discount' || tok === 'offer') && (p.discountPercentage >= 50 || p.isBestSeller)) return true;
+      return searchTarget.includes(tok);
+    });
+  });
+}
+
+function renderSearchDropdownHTML(query) {
+  const q = (query || '').trim();
+  const history = getSearchHistory();
+
+  if (!q) {
+    return `
+      <div class="p-4 space-y-4 max-h-[70vh] overflow-y-auto">
+        ${history.length > 0 ? `
+          <div>
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#F5F5F5]">
+              <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#737373]">
+                <svg class="w-3.5 h-3.5 text-[#71006A]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Recent Searches</span>
+              </div>
+              <button type="button" class="text-[10px] font-bold text-[#71006A] hover:underline bg-transparent border-none cursor-pointer" onclick="handleClearAllHistory(event)">Clear All</button>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              ${history.map(item => `
+                <div class="inline-flex items-center gap-1 px-3 py-1 bg-[#FAF7F9] hover:bg-[#F3EBF1] border border-[#E6E6E6] rounded-full text-xs text-[#252525] group cursor-pointer transition-colors" onclick="triggerSearchTerm('${item.replace(/'/g, "\\'")}')">
+                  <span>${item}</span>
+                  <button type="button" class="text-[10px] text-[#737373] hover:text-[#D92D20] bg-transparent border-none cursor-pointer p-0 ml-1 leading-none" onclick="handleRemoveHistoryItem(event, '${item.replace(/'/g, "\\'")}')" aria-label="Remove item">✕</button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <div>
+          <div class="flex items-center gap-1.5 pb-2 mb-2 border-b border-[#F5F5F5] text-[11px] font-bold uppercase tracking-wider text-[#737373]">
+            <span class="text-sm">🔥</span>
+            <span>Trending Searches</span>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            ${TRENDING_SEARCHES.map(tag => `
+              <button type="button" onclick="triggerSearchTerm('${tag.replace(/'/g, "\\'")}')" class="search-tag-chip px-3 py-1 bg-[#FAF7F9] hover:bg-[#71006A] hover:text-white border border-[#E6E6E6] rounded-full text-xs text-[#4D4D4D] transition-colors cursor-pointer">
+                ${tag}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+
+        <div>
+          <div class="text-[10px] font-mono font-bold uppercase tracking-widest text-[#71006A] mb-2">QUICK CATEGORIES</div>
+          <div class="grid grid-cols-2 gap-1.5 text-xs">
+            <a href="/collections/suits" class="p-2 rounded-lg bg-[#FAF7F9] hover:bg-[#F3EBF1] flex items-center gap-2 text-[#252525] font-bold"><span class="text-base">👗</span> Suits & Sets</a>
+            <a href="/collections/kurtas" class="p-2 rounded-lg bg-[#FAF7F9] hover:bg-[#F3EBF1] flex items-center gap-2 text-[#252525] font-bold"><span class="text-base">👚</span> Kurtas & Kurtis</a>
+            <a href="/collections/sarees" class="p-2 rounded-lg bg-[#FAF7F9] hover:bg-[#F3EBF1] flex items-center gap-2 text-[#252525] font-bold"><span class="text-base">🥻</span> Sarees</a>
+            <a href="/collections/plus-size" class="p-2 rounded-lg bg-[#FAF7F9] hover:bg-[#F3EBF1] flex items-center gap-2 text-[#71006A] font-bold"><span class="text-base">💜</span> ExtraLove (3XL-6XL)</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const matches = searchCatalogProducts(q);
+
+  if (matches.length === 0) {
+    return `
+      <div class="p-6 text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-[#FAF7F9] text-[#71006A] flex items-center justify-center mx-auto text-xl">🔍</div>
+        <p class="text-xs font-bold text-[#252525]">No products matching "${q}"</p>
+        <p class="text-[11px] text-[#737373]">Try searching for Anarkali, Kurta, Organza, Velvet, or Silk</p>
+        <div class="pt-2 flex flex-wrap gap-1.5 justify-center">
+          ${TRENDING_SEARCHES.slice(0, 4).map(tag => `
+            <button type="button" onclick="triggerSearchTerm('${tag.replace(/'/g, "\\'")}')" class="px-2.5 py-1 bg-[#FAF7F9] hover:bg-[#71006A] hover:text-white border border-[#E6E6E6] rounded-full text-[11px] text-[#4D4D4D] transition-colors cursor-pointer">
+              ${tag}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  const topMatches = matches.slice(0, 5);
+
+  return `
+    <div class="max-h-[75vh] overflow-y-auto">
+      <div class="px-4 py-2.5 bg-[#FAF7F9] border-b border-[#E6E6E6] flex items-center justify-between text-xs">
+        <span class="font-bold text-[#252525]">Matching Products (${matches.length})</span>
+        <button type="button" onclick="triggerSearchTerm('${q.replace(/'/g, "\\'")}')" class="text-[11px] font-bold text-[#71006A] hover:underline bg-transparent border-none cursor-pointer">
+          View All (${matches.length}) →
+        </button>
+      </div>
+
+      <div class="divide-y divide-[#F5F5F5]">
+        ${topMatches.map(prod => `
+          <a
+            href="/products/${prod.slug || prod.id}"
+            onclick="event.preventDefault(); addSearchHistory('${q.replace(/'/g, "\\'")}'); navigateTo('/products/${prod.slug || prod.id}'); document.querySelectorAll('[data-search-dropdown]').forEach(d => d.classList.add('hidden'));"
+            class="search-result-item flex items-center gap-3 p-3 hover:bg-[#FAF7F9] transition-colors text-left"
+          >
+            <div class="w-12 h-16 rounded-md overflow-hidden bg-[#F5F5F5] shrink-0 aspect-[3/4]">
+              <img src="${prod.images[0]}" alt="${prod.name}" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 min-w-0">
+              <span class="text-[10px] font-mono text-[#71006A] uppercase font-bold block">${prod.category} • ${prod.fabric || ''}</span>
+              <h4 class="text-xs font-bold text-[#252525] truncate">${prod.name}</h4>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-xs font-extrabold text-[#71006A]">₹${prod.price.toLocaleString('en-IN')}</span>
+                ${prod.originalPrice ? `<span class="text-[10px] text-[#737373] line-through">₹${prod.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+                ${prod.discountPercentage ? `<span class="text-[9px] font-bold text-[#D92D20]">${prod.discountPercentage}% OFF</span>` : ''}
+              </div>
+            </div>
+            <span class="text-xs text-[#737373] mr-1">→</span>
+          </a>
+        `).join('')}
+      </div>
+
+      <div class="p-3 bg-[#FAF7F9] border-t border-[#E6E6E6] text-center">
+        <button
+          type="button"
+          onclick="triggerSearchTerm('${q.replace(/'/g, "\\'")}')"
+          class="w-full py-2 bg-[#71006A] hover:bg-[#560050] text-white rounded-lg text-xs font-bold uppercase tracking-wider transition-colors border-none cursor-pointer shadow-xs"
+        >
+          See All ${matches.length} Results for "${q}" →
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function getSearchPageHTML(query) {
+  const q = (query || '').trim();
+  const results = q ? searchCatalogProducts(q) : LIBAS_CATALOG;
+  const categories = ['All', 'Suits', 'Kurtas', 'Sarees', 'Dresses', 'Loungewear', 'Plus-Size', 'Sale'];
+
+  return `
+    <div class="py-10 bg-white min-h-screen">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center gap-2 text-xs text-[#737373] mb-6">
+          <a href="/" onclick="event.preventDefault(); navigateTo('/');" class="hover:text-[#71006A]">Home</a>
+          <span>/</span>
+          <span class="text-[#252525] font-bold">Search</span>
+        </nav>
+
+        <!-- Search Header -->
+        <div class="max-w-3xl mx-auto text-center space-y-3 mb-10">
+          <span class="text-[10px] font-mono tracking-widest uppercase text-[#71006A] font-extrabold">
+            LIBAS PRODUCT DISCOVERY
+          </span>
+          <h1 class="text-2xl sm:text-4xl font-serif font-bold text-[#252525]">
+            ${q ? `Search results for "${q}"` : 'Explore All Festive Styles'}
+          </h1>
+          <p class="text-xs sm:text-sm text-[#737373]">
+            Found <strong class="text-[#71006A] font-bold">${results.length}</strong> styles matching your preferences.
+          </p>
+
+          <!-- In-page Search Bar -->
+          <form onsubmit="event.preventDefault(); const val = this.querySelector('input').value; navigateTo('/search?q=' + encodeURIComponent(val));" class="max-w-lg mx-auto relative pt-2">
+            <input
+              type="search"
+              value="${q.replace(/"/g, '&quot;')}"
+              placeholder="Refine search: Suits, Sarees, Georgette, Anarkali..."
+              class="w-full pl-10 pr-24 py-2.5 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A] transition-colors"
+            >
+            <svg class="w-4 h-4 text-[#737373] absolute left-3.5 top-[19px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            <button type="submit" class="absolute right-1.5 top-[11px] px-4 py-1.5 bg-[#71006A] text-white rounded-full text-xs font-bold hover:bg-[#560050] transition-colors border-none cursor-pointer">
+              Search
+            </button>
+          </form>
+
+          <!-- Trending Tags under search -->
+          <div class="flex flex-wrap items-center justify-center gap-1.5 pt-2">
+            <span class="text-[10px] text-[#737373] font-bold uppercase tracking-wider mr-1">Trending:</span>
+            ${TRENDING_SEARCHES.slice(0, 5).map(tag => `
+              <button type="button" onclick="triggerSearchTerm('${tag.replace(/'/g, "\\'")}')" class="px-2.5 py-1 bg-[#FAF7F9] hover:bg-[#71006A] hover:text-white border border-[#E6E6E6] rounded-full text-[11px] text-[#4D4D4D] transition-colors cursor-pointer">
+                ${tag}
+              </button>
+            `).join('')}
+          </div>
+        </div>
+
+        ${results.length === 0 ? `
+          <!-- Empty State -->
+          <div class="max-w-md mx-auto text-center py-16 space-y-4 bg-[#FAF7F9] rounded-2xl border border-[#E6E6E6] p-8">
+            <div class="w-16 h-16 rounded-full bg-white text-[#71006A] flex items-center justify-center mx-auto text-3xl shadow-xs">🔍</div>
+            <h3 class="text-base font-bold text-[#252525]">No festive styles found matching "${q}"</h3>
+            <p class="text-xs text-[#737373]">
+              We could not find an exact match. Try checking spelling, using simpler words, or explore our most sought-after festive collections below.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2 justify-center">
+              <a href="/collections/suits" class="px-4 py-2 rounded-full bg-[#71006A] text-white text-xs font-bold hover:bg-[#560050]">View Suits</a>
+              <a href="/collections/kurtas" class="px-4 py-2 rounded-full bg-white border border-[#E6E6E6] text-xs font-bold text-[#252525] hover:border-[#71006A]">View Kurtas</a>
+              <a href="/collections/sarees" class="px-4 py-2 rounded-full bg-white border border-[#E6E6E6] text-xs font-bold text-[#252525] hover:border-[#71006A]">View Sarees</a>
+            </div>
+          </div>
+        ` : `
+          <!-- Toolbar & Category Filter Pills -->
+          <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar" style="scrollbar-width: none;">
+            ${categories.map((cat, idx) => `
+              <button
+                type="button"
+                onclick="filterSearchResultCategory('${cat}')"
+                class="search-cat-chip ${idx === 0 ? 'active bg-[#71006A] text-white' : 'bg-[#FAF7F9] text-[#252525] border border-[#E6E6E6]'} px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer whitespace-nowrap hover:border-[#71006A] transition-colors"
+                data-search-cat="${cat}"
+              >
+                ${cat}
+              </button>
+            `).join('')}
+          </div>
+
+          <div class="flex items-center justify-between pb-4 border-b border-[#E6E6E6] mb-8 text-xs text-[#737373]">
+            <div>Showing <strong class="text-[#252525]" id="searchResultCount">${results.length}</strong> styles</div>
+            <div class="flex items-center gap-2">
+              <span class="hidden sm:inline">⚡ Instant Dispatch & Free Returns</span>
+            </div>
+          </div>
+
+          <!-- Product Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6" id="search-product-grid">
+            ${results.map(p => renderProductCardHTML(p)).join('')}
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+
 function getCollectionPageHTML(category, title, tagline) {
   const filtered = LIBAS_CATALOG.filter(p => {
     if (category === 'All') return true;
@@ -2989,6 +3286,13 @@ function handleRoute(path) {
   const searchParams = new URLSearchParams(searchStr);
   const filterVal = searchParams.get('filter') || searchParams.get('category');
 
+  // Match Search route
+  if (cleanPath.includes('/search') || searchParams.has('q')) {
+    const q = searchParams.get('q') || '';
+    main.innerHTML = getSearchPageHTML(q);
+    return;
+  }
+
   // Match collection routes
   if (cleanPath.includes('/suits') || filterVal === 'suits' || cleanPath.endsWith('/suits')) {
     main.innerHTML = getCollectionPageHTML('Suits', 'Suits & Suit Sets', 'From magnificent wedding Anarkalis to breathable everyday cotton palazzos, explore our hallmark festive suit sets.');
@@ -3204,7 +3508,157 @@ function handleRoute(path) {
 }
 
 // --- 7. DOM Ready Initializer ---
+// --- Global Search Actions ---
+window.triggerSearchTerm = function(term) {
+  addSearchHistory(term);
+  const inputs = document.querySelectorAll('[data-search-input]');
+  inputs.forEach(inp => inp.value = term);
+  const dropdowns = document.querySelectorAll('[data-search-dropdown]');
+  dropdowns.forEach(dd => dd.classList.add('hidden'));
+  const drawer = document.getElementById('MobileNavDrawer');
+  if (drawer) {
+    drawer.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  navigateTo('/search?q=' + encodeURIComponent(term));
+};
+
+window.handleRemoveHistoryItem = function(event, term) {
+  event.stopPropagation();
+  removeSearchHistory(term);
+  const dropdowns = document.querySelectorAll('[data-search-dropdown]');
+  const activeInp = document.querySelector('[data-search-input]:focus') || document.querySelector('[data-search-input]');
+  const q = activeInp ? activeInp.value : '';
+  dropdowns.forEach(dd => {
+    dd.innerHTML = renderSearchDropdownHTML(q);
+  });
+};
+
+window.handleClearAllHistory = function(event) {
+  event.stopPropagation();
+  clearAllSearchHistory();
+  const dropdowns = document.querySelectorAll('[data-search-dropdown]');
+  const activeInp = document.querySelector('[data-search-input]:focus') || document.querySelector('[data-search-input]');
+  const q = activeInp ? activeInp.value : '';
+  dropdowns.forEach(dd => {
+    dd.innerHTML = renderSearchDropdownHTML(q);
+  });
+};
+
+window.filterSearchResultCategory = function(cat) {
+  const chips = document.querySelectorAll('.search-cat-chip');
+  chips.forEach(c => {
+    if (c.getAttribute('data-search-cat') === cat) {
+      c.className = 'search-cat-chip active bg-[#71006A] text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer whitespace-nowrap hover:border-[#71006A] transition-colors';
+    } else {
+      c.className = 'search-cat-chip bg-[#FAF7F9] text-[#252525] border border-[#E6E6E6] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer whitespace-nowrap hover:border-[#71006A] transition-colors';
+    }
+  });
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const q = urlParams.get('q') || '';
+  let filtered = q ? searchCatalogProducts(q) : LIBAS_CATALOG;
+  if (cat !== 'All') {
+    if (cat === 'Plus-Size') {
+      filtered = filtered.filter(p => p.isExtraLove || p.category === 'Plus-Size' || p.category === 'Plus Size');
+    } else if (cat === 'Sale') {
+      filtered = filtered.filter(p => p.discountPercentage >= 50 || p.category === 'Sale');
+    } else {
+      filtered = filtered.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+    }
+  }
+
+  const countEl = document.getElementById('searchResultCount');
+  if (countEl) countEl.textContent = filtered.length;
+  const gridEl = document.getElementById('search-product-grid');
+  if (gridEl) {
+    gridEl.innerHTML = filtered.map(p => renderProductCardHTML(p)).join('');
+  }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
+  // Predictive Search Interactions
+  const searchInputs = document.querySelectorAll('[data-search-input]');
+  const searchDropdowns = document.querySelectorAll('[data-search-dropdown]');
+  const searchForms = document.querySelectorAll('[data-search-form]');
+  const clearButtons = document.querySelectorAll('[data-search-clear]');
+
+  function updateClearButtons(input) {
+    const container = input.closest('[data-search-container]');
+    if (!container) return;
+    const clearBtn = container.querySelector('[data-search-clear]');
+    if (clearBtn) {
+      if (input.value.trim().length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+    }
+  }
+
+  searchInputs.forEach(input => {
+    const container = input.closest('[data-search-container]');
+    const dropdown = container ? container.querySelector('[data-search-dropdown]') : null;
+
+    input.addEventListener('focus', function() {
+      if (dropdown) {
+        dropdown.innerHTML = renderSearchDropdownHTML(input.value);
+        dropdown.classList.remove('hidden');
+      }
+      updateClearButtons(input);
+    });
+
+    input.addEventListener('input', function() {
+      if (dropdown) {
+        dropdown.innerHTML = renderSearchDropdownHTML(input.value);
+        dropdown.classList.remove('hidden');
+      }
+      updateClearButtons(input);
+    });
+  });
+
+  clearButtons.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const container = btn.closest('[data-search-container]');
+      if (!container) return;
+      const input = container.querySelector('[data-search-input]');
+      const dropdown = container.querySelector('[data-search-dropdown]');
+      if (input) {
+        input.value = '';
+        input.focus();
+        btn.classList.add('hidden');
+        if (dropdown) {
+          dropdown.innerHTML = renderSearchDropdownHTML('');
+          dropdown.classList.remove('hidden');
+        }
+      }
+    });
+  });
+
+  searchForms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const input = form.querySelector('[data-search-input]');
+      const query = input ? input.value.trim() : '';
+      if (!query) return;
+      addSearchHistory(query);
+      searchDropdowns.forEach(dd => dd.classList.add('hidden'));
+      const drawer = document.getElementById('MobileNavDrawer');
+      if (drawer) {
+        drawer.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      navigateTo('/search?q=' + encodeURIComponent(query));
+    });
+  });
+
+  // Close search dropdown on click outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('[data-search-container]')) {
+      searchDropdowns.forEach(dd => dd.classList.add('hidden'));
+    }
+  });
   updateCartUI();
   updateWishlistUI();
 

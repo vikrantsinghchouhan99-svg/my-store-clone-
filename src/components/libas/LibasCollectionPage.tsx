@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { LibasProduct } from '@/types/libas';
 import { useLibas } from '@/context/LibasContext';
 import { LibasProductCard } from '@/components/libas/LibasProductCard';
 import { SlidersHorizontal, ArrowUpDown, X, Check, Filter } from 'lucide-react';
@@ -25,27 +24,21 @@ function CollectionContent({ category, title, tagline }: LibasCollectionPageProp
   const catParam = searchParams.get('cat');
 
   // Filter states
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string>('All');
-  const [selectedFabric, setSelectedFabric] = useState<string>('All');
-  const [selectedOccasion, setSelectedOccasion] = useState<string>('All');
+  const [userSubCategory, setUserSubCategory] = useState<string | null>(null);
+  const [userFabric, setUserFabric] = useState<string | null>(null);
+  const [userOccasion, setUserOccasion] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>('All');
   const [priceMax, setPriceMax] = useState<number>(10000);
   const [sortBy, setSortBy] = useState<string>('featured');
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
-  // Sync query params when URL changes
-  useEffect(() => {
-    if (styleParam) setSelectedSubCategory(styleParam);
-    else if (typeParam) setSelectedSubCategory(typeParam);
-    else if (catParam) setSelectedSubCategory(catParam);
-    else setSelectedSubCategory('All');
+  const selectedSubCategory = userSubCategory ?? (styleParam || typeParam || catParam || 'All');
+  const selectedFabric = userFabric ?? (fabricParam || 'All');
+  const selectedOccasion = userOccasion ?? (occasionParam || 'All');
 
-    if (fabricParam) setSelectedFabric(fabricParam);
-    else setSelectedFabric('All');
-
-    if (occasionParam) setSelectedOccasion(occasionParam);
-    else setSelectedOccasion('All');
-  }, [styleParam, fabricParam, occasionParam, typeParam, catParam]);
+  const setSelectedSubCategory = (val: string) => setUserSubCategory(val);
+  const setSelectedFabric = (val: string) => setUserFabric(val);
+  const setSelectedOccasion = (val: string) => setUserOccasion(val);
 
   // Base products for this page category
   const baseProducts = products.filter((p) => {

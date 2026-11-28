@@ -20,18 +20,23 @@
       </div>
 
       <!-- Search Bar -->
-      <div class="header-search-bar hidden md:flex flex-1 max-w-md mx-6">
-        <form action="{{ routes.search_url }}" method="get" class="w-full relative">
+      <div class="header-search-bar hidden md:flex flex-1 max-w-md mx-6 relative" data-search-container="desktop">
+        <form action="{{ routes.search_url }}" method="get" class="w-full relative" data-search-form="desktop">
           <input
             type="search"
             name="q"
+            autocomplete="off"
             placeholder="Search Suits, Kurtas, Sarees, Dresses..."
-            class="header-search-input w-full pl-10 pr-4 py-2 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A] transition-colors"
+            class="header-search-input w-full pl-10 pr-8 py-2 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A] transition-colors"
+            data-search-input="desktop"
           >
-          <button type="submit" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#737373] bg-transparent border-none cursor-pointer">
+          <button type="submit" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#737373] hover:text-[#71006A] bg-transparent border-none cursor-pointer" aria-label="Submit search">
             {% render 'icon-search' %}
           </button>
+          <button type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#737373] hover:text-[#252525] bg-transparent border-none cursor-pointer" data-search-clear="desktop" aria-label="Clear search">✕</button>
         </form>
+        <!-- Predictive Search Dropdown -->
+        <div class="predictive-search-dropdown hidden absolute left-0 right-0 top-full mt-2 w-full" data-search-dropdown="desktop"></div>
       </div>
 
       <!-- Actions: Account, Wishlist, Bag -->
@@ -155,16 +160,21 @@
       </div>
 
       <!-- Mobile Search Form -->
-      <div class="p-3 border-b border-[#E6E6E6]">
-        <form action="{{ routes.search_url }}" method="get" class="relative">
+      <div class="p-3 border-b border-[#E6E6E6] relative" data-search-container="mobile">
+        <form action="{{ routes.search_url }}" method="get" class="relative" data-search-form="mobile">
           <input
             type="search"
             name="q"
+            autocomplete="off"
             placeholder="Search Suits, Kurtas, Sarees..."
-            class="w-full pl-9 pr-3 py-2 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A]"
+            class="w-full pl-9 pr-8 py-2 text-xs bg-[#FAF7F9] border border-[#E6E6E6] rounded-full outline-none focus:border-[#71006A]"
+            data-search-input="mobile"
           >
-          <svg class="w-4 h-4 text-[#71006A] absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <svg class="w-4 h-4 text-[#71006A] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <button type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#737373] hover:text-[#252525] bg-transparent border-none cursor-pointer" data-search-clear="mobile" aria-label="Clear search">✕</button>
         </form>
+        <!-- Mobile Dropdown -->
+        <div class="predictive-search-dropdown hidden mt-2 w-full" data-search-dropdown="mobile"></div>
       </div>
 
       <!-- Mobile Category Navigation Links -->
